@@ -1,102 +1,70 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <title>ADV WELDING - Productos</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <title>ADV WELDING - Productos</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <header>
-  <div class="header-top">
-    <div class="header-left">
-      <div class="logo">ADV WELDING</div>
-      <nav>
-        <ul class="menu">
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="servicios.html">Servicios</a></li>
-          <li><a href="productos.html">Productos</a></li>
-          <li><a href="contacto.html">Contacto</a></li>
-        </ul>
-      </nav>
-    </div>
+    <h1 class="titulo">ADV WELDING</h1>
 
-    <div class="header-right">
-      <button class="cart-btn">Carrito <span class="cart-count">0</span></button>
-    </div>
-  </div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="productos.html">Productos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <div class="carrito-btn" onclick="toggleCarrito()">Carrito (<span class="count">0</span>)</div>
 </header>
 
-<div class="container">
-  <h2>Productos</h2>
+<div class="productos" id="listaProductos"></div>
 
-  <div id="productGrid" class="product-grid">
-    <!-- JS genera las tarjetas -->
-  </div>
+<div id="carrito">
+    <h2>Tu Carrito</h2>
+    <div id="itemsCarrito"></div>
+    <div class="total">Total: $<span id="total">0</span></div>
 </div>
 
-<!-- cart modal -->
-<div id="cart-backdrop" class="modal-backdrop">
-  <div class="cart-modal" role="dialog" aria-modal="true">
-    <div style="display:flex; justify-content:space-between; align-items:center;">
-      <h3>Tu carrito</h3>
-      <button class="btn-close" style="background:#eee;border:none;padding:6px 8px;border-radius:6px;cursor:pointer;">Cerrar</button>
-    </div>
+<script>
+// ---- 10 Productos ----
+const productos = [
+    {id:1, nombre:"Producto 1", precio:199, img:"https://via.placeholder.com/300"},
+    {id:2, nombre:"Producto 2", precio:250, img:"https://via.placeholder.com/300"},
+    {id:3, nombre:"Producto 3", precio:99, img:"https://via.placeholder.com/300"},
+    {id:4, nombre:"Producto 4", precio:149, img:"https://via.placeholder.com/300"},
+    {id:5, nombre:"Producto 5", precio:349, img:"https://via.placeholder.com/300"},
+    {id:6, nombre:"Producto 6", precio:180, img:"https://via.placeholder.com/300"},
+    {id:7, nombre:"Producto 7", precio:220, img:"https://via.placeholder.com/300"},
+    {id:8, nombre:"Producto 8", precio:199, img:"https://via.placeholder.com/300"},
+    {id:9, nombre:"Producto 9", precio:135, img:"https://via.placeholder.com/300"},
+    {id:10, nombre:"Producto 10", precio:420, img:"https://via.placeholder.com/300"}
+];
 
-    <div id="cart-empty" style="padding:18px 0;">No hay artículos en el carrito.</div>
-    <div id="cart-list" class="cart-list"></div>
+function cargarProductos() {
+    const cont = document.getElementById("listaProductos");
 
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px;">
-      <div><strong>Total:</strong> <span id="cart-total">$0.00</span></div>
-      <div class="cart-actions">
-        <button id="cart-clear" class="btn-clear">Limpiar</button>
-        <button id="cart-checkout" class="btn-checkout">Pagar / WhatsApp</button>
-      </div>
-    </div>
-  </div>
-</div>
+    productos.forEach(p => {
+        cont.innerHTML += `
+            <div class="producto">
+                <img src="${p.img}">
+                <h3>${p.nombre}</h3>
+                <p>$${p.precio}</p>
+                <button class="btn-agregar" onclick="agregar(${p.id})">Agregar</button>
+            </div>
+        `;
+    });
+}
+
+cargarProductos();
+</script>
 
 <script src="cart.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function(){
-  initCartOnPage();
-
-  // productos de ejemplo (puedes editarlos)
-  const productos = [
-    {id:1, name:"Mascarilla Industrial", price:199, img:"https://via.placeholder.com/300x180"},
-    {id:2, name:"Guantes de Soldador", price:120, img:"https://via.placeholder.com/300x180"},
-    {id:3, name:"Careta Automática", price:899, img:"https://via.placeholder.com/300x180"},
-    {id:4, name:"Electrodo E6013 (5kg)", price:420, img:"https://via.placeholder.com/300x180"},
-    {id:5, name:"Cables de Masa 2m", price:250, img:"https://via.placeholder.com/300x180"},
-    {id:6, name:"Pinza Porta Electrodo", price:180, img:"https://via.placeholder.com/300x180"},
-    {id:7, name:"Regulador de Gas", price:650, img:"https://via.placeholder.com/300x180"},
-    {id:8, name:"Cepillo de Alambre", price:75, img:"https://via.placeholder.com/300x180"},
-    {id:9, name:"Soldadora Inverter 200A", price:4200, img:"https://via.placeholder.com/300x180"},
-    {id:10, name:"Set Herramientas 10pz", price:520, img:"https://via.placeholder.com/300x180"}
-  ];
-
-  const grid = document.getElementById('productGrid');
-  productos.forEach(p=>{
-    const card = document.createElement('div');
-    card.className = 'product-card';
-    card.innerHTML = `
-      <img src="${p.img}" alt="${p.name}">
-      <div class="card-body">
-        <h3>${p.name}</h3>
-        <p class="price">$${p.price}</p>
-        <button class="btn-buy">Agregar</button>
-      </div>
-    `;
-    grid.appendChild(card);
-
-    // boton
-    card.querySelector('.btn-buy').addEventListener('click', ()=>{
-      // llama a la función global definida en cart.js
-      window.addToCart({ id: p.id, name: p.name, price: p.price, img: p.img });
-    });
-  });
-});
-</script>
 </body>
 </html>
+
 
