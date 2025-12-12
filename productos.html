@@ -1,46 +1,102 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Productos</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8">
+  <title>ADV WELDING - Productos</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <header>
-    <div class="logo">Mi Tienda</div>
-    <nav>
-        <a href="index.html">Inicio</a>
-        <a href="servicios.html">Servicios</a>
-        <a href="productos.html">Productos</a>
-        <a href="contacto.html">Contacto</a>
-    </nav>
+  <div class="header-top">
+    <div class="header-left">
+      <div class="logo">ADV WELDING</div>
+      <nav>
+        <ul class="menu">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="productos.html">Productos</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="header-right">
+      <button class="cart-btn">Carrito <span class="cart-count">0</span></button>
+    </div>
+  </div>
 </header>
 
 <div class="container">
-    <h2>Productos</h2>
+  <h2>Productos</h2>
 
-    <div class="product-grid">
-
-        <!-- Producto 1 -->
-        <div class="product-card">
-            <img src="https://via.placeholder.com/300x180" alt="">
-            <h3>Producto 1</h3>
-            <p>$100</p>
-            <button>Comprar</button>
-        </div>
-
-        <!-- Producto 2 -->
-        <div class="product-card">
-            <img src="https://via.placeholder.com/300x180" alt="">
-            <h3>Producto 2</h3>
-            <p>$150</p>
-            <button>Comprar</button>
-        </div>
-
-        <!-- Más productos puedes agregarlos tú -->
-    </div>
+  <div id="productGrid" class="product-grid">
+    <!-- JS genera las tarjetas -->
+  </div>
 </div>
 
+<!-- cart modal -->
+<div id="cart-backdrop" class="modal-backdrop">
+  <div class="cart-modal" role="dialog" aria-modal="true">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+      <h3>Tu carrito</h3>
+      <button class="btn-close" style="background:#eee;border:none;padding:6px 8px;border-radius:6px;cursor:pointer;">Cerrar</button>
+    </div>
+
+    <div id="cart-empty" style="padding:18px 0;">No hay artículos en el carrito.</div>
+    <div id="cart-list" class="cart-list"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px;">
+      <div><strong>Total:</strong> <span id="cart-total">$0.00</span></div>
+      <div class="cart-actions">
+        <button id="cart-clear" class="btn-clear">Limpiar</button>
+        <button id="cart-checkout" class="btn-checkout">Pagar / WhatsApp</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="cart.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  initCartOnPage();
+
+  // productos de ejemplo (puedes editarlos)
+  const productos = [
+    {id:1, name:"Mascarilla Industrial", price:199, img:"https://via.placeholder.com/300x180"},
+    {id:2, name:"Guantes de Soldador", price:120, img:"https://via.placeholder.com/300x180"},
+    {id:3, name:"Careta Automática", price:899, img:"https://via.placeholder.com/300x180"},
+    {id:4, name:"Electrodo E6013 (5kg)", price:420, img:"https://via.placeholder.com/300x180"},
+    {id:5, name:"Cables de Masa 2m", price:250, img:"https://via.placeholder.com/300x180"},
+    {id:6, name:"Pinza Porta Electrodo", price:180, img:"https://via.placeholder.com/300x180"},
+    {id:7, name:"Regulador de Gas", price:650, img:"https://via.placeholder.com/300x180"},
+    {id:8, name:"Cepillo de Alambre", price:75, img:"https://via.placeholder.com/300x180"},
+    {id:9, name:"Soldadora Inverter 200A", price:4200, img:"https://via.placeholder.com/300x180"},
+    {id:10, name:"Set Herramientas 10pz", price:520, img:"https://via.placeholder.com/300x180"}
+  ];
+
+  const grid = document.getElementById('productGrid');
+  productos.forEach(p=>{
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.innerHTML = `
+      <img src="${p.img}" alt="${p.name}">
+      <div class="card-body">
+        <h3>${p.name}</h3>
+        <p class="price">$${p.price}</p>
+        <button class="btn-buy">Agregar</button>
+      </div>
+    `;
+    grid.appendChild(card);
+
+    // boton
+    card.querySelector('.btn-buy').addEventListener('click', ()=>{
+      // llama a la función global definida en cart.js
+      window.addToCart({ id: p.id, name: p.name, price: p.price, img: p.img });
+    });
+  });
+});
+</script>
 </body>
 </html>
+
