@@ -27,58 +27,49 @@ const closeCartBtn = cartModal.querySelector('.close-cart');
 
 // ======= FUNCIONES =======
 
-// Actualizar carrito: mostrar productos, total y contador
+// Actualizar carrito
 function updateCart() {
     cartList.innerHTML = '';
 
     cart.forEach((item, index) => {
         const li = document.createElement('li');
-        li.innerHTML = `
-            ${item.name} - $${item.price.toFixed(2)}
-            <button class="remove-btn" data-index="${index}">✖</button>
-        `;
+        li.innerHTML = `${item.name} - $${item.price.toFixed(2)} <button class="remove-btn" data-index="${index}">✖</button>`;
         cartList.appendChild(li);
     });
 
-    cartTotal.textContent = cart.reduce((sum, item) => sum + item.price, 0).toFixed(2);
+    // Total y contador
+    const total = cart.reduce((sum, item) => sum + item.price, 0);
+    cartTotal.textContent = total.toFixed(2);
     cartCount.textContent = cart.length;
 
     // Guardar en localStorage
     localStorage.setItem('cart', JSON.stringify(cart));
 
-    // Conectar eventos de eliminar
+    // Conectar eliminar
     document.querySelectorAll('.remove-btn').forEach(btn => {
         btn.onclick = () => {
-            const idx = parseInt(btn.dataset.index);
-            cart.splice(idx, 1);
+            const index = parseInt(btn.dataset.index);
+            cart.splice(index, 1);
             updateCart();
         };
     });
 }
 
-// Agregar producto al carrito
+// Agregar producto
 function addToCart(name, price) {
     cart.push({ name, price });
     updateCart();
 }
 
 // ======= EVENTOS =======
-
-// Abrir modal
 cartIcon.addEventListener('click', () => cartModal.style.display = 'flex');
-
-// Cerrar modal
 closeCartBtn.addEventListener('click', () => cartModal.style.display = 'none');
-
-// Cerrar modal al dar clic fuera
-cartModal.addEventListener('click', e => {
-    if (e.target === cartModal) cartModal.style.display = 'none';
-});
+cartModal.addEventListener('click', e => { if (e.target === cartModal) cartModal.style.display = 'none'; });
 
 // ======= INICIALIZAR =======
 updateCart();
 
-// Conectar botones de productos (si existen)
+// ======= BOTONES DE PRODUCTOS =======
 document.querySelectorAll('.producto-card button').forEach(btn => {
     btn.addEventListener('click', () => {
         const name = btn.dataset.name;
