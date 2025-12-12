@@ -1,104 +1,218 @@
-/* Estilo general */
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #ffffff;
-    color: #333;
+/* styles.css - global styles */
+
+:root{
+  --azul-pastel: #dcecff;
+  --accent: #4a8fff;
+  --muted: #777;
+  --bg: #ffffff;
 }
 
-/* Encabezado */
-header {
-    background-color: #dcecff; /* Azul pastel */
-    padding: 15px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12); /* Sombra suave y bonita */
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color:#222;
 }
 
-header .logo {
-    font-size: 22px;
-    font-weight: bold;
+/* HEADER */
+header{
+  background: var(--azul-pastel);
+  padding: 18px 30px;
+  position: sticky;
+  top:0;
+  z-index: 1000;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
 }
 
-nav a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
+/* header inner layout */
+.header-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
 }
 
-nav a:hover {
-    text-decoration: underline;
+/* title left */
+.header-left{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
 }
 
-/* Contenedores generales */
-.container {
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 0 20px;
+/* Title */
+.logo{
+  font-size: 34px;   /* más grande que el menú */
+  font-weight:700;
+  margin:0;
+  line-height:1;
 }
 
-/* Productos (tarjetas) */
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 20px;
+/* menu under title, aligned left */
+nav{
+  margin-top:10px;
 }
 
-.product-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    text-align: center;
-    padding-bottom: 15px;
+nav .menu{
+  display:flex;
+  gap:18px;
+  list-style:none;
+  padding:0;
+  margin:0;
+  align-items:center;
 }
 
-.product-card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
+nav .menu a{
+  text-decoration:none;
+  color:#222;
+  font-weight:600;
+  font-size:15px;
 }
 
-.product-card button {
-    background-color: #4a8fff;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
+nav .menu a:hover{ text-decoration:underline; }
+
+/* carrito area (icono y contador) */
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
 
-.product-card button:hover {
-    background-color: #1b6bff;
+/* cart button */
+.cart-btn{
+  background: var(--accent);
+  color:#fff;
+  border:none;
+  padding:10px 14px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:700;
+  display:flex;
+  gap:8px;
+  align-items:center;
 }
 
-/* Formulario de contacto */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    max-width: 450px;
+/* small badge */
+.cart-count{
+  background:#ff5252;
+  color:white;
+  border-radius:999px;
+  padding:3px 8px;
+  font-size:13px;
+  font-weight:700;
 }
 
-input, textarea {
-    padding: 10px;
-    border: 1px solid #aaa;
-    border-radius: 5px;
+/* container */
+.container{
+  max-width:1100px;
+  margin:36px auto;
+  padding:0 20px;
 }
 
-button.send {
-    background-color: #4a8fff;
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+/* headings */
+h2{margin-top:0;}
+
+/* PRODUCT GRID */
+.product-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px,1fr));
+  gap:20px;
 }
 
-button.send:hover {
-    background-color: #1b6bff;
+.product-card{
+  border:1px solid #eee;
+  border-radius:10px;
+  overflow:hidden;
+  background:white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  display:flex;
+  flex-direction:column;
+}
+
+.product-card img{
+  width:100%;
+  height:160px;
+  object-fit:cover;
+}
+
+.product-card .card-body{
+  padding:12px;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.product-card h3{ margin:0; font-size:16px; }
+.product-card p.price{ margin:0; color:var(--muted); font-weight:700; }
+
+/* buy button */
+.btn-buy{
+  margin-top:auto;
+  background: var(--accent);
+  color:#fff;
+  border:none;
+  padding:10px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:700;
+}
+
+/* CONTACT FORM */
+form{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  max-width:480px;
+}
+
+input, textarea{
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #cfcfcf;
+  font-size:14px;
+}
+
+/* Modal carrito (centro) */
+.modal-backdrop{
+  position:fixed;
+  inset:0;
+  background: rgba(0,0,0,0.35);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:2000;
+}
+
+.modal-backdrop.open{
+  display:flex;
+}
+
+.cart-modal{
+  width:90%;
+  max-width:720px;
+  background:white;
+  border-radius:12px;
+  padding:18px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+}
+
+.cart-modal h3{ margin:0 0 12px 0; }
+.cart-list{ max-height:340px; overflow:auto; display:flex; flex-direction:column; gap:10px; padding-right:6px;}
+.cart-item{ display:flex; justify-content:space-between; align-items:center; gap:12px; border-bottom:1px solid #f0f0f0; padding:8px 0;}
+.cart-item .meta{display:flex; gap:12px; align-items:center;}
+.cart-item img{width:64px; height:48px; object-fit:cover; border-radius:6px;}
+.cart-item .name{font-weight:700;}
+.cart-item .price{color:var(--muted); font-weight:700;}
+
+.cart-actions{ display:flex; justify-content:space-between; align-items:center; margin-top:12px; gap:12px;}
+.btn-clear{ background:#ff6b6b; color:white; border:none; padding:8px 12px; border-radius:8px; cursor:pointer;}
+.btn-checkout{ background: #28a745; color:white; border:none; padding:10px 14px; border-radius:8px; cursor:pointer; font-weight:700;}
+
+/* responsive */
+@media (max-width:720px){
+  .header-top{ flex-direction:column; align-items:stretch; }
+  .header-right{ justify-content:flex-end; }
+  .logo{ font-size:28px; text-align:left; }
+  nav .menu{ flex-wrap:wrap; gap:12px; }
 }
