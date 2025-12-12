@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tienda | Blanco Profesional</title>
+
     <style>
         body {
             margin: 0;
@@ -11,35 +12,74 @@
             background: #ffffff;
             color: #222;
         }
+
+        /* ---------- HEADER NUEVO DISEÑO ---------- */
         header {
             background: #ffffff;
-            padding: 20px;
+            padding: 20px 40px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             position: sticky;
             top: 0;
             z-index: 100;
         }
+
+        /* Contenedor del encabezado */
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Título de la página */
         header h1 {
             margin: 0;
-            font-size: 22px;
+            font-size: 36px;   /* MÁS GRANDE */
             font-weight: bold;
+            letter-spacing: 1px;
         }
+
+        /* Botón carrito */
         .carrito-btn {
             cursor: pointer;
-            padding: 10px 15px;
+            padding: 10px 18px;
             background: #007bff;
             color: #fff;
             border-radius: 6px;
+            font-weight: bold;
         }
+
+        /* ---------- MENÚ DEBAJO DEL NOMBRE ---------- */
+        nav {
+            margin-top: 15px;
+        }
+
+        .menu {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu li a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .menu li a:hover {
+            color: #000;
+        }
+
+        /* ---------- PRODUCTOS ---------- */
         .productos {
             padding: 20px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 20px;
         }
+
         .producto {
             border: 1px solid #eee;
             border-radius: 10px;
@@ -48,12 +88,14 @@
             background: #fff;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
+
         .producto img {
             width: 100%;
             height: 180px;
             object-fit: cover;
             border-radius: 8px;
         }
+
         .btn-agregar {
             margin-top: 10px;
             background: #28a745;
@@ -64,7 +106,8 @@
             border-radius: 8px;
             cursor: pointer;
         }
-        /* Carrito */
+
+        /* ---------- CARRITO ---------- */
         #carrito {
             position: fixed;
             right: 0;
@@ -77,20 +120,24 @@
             transform: translateX(100%);
             transition: 0.3s;
         }
+
         #carrito.abierto {
             transform: translateX(0);
         }
+
         .carrito-item {
             display: flex;
             justify-content: space-between;
             padding: 10px 0;
             border-bottom: 1px solid #eee;
         }
+
         .total {
             font-size: 20px;
             font-weight: bold;
             margin-top: 20px;
         }
+
         .btn-checkout {
             background: #007bff;
             color: #fff;
@@ -101,43 +148,33 @@
             cursor: pointer;
             border-radius: 6px;
         }
-    
-        .menu {
-            display: flex;
-            gap: 20px;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .menu li a {
-            text-decoration: none;
-            font-weight: bold;
-            color: #333;
-        }
-        .menu li a:hover {
-            color: #000;
-        }
-</style>
+
+    </style>
 </head>
 <body>
 
 <header>
-        <nav>
-            <ul class="menu">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#productos">Productos</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-                <li><a href="#empresa">Sobre la empresa</a></li>
-            </ul>
-        </nav>
-        
-    <h1>ADV WELDING</h1>
-    <div class="carrito-btn" onclick="toggleCarrito()">Carrito (<span id="count">0</span>)</div>
+    <div class="header-top">
+        <h1>ADV WELDING</h1>
+
+        <div class="carrito-btn" onclick="toggleCarrito()">Carrito (<span id="count">0</span>)</div>
+    </div>
+
+    <nav>
+        <ul class="menu">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#productos">Productos</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="#empresa">Sobre la empresa</a></li>
+        </ul>
+    </nav>
 </header>
 
+<!-- PRODUCTOS -->
 <div class="productos" id="listaProductos"></div>
 
+<!-- CARRITO -->
 <div id="carrito">
     <h2>Tu Carrito</h2>
     <div id="itemsCarrito"></div>
@@ -146,7 +183,7 @@
 </div>
 
 <script>
-// --- 10 productos de ejemplo ---
+/* --- 10 productos de ejemplo --- */
 const productos = [
     {id:1, nombre:"Producto 1", precio:199, img:"https://via.placeholder.com/300"},
     {id:2, nombre:"Producto 2", precio:250, img:"https://via.placeholder.com/300"},
@@ -211,4 +248,3 @@ cargarProductos();
 
 </body>
 </html>
-
