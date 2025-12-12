@@ -8,31 +8,37 @@
 </head>
 <body>
 
-<header>
-    <h1 class="titulo">ADV WELDING</h1>
+    <!-- ======= HEADER COMÚN ======= -->
+    <header class="main-header">
+        <h1 class="header-title">ADV WELDING</h1>
+        <nav class="main-menu">
+            <a href="index.html">Inicio</a>
+            <a href="servicios.html" class="active">Servicios</a>
+            <a href="productos.html">Productos</a>
+            <a href="contacto.html">Contacto</a>
+        </nav>
+        <div class="carrito-btn" onclick="toggleCarrito()">Carrito (<span class="count">0</span>)</div>
+    </header>
 
-    <nav>
-        <ul>
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="servicios.html">Servicios</a></li>
-            <li><a href="productos.html">Productos</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
-        </ul>
-    </nav>
+    <!-- ======= CONTENIDO PRINCIPAL ======= -->
+    <div class="page-container">
+        <h2>Servicios</h2>
+        <p>
+            Aquí puedes detallar los servicios que ofrecemos, como soldadura profesional, mantenimiento de equipos, consultoría técnica y más.
+        </p>
+        <!-- Puedes agregar imágenes, tarjetas de servicios o descripciones adicionales -->
+    </div>
 
-    <div class="carrito-btn" onclick="toggleCarrito()">Carrito (<span class="count">0</span>)</div>
-</header>
+    <!-- ======= CARRITO LATERAL ======= -->
+    <div id="carrito" class="carrito-panel">
+        <h2>Tu Carrito</h2>
+        <div id="itemsCarrito"></div>
+        <div class="cart-total">Total: $<span id="total">0</span></div>
+    </div>
 
-<h2 style="padding:20px;">Servicios</h2>
-
-<div id="carrito">
-    <h2>Tu Carrito</h2>
-    <div id="itemsCarrito"></div>
-    <div class="total">Total: $<span id="total">0</span></div>
-</div>
-
-<script src="cart.js"></script>
+    <script src="cart.js"></script>
 </body>
 </html>
+
 
 
