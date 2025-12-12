@@ -1,62 +1,37 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <title>ADV WELDING - Servicios</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <title>ADV WELDING - Servicios</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <header>
-  <div class="header-top">
-    <div class="header-left">
-      <div class="logo">ADV WELDING</div>
-      <nav>
-        <ul class="menu">
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="servicios.html">Servicios</a></li>
-          <li><a href="productos.html">Productos</a></li>
-          <li><a href="contacto.html">Contacto</a></li>
-        </ul>
-      </nav>
-    </div>
+    <h1 class="titulo">ADV WELDING</h1>
 
-    <div class="header-right">
-      <button class="cart-btn">Carrito <span class="cart-count">0</span></button>
-    </div>
-  </div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="productos.html">Productos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <div class="carrito-btn" onclick="toggleCarrito()">Carrito (<span class="count">0</span>)</div>
 </header>
 
-<div class="container">
-  <h2>Servicios</h2>
-  <p>Describe aquí los servicios que ofreces: reparación, suministros, asesoría, instalaciones, etc.</p>
-</div>
+<h2 style="padding:20px;">Servicios</h2>
 
-<!-- cart modal -->
-<div id="cart-backdrop" class="modal-backdrop">
-  <div class="cart-modal" role="dialog" aria-modal="true">
-    <div style="display:flex; justify-content:space-between; align-items:center;">
-      <h3>Tu carrito</h3>
-      <button class="btn-close" style="background:#eee;border:none;padding:6px 8px;border-radius:6px;cursor:pointer;">Cerrar</button>
-    </div>
-
-    <div id="cart-empty" style="padding:18px 0;">No hay artículos en el carrito.</div>
-    <div id="cart-list" class="cart-list"></div>
-
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px;">
-      <div><strong>Total:</strong> <span id="cart-total">$0.00</span></div>
-      <div class="cart-actions">
-        <button id="cart-clear" class="btn-clear">Limpiar</button>
-        <button id="cart-checkout" class="btn-checkout">Pagar / WhatsApp</button>
-      </div>
-    </div>
-  </div>
+<div id="carrito">
+    <h2>Tu Carrito</h2>
+    <div id="itemsCarrito"></div>
+    <div class="total">Total: $<span id="total">0</span></div>
 </div>
 
 <script src="cart.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', function(){ initCartOnPage(); });
-</script>
 </body>
 </html>
+
 
