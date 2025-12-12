@@ -1,4 +1,4 @@
-// ======= CARRITO MODAL DEFINITIVO =======
+// ======= CARRITO MODAL DEFINITIVO CON ELIMINAR =======
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 // Crear icono flotante
@@ -25,16 +25,30 @@ const cartTotal = cartModal.querySelector('#cart-total');
 const cartCount = cartIcon.querySelector('#cart-count');
 const closeCartBtn = cartModal.querySelector('.close-cart');
 
-// Actualizar carrito y guardar en localStorage
+// Actualizar carrito y localStorage
 function updateCart() {
     cartList.innerHTML = '';
     let total = 0;
-    cart.forEach(item => {
+
+    cart.forEach((item, index) => {
         const li = document.createElement('li');
-        li.textContent = `${item.name} - $${item.price}`;
+        li.innerHTML = `
+            ${item.name} - $${item.price.toFixed(2)}
+            <button class="remove-btn" data-index="${index}">✖</button>
+        `;
         cartList.appendChild(li);
         total += item.price;
     });
+
+    // Agregar eventos a botones eliminar
+    document.querySelectorAll('.remove-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const index = parseInt(btn.dataset.index);
+            cart.splice(index, 1); // eliminar del array
+            updateCart(); // actualizar carrito
+        });
+    });
+
     cartTotal.textContent = total.toFixed(2);
     cartCount.textContent = cart.length;
     localStorage.setItem('cart', JSON.stringify(cart));
@@ -54,7 +68,7 @@ cartModal.addEventListener('click', e => { if(e.target === cartModal) cartModal.
 // Inicializar carrito al cargar la página
 updateCart();
 
-// Conectar botones de productos si existen
+// Conectar botones de productos
 document.querySelectorAll('.producto-card button').forEach(btn => {
     btn.addEventListener('click', () => {
         const name = btn.dataset.name;
@@ -62,5 +76,6 @@ document.querySelectorAll('.producto-card button').forEach(btn => {
         addToCart(name, price);
     });
 });
+
 
 
