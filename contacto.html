@@ -8,39 +8,42 @@
 </head>
 <body>
 
-<header>
-    <h1 class="titulo">ADV WELDING</h1>
+    <!-- ======= HEADER COMÚN ======= -->
+    <header class="main-header">
+        <h1 class="header-title">ADV WELDING</h1>
+        <nav class="main-menu">
+            <a href="index.html">Inicio</a>
+            <a href="servicios.html">Servicios</a>
+            <a href="productos.html">Productos</a>
+            <a href="contacto.html" class="active">Contacto</a>
+        </nav>
+        <div class="carrito-btn" onclick="toggleCarrito()">Carrito (<span class="count">0</span>)</div>
+    </header>
 
-    <nav>
-        <ul>
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="servicios.html">Servicios</a></li>
-            <li><a href="productos.html">Productos</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
-        </ul>
-    </nav>
+    <!-- ======= CONTENIDO PRINCIPAL ======= -->
+    <div class="page-container">
+        <h2>Contacto</h2>
 
-    <div class="carrito-btn" onclick="toggleCarrito()">Carrito (<span class="count">0</span>)</div>
-</header>
+        <p>
+            <strong>WHATSAPP:</strong> 
+            <a href="https://wa.me/526481004199" target="_blank">(648) 100-4199</a><br><br>
+            <strong>MERCADO LIBRE:</strong> 
+            <a href="https://www.mercadolibre.com.mx/pagina/nica#from=share_eshop" target="_blank">
+                Ir a tienda
+            </a>
+        </p>
+    </div>
 
-<h2 style="padding:20px;">Contacto</h2>
+    <!-- ======= CARRITO LATERAL ======= -->
+    <div id="carrito" class="carrito-panel">
+        <h2>Tu Carrito</h2>
+        <div id="itemsCarrito"></div>
+        <div class="cart-total">Total: $<span id="total">0</span></div>
+    </div>
 
-<p style="padding:20px;">
-    <strong>WHATSAPP:</strong> <a href="https://wa.me/526481004199" target="_blank">(648) 100-4199</a><br><br>
-    <strong>MERCADO LIBRE:</strong> 
-    <a href="https://www.mercadolibre.com.mx/pagina/nica#from=share_eshop" target="_blank">
-        Ir a tienda
-    </a>
-</p>
-
-<div id="carrito">
-    <h2>Tu Carrito</h2>
-    <div id="itemsCarrito"></div>
-    <div class="total">Total: $<span id="total">0</span></div>
-</div>
-
-<script src="cart.js"></script>
+    <script src="cart.js"></script>
 </body>
 </html>
+
 
 
