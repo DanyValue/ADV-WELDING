@@ -2,69 +2,76 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>ADV WELDING - Productos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos - ADV WELDING</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="cart.js" defer></script>
 </head>
+
 <body>
 
-<header>
-    <h1 class="titulo">ADV WELDING</h1>
+    <!-- HEADER -->
+    <header class="main-header">
+        <div class="header-title">ADV WELDING</div>
 
-    <nav>
-        <ul>
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="servicios.html">Servicios</a></li>
-            <li><a href="productos.html">Productos</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
-        </ul>
-    </nav>
+        <nav class="main-menu">
+            <a href="index.html">Inicio</a>
+            <a href="servicios.html">Servicios</a>
+            <a href="productos.html" class="active">Productos</a>
+            <a href="contacto.html">Contacto</a>
+        </nav>
+    </header>
 
-    <div class="carrito-btn" onclick="toggleCarrito()">Carrito (<span class="count">0</span>)</div>
-</header>
 
-<div class="productos" id="listaProductos"></div>
+    <!-- CONTENEDOR DE PRODUCTOS -->
+    <main class="productos-container">
 
-<div id="carrito">
-    <h2>Tu Carrito</h2>
-    <div id="itemsCarrito"></div>
-    <div class="total">Total: $<span id="total">0</span></div>
-</div>
+        <h2>Nuestros Productos</h2>
 
-<script>
-// ---- 10 Productos ----
-const productos = [
-    {id:1, nombre:"Producto 1", precio:199, img:"https://via.placeholder.com/300"},
-    {id:2, nombre:"Producto 2", precio:250, img:"https://via.placeholder.com/300"},
-    {id:3, nombre:"Producto 3", precio:99, img:"https://via.placeholder.com/300"},
-    {id:4, nombre:"Producto 4", precio:149, img:"https://via.placeholder.com/300"},
-    {id:5, nombre:"Producto 5", precio:349, img:"https://via.placeholder.com/300"},
-    {id:6, nombre:"Producto 6", precio:180, img:"https://via.placeholder.com/300"},
-    {id:7, nombre:"Producto 7", precio:220, img:"https://via.placeholder.com/300"},
-    {id:8, nombre:"Producto 8", precio:199, img:"https://via.placeholder.com/300"},
-    {id:9, nombre:"Producto 9", precio:135, img:"https://via.placeholder.com/300"},
-    {id:10, nombre:"Producto 10", precio:420, img:"https://via.placeholder.com/300"}
-];
+        <div class="productos-grid">
 
-function cargarProductos() {
-    const cont = document.getElementById("listaProductos");
-
-    productos.forEach(p => {
-        cont.innerHTML += `
-            <div class="producto">
-                <img src="${p.img}">
-                <h3>${p.nombre}</h3>
-                <p>$${p.precio}</p>
-                <button class="btn-agregar" onclick="agregar(${p.id})">Agregar</button>
+            <!-- 🔧 Producto 1 -->
+            <div class="producto-card">
+                <img src="https://via.placeholder.com/200" alt="Producto 1">
+                <h3>Producto 1</h3>
+                <p>Descripción breve del producto 1.</p>
+                <span class="precio">$950</span>
+                <button onclick="addToCart('Producto 1', 950)">Agregar</button>
             </div>
-        `;
-    });
-}
 
-cargarProductos();
-</script>
+            <!-- 🔧 Producto 2 -->
+            <div class="producto-card">
+                <img src="https://via.placeholder.com/200" alt="Producto 2">
+                <h3>Producto 2</h3>
+                <p>Descripción breve del producto 2.</p>
+                <span class="precio">$1,850</span>
+                <button onclick="addToCart('Producto 2', 1850)">Agregar</button>
+            </div>
 
-<script src="cart.js"></script>
+            <!-- 🔧 Producto 3 -->
+            <div class="producto-card">
+                <img src="https://via.placeholder.com/200" alt="Producto 3">
+                <h3>Producto 3</h3>
+                <p>Descripción breve del producto 3.</p>
+                <span class="precio">$750</span>
+                <button onclick="addToCart('Producto 3', 750)">Agregar</button>
+            </div>
+
+            <!-- Puedes agregar tus 10 productos aquí igual -->
+        </div>
+
+    </main>
+
+
+    <!-- 🛒 CARRITO SIEMPRE VISIBLE -->
+    <aside class="carrito-panel">
+        <h3>Carrito</h3>
+        <ul id="cart-list"></ul>
+        <p class="cart-total">Total: $<span id="cart-total">0</span></p>
+    </aside>
+
 </body>
 </html>
+
 
 
