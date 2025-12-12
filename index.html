@@ -13,9 +13,9 @@
             color: #222;
         }
 
-        /* ---------- HEADER NUEVO DISEÑO ---------- */
+        /* ---------- HEADER CON COLOR ---------- */
         header {
-            background: #ffffff;
+            background: #f3f3f3; /* COLOR CLARITO */
             padding: 20px 40px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             position: sticky;
@@ -30,15 +30,13 @@
             align-items: center;
         }
 
-        /* Título de la página */
         header h1 {
             margin: 0;
-            font-size: 36px;   /* MÁS GRANDE */
+            font-size: 36px;
             font-weight: bold;
             letter-spacing: 1px;
         }
 
-        /* Botón carrito */
         .carrito-btn {
             cursor: pointer;
             padding: 10px 18px;
@@ -48,7 +46,7 @@
             font-weight: bold;
         }
 
-        /* ---------- MENÚ DEBAJO DEL NOMBRE ---------- */
+        /* ---------- MENÚ ---------- */
         nav {
             margin-top: 15px;
         }
@@ -70,6 +68,15 @@
 
         .menu li a:hover {
             color: #000;
+        }
+
+        /* ---------- SECCIONES ---------- */
+        section {
+            padding: 40px;
+        }
+
+        #inicio {
+            padding-top: 30px;
         }
 
         /* ---------- PRODUCTOS ---------- */
@@ -148,7 +155,6 @@
             cursor: pointer;
             border-radius: 6px;
         }
-
     </style>
 </head>
 <body>
@@ -156,7 +162,6 @@
 <header>
     <div class="header-top">
         <h1>ADV WELDING</h1>
-
         <div class="carrito-btn" onclick="toggleCarrito()">Carrito (<span id="count">0</span>)</div>
     </div>
 
@@ -166,13 +171,41 @@
             <li><a href="#servicios">Servicios</a></li>
             <li><a href="#productos">Productos</a></li>
             <li><a href="#contacto">Contacto</a></li>
-            <li><a href="#empresa">Sobre la empresa</a></li>
         </ul>
     </nav>
 </header>
 
-<!-- PRODUCTOS -->
-<div class="productos" id="listaProductos"></div>
+<!-- SECCIÓN INICIO -->
+<section id="inicio">
+    <h2>Bienvenido a ADV WELDING</h2>
+    <p>Calidad profesional en herramientas y productos de soldadura.</p>
+</section>
+
+<!-- SECCIÓN SERVICIOS -->
+<section id="servicios">
+    <h2>Servicios</h2>
+    <p>Aquí podremos agregar información de los servicios más adelante.</p>
+</section>
+
+<!-- SECCIÓN PRODUCTOS -->
+<section id="productos">
+    <h2>Productos</h2>
+    <div class="productos" id="listaProductos"></div>
+</section>
+
+<!-- SECCIÓN CONTACTO -->
+<section id="contacto">
+    <h2>Contacto</h2>
+
+    <p><strong>WHATSAPP:</strong> (648)100-4199</p>
+
+    <p>
+        <strong>MERCADO LIBRE:</strong><br>
+        <a href="https://www.mercadolibre.com.mx/pagina/nica#from=share_eshop" target="_blank">
+            https://www.mercadolibre.com.mx/pagina/nica#from=share_eshop
+        </a>
+    </p>
+</section>
 
 <!-- CARRITO -->
 <div id="carrito">
@@ -248,3 +281,4 @@ cargarProductos();
 
 </body>
 </html>
+
