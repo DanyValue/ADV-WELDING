@@ -6,17 +6,40 @@
     transition: all 0.3s ease;
 }
 
-/* ======= ESTILOS GENERALES ======= */
+/* ======= DISEÑO GLOBAL PARA TODAS LAS PÁGINAS ======= */
 body {
     font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f8f9fb; /* fondo muy suave y elegante */
+    background: #f8f9fb; /* fondo suave y moderno */
     color: #222;
     line-height: 1.6;
 }
 
+.page-container {
+    max-width: 1400px;
+    margin: auto;
+    padding: 40px 50px;
+}
+
+button {
+    font-family: 'Inter', sans-serif;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: #0b3d91;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #1e90ff;
+}
+
 /* ======= HEADER ======= */
 .main-header {
-    background: #e3f2fd; /* azul muy suave premium */
+    background: #e3f2fd;
     padding: 25px 40px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.08);
     position: sticky;
@@ -48,7 +71,6 @@ body {
     font-weight: 600;
     padding-bottom: 3px;
     border-bottom: 2px solid transparent;
-    transition: all 0.3s ease;
 }
 
 .main-menu a:hover,
@@ -57,11 +79,9 @@ body {
     border-bottom: 2px solid #1e90ff;
 }
 
-/* ======= CONTENEDOR DE PRODUCTOS ======= */
+/* ======= ESTILOS ESPECÍFICOS DE PRODUCTOS ======= */
 .productos-container {
-    padding: 40px 50px;
-    max-width: 1400px;
-    margin: auto;
+    padding: 0; /* ya lo maneja .page-container */
 }
 
 .productos-container h2 {
@@ -71,14 +91,12 @@ body {
     letter-spacing: 0.5px;
 }
 
-/* ======= GRID DE PRODUCTOS ======= */
 .productos-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 35px;
 }
 
-/* ======= TARJETA INDIVIDUAL ======= */
 .producto-card {
     background: #ffffff;
     padding: 25px 20px;
@@ -142,7 +160,6 @@ body {
     letter-spacing: 0.5px;
 }
 
-/* ======= BOTONES ======= */
 .producto-card button {
     padding: 12px;
     width: 100%;
@@ -150,12 +167,10 @@ body {
     background: linear-gradient(135deg, #1e90ff, #0b70d1);
     color: white;
     border-radius: 12px;
-    cursor: pointer;
     font-weight: 700;
     font-size: 16px;
     text-transform: uppercase;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    transition: all 0.3s ease;
 }
 
 .producto-card button:hover {
@@ -198,6 +213,7 @@ body {
     margin-top: 20px;
     color: #1e90ff;
 }
+
 
 
 
