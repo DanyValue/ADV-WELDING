@@ -101,12 +101,38 @@
             cursor: pointer;
             border-radius: 6px;
         }
-    </style>
+    
+        .menu {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .menu li a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #333;
+        }
+        .menu li a:hover {
+            color: #000;
+        }
+</style>
 </head>
 <body>
 
 <header>
-    <h1>ADV WELDING</h1>
+        <nav>
+            <ul class="menu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#empresa">Sobre la empresa</a></li>
+            </ul>
+        </nav>
+        
+    <h1>Tienda Profesional</h1>
     <div class="carrito-btn" onclick="toggleCarrito()">Carrito (<span id="count">0</span>)</div>
 </header>
 
@@ -185,3 +211,4 @@ cargarProductos();
 
 </body>
 </html>
+
