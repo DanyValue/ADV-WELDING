@@ -1,6 +1,12 @@
+/* ======= RESET BÁSICO ======= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 /* ======= ESTILOS GENERALES ======= */
 body {
-    margin: 0;
     font-family: Arial, sans-serif;
     background: #ffffff;
     color: #222;
@@ -130,5 +136,6 @@ body {
     font-weight: bold;
     margin-top: 15px;
 }
+
 
 
