@@ -1,4 +1,4 @@
-// ======= CARRITO MODAL DEFINITIVO CON ELIMINAR =======
+// ======= CARRITO MODAL DEFINITIVO =======
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 // Crear icono flotante
@@ -25,10 +25,11 @@ const cartTotal = cartModal.querySelector('#cart-total');
 const cartCount = cartIcon.querySelector('#cart-count');
 const closeCartBtn = cartModal.querySelector('.close-cart');
 
-// Actualizar carrito y localStorage
+// ======= FUNCIONES =======
+
+// Actualizar carrito: mostrar productos, total y contador
 function updateCart() {
     cartList.innerHTML = '';
-    let total = 0;
 
     cart.forEach((item, index) => {
         const li = document.createElement('li');
@@ -37,38 +38,47 @@ function updateCart() {
             <button class="remove-btn" data-index="${index}">✖</button>
         `;
         cartList.appendChild(li);
-        total += item.price;
     });
 
-    // Agregar eventos a botones eliminar
-    document.querySelectorAll('.remove-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const index = parseInt(btn.dataset.index);
-            cart.splice(index, 1); // eliminar del array
-            updateCart(); // actualizar carrito
-        });
-    });
-
-    cartTotal.textContent = total.toFixed(2);
+    cartTotal.textContent = cart.reduce((sum, item) => sum + item.price, 0).toFixed(2);
     cartCount.textContent = cart.length;
+
+    // Guardar en localStorage
     localStorage.setItem('cart', JSON.stringify(cart));
+
+    // Conectar eventos de eliminar
+    document.querySelectorAll('.remove-btn').forEach(btn => {
+        btn.onclick = () => {
+            const idx = parseInt(btn.dataset.index);
+            cart.splice(idx, 1);
+            updateCart();
+        };
+    });
 }
 
-// Agregar producto
+// Agregar producto al carrito
 function addToCart(name, price) {
-    cart.push({name, price});
+    cart.push({ name, price });
     updateCart();
 }
 
-// Eventos modal
-cartIcon.addEventListener('click', () => cartModal.style.display = 'flex');
-closeCartBtn.addEventListener('click', () => cartModal.style.display = 'none');
-cartModal.addEventListener('click', e => { if(e.target === cartModal) cartModal.style.display = 'none'; });
+// ======= EVENTOS =======
 
-// Inicializar carrito al cargar la página
+// Abrir modal
+cartIcon.addEventListener('click', () => cartModal.style.display = 'flex');
+
+// Cerrar modal
+closeCartBtn.addEventListener('click', () => cartModal.style.display = 'none');
+
+// Cerrar modal al dar clic fuera
+cartModal.addEventListener('click', e => {
+    if (e.target === cartModal) cartModal.style.display = 'none';
+});
+
+// ======= INICIALIZAR =======
 updateCart();
 
-// Conectar botones de productos
+// Conectar botones de productos (si existen)
 document.querySelectorAll('.producto-card button').forEach(btn => {
     btn.addEventListener('click', () => {
         const name = btn.dataset.name;
@@ -76,6 +86,7 @@ document.querySelectorAll('.producto-card button').forEach(btn => {
         addToCart(name, price);
     });
 });
+
 
 
 
