@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tienda | Blanco Profesional</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #ffffff;
+            color: #222;
+        }
+        header {
+            background: #ffffff;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .carrito-btn {
+            cursor: pointer;
+            padding: 10px 15px;
+            background: #007bff;
+            color: #fff;
+            border-radius: 6px;
+        }
+        .productos {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+        .producto {
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .producto img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .btn-agregar {
+            margin-top: 10px;
+            background: #28a745;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        /* Carrito */
+        #carrito {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 350px;
+            height: 100%;
+            background: #ffffff;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+            padding: 20px;
+            transform: translateX(100%);
+            transition: 0.3s;
+        }
+        #carrito.abierto {
+            transform: translateX(0);
+        }
+        .carrito-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .total {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .btn-checkout {
+            background: #007bff;
+            color: #fff;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            margin-top: 15px;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Tienda Profesional</h1>
+    <div class="carrito-btn" onclick="toggleCarrito()">Carrito (<span id="count">0</span>)</div>
+</header>
+
+<div class="productos" id="listaProductos"></div>
+
+<div id="carrito">
+    <h2>Tu Carrito</h2>
+    <div id="itemsCarrito"></div>
+    <div class="total">Total: $<span id="total">0</span></div>
+    <button class="btn-checkout">Finalizar compra</button>
+</div>
+
+<script>
+// --- 10 productos de ejemplo ---
+const productos = [
+    {id:1, nombre:"Producto 1", precio:199, img:"https://via.placeholder.com/300"},
+    {id:2, nombre:"Producto 2", precio:250, img:"https://via.placeholder.com/300"},
+    {id:3, nombre:"Producto 3", precio:99, img:"https://via.placeholder.com/300"},
+    {id:4, nombre:"Producto 4", precio:149, img:"https://via.placeholder.com/300"},
+    {id:5, nombre:"Producto 5", precio:349, img:"https://via.placeholder.com/300"},
+    {id:6, nombre:"Producto 6", precio:180, img:"https://via.placeholder.com/300"},
+    {id:7, nombre:"Producto 7", precio:220, img:"https://via.placeholder.com/300"},
+    {id:8, nombre:"Producto 8", precio:199, img:"https://via.placeholder.com/300"},
+    {id:9, nombre:"Producto 9", precio:135, img:"https://via.placeholder.com/300"},
+    {id:10, nombre:"Producto 10", precio:420, img:"https://via.placeholder.com/300"}
+];
+
+let carrito = [];
+
+function cargarProductos() {
+    const cont = document.getElementById("listaProductos");
+    productos.forEach(p => {
+        cont.innerHTML += `
+            <div class="producto">
+                <img src="${p.img}">
+                <h3>${p.nombre}</h3>
+                <p>$${p.precio}</p>
+                <button class="btn-agregar" onclick="agregar(${p.id})">Agregar</button>
+            </div>
+        `;
+    });
+}
+
+function agregar(id) {
+    const prod = productos.find(p => p.id === id);
+    carrito.push(prod);
+    actualizarCarrito();
+}
+
+function actualizarCarrito() {
+    document.getElementById("count").textContent = carrito.length;
+
+    let html = "";
+    let total = 0;
+
+    carrito.forEach((p, i) => {
+        html += `
+            <div class="carrito-item">
+                <span>${p.nombre}</span>
+                <span>$${p.precio}</span>
+            </div>
+        `;
+        total += p.precio;
+    });
+
+    document.getElementById("itemsCarrito").innerHTML = html;
+    document.getElementById("total").textContent = total;
+}
+
+function toggleCarrito() {
+    document.getElementById("carrito").classList.toggle("abierto");
+}
+
+cargarProductos();
+</script>
+
+</body>
+</html>
