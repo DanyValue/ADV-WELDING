@@ -7,13 +7,11 @@
     <link rel="stylesheet" href="styles.css">
     <script src="cart.js" defer></script>
 </head>
-
 <body>
 
     <!-- HEADER -->
     <header class="main-header">
         <div class="header-title">ADV WELDING</div>
-
         <nav class="main-menu">
             <a href="index.html">Inicio</a>
             <a href="servicios.html">Servicios</a>
@@ -23,72 +21,42 @@
     </header>
 
     <!-- CONTENEDOR DE PRODUCTOS -->
-<main class="page-container productos-container">
+    <main class="page-container productos-container">
 
-    <h2>Nuestros Productos</h2>
+        <h2>Nuestros Productos</h2>
 
-    <div class="productos-grid">
+        <div class="productos-grid">
 
-        <div class="producto-card">
-            <img src="https://via.placeholder.com/200" alt="Producto 1">
-            <h3>Producto 1</h3>
-            <p>Descripción breve del producto 1.</p>
-            <span class="precio">$950</span>
-            <button data-name="Producto 1" data-price="950">Agregar</button>
+            <div class="producto-card">
+                <img src="https://via.placeholder.com/200" alt="Producto 1">
+                <h3>Producto 1</h3>
+                <p>Descripción breve del producto 1.</p>
+                <span class="precio">$950</span>
+                <button data-name="Producto 1" data-price="950">Agregar</button>
+            </div>
+
+            <div class="producto-card">
+                <img src="https://via.placeholder.com/200" alt="Producto 2">
+                <h3>Producto 2</h3>
+                <p>Descripción breve del producto 2.</p>
+                <span class="precio">$1,850</span>
+                <button data-name="Producto 2" data-price="1850">Agregar</button>
+            </div>
+
+            <div class="producto-card">
+                <img src="https://via.placeholder.com/200" alt="Producto 3">
+                <h3>Producto 3</h3>
+                <p>Descripción breve del producto 3.</p>
+                <span class="precio">$750</span>
+                <button data-name="Producto 3" data-price="750">Agregar</button>
+            </div>
+
         </div>
+    </main>
 
-        <div class="producto-card">
-            <img src="https://via.placeholder.com/200" alt="Producto 2">
-            <h3>Producto 2</h3>
-            <p>Descripción breve del producto 2.</p>
-            <span class="precio">$1,850</span>
-            <button data-name="Producto 2" data-price="1850">Agregar</button>
-        </div>
-
-        <div class="producto-card">
-            <img src="https://via.placeholder.com/200" alt="Producto 3">
-            <h3>Producto 3</h3>
-            <p>Descripción breve del producto 3.</p>
-            <span class="precio">$750</span>
-            <button data-name="Producto 3" data-price="750">Agregar</button>
-        </div>
-
-    </div>
-</main>
-
-    <!-- 🛒 CARRITO SIEMPRE VISIBLE -->
-    <aside class="carrito-panel">
-        <h3>Carrito</h3>
-        <ul id="cart-list"></ul>
-        <p class="cart-total">Total: $<span id="cart-total">0</span></p>
-    </aside>
-
-    <script>
-        // 🔹 Código para que los botones funcionen correctamente
-        const buttons = document.querySelectorAll('.producto-card button');
-        const cartList = document.getElementById('cart-list');
-        const cartTotal = document.getElementById('cart-total');
-
-        let total = 0;
-
-        buttons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const name = btn.dataset.name;
-                const price = parseFloat(btn.dataset.price);
-
-                // Crear elemento de lista
-                const li = document.createElement('li');
-                li.textContent = `${name} - $${price}`;
-                cartList.appendChild(li);
-
-                // Actualizar total
-                total += price;
-                cartTotal.textContent = total.toFixed(2);
-            });
-        });
-    </script>
 </body>
 </html>
+
 
 
 
