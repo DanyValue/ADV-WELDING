@@ -22,9 +22,8 @@
         </nav>
     </header>
 
-
     <!-- CONTENEDOR DE PRODUCTOS -->
-    <main class="productos-container">
+    <main class="page-container productos-container">
 
         <h2>Nuestros Productos</h2>
 
@@ -36,7 +35,7 @@
                 <h3>Producto 1</h3>
                 <p>Descripción breve del producto 1.</p>
                 <span class="precio">$950</span>
-                <button onclick="addToCart('Producto 1', 950)">Agregar</button>
+                <button data-name="Producto 1" data-price="950">Agregar</button>
             </div>
 
             <!-- 🔧 Producto 2 -->
@@ -45,7 +44,7 @@
                 <h3>Producto 2</h3>
                 <p>Descripción breve del producto 2.</p>
                 <span class="precio">$1,850</span>
-                <button onclick="addToCart('Producto 2', 1850)">Agregar</button>
+                <button data-name="Producto 2" data-price="1850">Agregar</button>
             </div>
 
             <!-- 🔧 Producto 3 -->
@@ -54,14 +53,11 @@
                 <h3>Producto 3</h3>
                 <p>Descripción breve del producto 3.</p>
                 <span class="precio">$750</span>
-                <button onclick="addToCart('Producto 3', 750)">Agregar</button>
+                <button data-name="Producto 3" data-price="750">Agregar</button>
             </div>
 
-            <!-- Puedes agregar tus 10 productos aquí igual -->
         </div>
-
     </main>
-
 
     <!-- 🛒 CARRITO SIEMPRE VISIBLE -->
     <aside class="carrito-panel">
@@ -69,9 +65,34 @@
         <ul id="cart-list"></ul>
         <p class="cart-total">Total: $<span id="cart-total">0</span></p>
     </aside>
-<script src="cart.js"></script>
+
+    <script>
+        // 🔹 Código para que los botones funcionen correctamente
+        const buttons = document.querySelectorAll('.producto-card button');
+        const cartList = document.getElementById('cart-list');
+        const cartTotal = document.getElementById('cart-total');
+
+        let total = 0;
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const name = btn.dataset.name;
+                const price = parseFloat(btn.dataset.price);
+
+                // Crear elemento de lista
+                const li = document.createElement('li');
+                li.textContent = `${name} - $${price}`;
+                cartList.appendChild(li);
+
+                // Actualizar total
+                total += price;
+                cartTotal.textContent = total.toFixed(2);
+            });
+        });
+    </script>
 </body>
 </html>
+
 
 
 
