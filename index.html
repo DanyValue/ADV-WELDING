@@ -2,33 +2,39 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADV WELDING - Inicio</title>
+    <title>Inicio</title>
     <link rel="stylesheet" href="styles.css">
     <script src="cart.js" defer></script>
 </head>
 <body>
 
-    <!-- HEADER -->
-    <header class="main-header">
-    <h1 class="header-title">ADV WELDING</h1>
+<header class="main-header">
+    <div class="header-title">ADV WELDING</div>
+
     <nav class="main-menu">
-        <a href="index.html" class="active">Inicio</a>
+        <a href="index.html">Inicio</a>
         <a href="servicios.html">Servicios</a>
         <a href="productos.html">Productos</a>
         <a href="contacto.html">Contacto</a>
     </nav>
+
+    <div class="cart-icon" onclick="toggleCart()">
+        🛒 <span id="cart-count">0</span>
+    </div>
 </header>
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <div class="page-container">
-        <h2>Bienvenido a ADV WELDING</h2>
-        <p>
-            Tu espacio confiable para soluciones de soldadura profesional. Aquí puedes encontrar nuestros productos, servicios y contacto directo.
-        </p>
-        <!-- Agrega banners o contenido de inicio adicional -->
+<div class="cart-modal" id="cartModal">
+    <div class="cart-modal-content">
+        <span class="close-cart" onclick="toggleCart()">✖</span>
+        <h3>Tu Carrito</h3>
+        <ul id="cart-list"></ul>
+        <p>Total: $<span id="cart-total">0</span></p>
     </div>
-   
+</div>
+
+<main style="padding:30px;">
+    <h2>Bienvenido a ADV WELDING</h2>
+</main>
 
 </body>
 </html>
