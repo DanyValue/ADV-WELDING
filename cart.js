@@ -53,11 +53,8 @@ function updateCartCount() {
     countEl.textContent = cart.length;
 }
 
-
 document.addEventListener("DOMContentLoaded", () => {
 
-    // EXISTENTE
-    loadCart();
     renderCart();
     updateCartCount();
 
@@ -73,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
         closeCart.addEventListener("click", () => toggleCarrito(false));
     }
 
-    // 🧹 Vaciar carrito (ya lo tenías)
+    // 🧹 Vaciar carrito
     const clearBtn = document.getElementById("clear-cart-btn");
     if (clearBtn) {
         clearBtn.addEventListener("click", () => {
@@ -87,13 +84,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-
-const savedCart = localStorage.getItem("cart");
-if (savedCart) {
-    cart = JSON.parse(savedCart);
-    renderCart();
-}
-
 function sendWhatsAppOrder() {
     if (!cart || cart.length === 0) {
         alert("Tu carrito está vacío");
@@ -104,26 +94,9 @@ function sendWhatsAppOrder() {
     let total = 0;
 
     cart.forEach(item => {
-
-        const nombre =
-            item.name ||
-            item.nombre ||
-            item.product ||
-            "Producto";
-
-        const precio = Number(
-            item.price ||
-            item.precio ||
-            item.cost ||
-            0
-        );
-
-        const cantidad = Number(
-            item.quantity ||
-            item.cantidad ||
-            item.qty ||
-            1
-        );
+        const nombre = item.name || "Producto";
+        const precio = Number(item.price) || 0;
+        const cantidad = 1;
 
         const subtotal = precio * cantidad;
         total += subtotal;
@@ -134,16 +107,7 @@ function sendWhatsAppOrder() {
     message += `\n💰 *Total:* $${total}\n\n`;
     message += "Gracias por su preferencia 🙌";
 
-    const phoneNumber = "526481468147"; // TU NÚMERO REAL
+    const phoneNumber = "526481468147";
     const url = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
-
     window.open(url, "_blank");
 }
-
-
-
-
-
-
-
-
