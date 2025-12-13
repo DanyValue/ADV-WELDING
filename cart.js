@@ -44,6 +44,13 @@ function renderCart() {
     saveCart();
 }
 
+function updateCartCount() {
+    const countEl = document.getElementById("cart-count");
+    if (!countEl) return;
+
+    countEl.textContent = cart.length;
+}
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const clearBtn = document.getElementById("clear-cart-btn");
