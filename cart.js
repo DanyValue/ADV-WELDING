@@ -107,7 +107,7 @@ function sendWhatsAppOrder() {
     message += `\n💰 *Total:* $${total}\n\n`;
     message += "Gracias por su preferencia 🙌";
 
-    const phoneNumber = "526481468147";
+    const phoneNumber = "526484695423";
     const url = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
     window.open(url, "_blank");
 }
