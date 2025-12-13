@@ -1,7 +1,7 @@
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 function saveCart() {
-    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem("cart", JSON.stringify(cart));
 }
 
 function addToCart(name, price) {
@@ -16,35 +16,36 @@ function removeFromCart(index) {
     renderCart();
 }
 
+function toggleCart() {
+    const modal = document.getElementById("cartModal");
+    modal.style.display = modal.style.display === "flex" ? "none" : "flex";
+}
+
 function renderCart() {
-    const list = document.getElementById('cart-list');
-    const totalEl = document.getElementById('cart-total');
-    const countEl = document.getElementById('cart-count');
+    const list = document.getElementById("cart-list");
+    const totalEl = document.getElementById("cart-total");
+    const countEl = document.getElementById("cart-count");
 
-    if (!list || !totalEl || !countEl) return;
+    if (!list) return;
 
-    list.innerHTML = '';
+    list.innerHTML = "";
     let total = 0;
 
     cart.forEach((item, index) => {
         total += item.price;
-
-        const li = document.createElement('li');
-        li.innerHTML = `
-            ${item.name} - $${item.price}
-            <button onclick="removeFromCart(${index})">✖</button>
+        list.innerHTML += `
+            <li>
+                ${item.name} - $${item.price}
+                <button onclick="removeFromCart(${index})">✖</button>
+            </li>
         `;
-        list.appendChild(li);
     });
 
     totalEl.textContent = total;
     countEl.textContent = cart.length;
 }
 
-document.addEventListener('DOMContentLoaded', renderCart);
-
-
-
+document.addEventListener("DOMContentLoaded", renderCart);
 
 
 
