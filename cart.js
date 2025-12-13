@@ -17,7 +17,7 @@ function removeFromCart(index) {
 }
 
 function toggleCarrito(show = true) {
-    const modal = document.getElementById("carrito-modal");
+    const modal = document.getElementById("cart-modal");
     if (!modal) return;
 
     modal.style.display = show ? "flex" : "none";
