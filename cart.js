@@ -16,9 +16,11 @@ function removeFromCart(index) {
     renderCart();
 }
 
-function toggleCart() {
-    const modal = document.getElementById("cartModal");
-    modal.style.display = modal.style.display === "flex" ? "none" : "flex";
+function toggleCarrito(show = true) {
+    const modal = document.getElementById("carrito-modal");
+    if (!modal) return;
+
+    modal.style.display = show ? "flex" : "none";
 }
 
 function renderCart() {
@@ -54,12 +56,24 @@ function updateCartCount() {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    // 1️⃣ Cargar carrito SIEMPRE
+    // EXISTENTE
     loadCart();
     renderCart();
     updateCartCount();
 
-    // 2️⃣ Botón vaciar carrito (solo si existe)
+    // 🛒 Abrir carrito
+    const openCart = document.getElementById("open-cart");
+    if (openCart) {
+        openCart.addEventListener("click", () => toggleCarrito(true));
+    }
+
+    // ❌ Cerrar carrito
+    const closeCart = document.getElementById("close-cart");
+    if (closeCart) {
+        closeCart.addEventListener("click", () => toggleCarrito(false));
+    }
+
+    // 🧹 Vaciar carrito (ya lo tenías)
     const clearBtn = document.getElementById("clear-cart-btn");
     if (clearBtn) {
         clearBtn.addEventListener("click", () => {
@@ -68,10 +82,11 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.removeItem("cart");
             renderCart();
             updateCartCount();
+            toggleCarrito(false);
         });
     }
-
 });
+
 
 const savedCart = localStorage.getItem("cart");
 if (savedCart) {
