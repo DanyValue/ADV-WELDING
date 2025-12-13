@@ -68,22 +68,26 @@ function sendWhatsAppOrder() {
         return;
     }
 
-    let message = "🧾 *Pedido ADV WELDING*%0A%0A";
+    let message = "🧾 *Pedido ADV WELDING*\n\n";
 
     cart.forEach(item => {
-        message += `• ${item.name} x${item.qty} - $${item.price * item.qty}%0A`;
+        message += `• ${item.name} x${item.quantity} - $${item.price * item.quantity}\n`;
     });
 
-    const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+    const total = cart.reduce(
+        (sum, item) => sum + item.price * item.quantity,
+        0
+    );
 
-    message += `%0A💰 *Total:* $${total}%0A%0A`;
+    message += `\n💰 *Total:* $${total}\n\n`;
     message += "Gracias por su preferencia 🙌";
 
-    const phoneNumber = "526481468147"; // 👈 TU NÚMERO CON CLAVE PAÍS
-    const url = `https://wa.me/${phoneNumber}?text=${message}`;
+    const phoneNumber = "526481468147"; // TU NÚMERO
+    const url = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
 
     window.open(url, "_blank");
 }
+
 
 
 
