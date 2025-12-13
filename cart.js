@@ -30,22 +30,12 @@ function renderCart() {
     cartList.innerHTML = "";
     let total = 0;
 
-    cart.forEach((item, index) => {
-        const qty = Number(item.quantity) || 1;
+    cart.forEach(item => {
         const price = Number(item.price) || 0;
-        const subtotal = price * qty;
-        total += subtotal;
+        total += price;
 
         const li = document.createElement("li");
-        li.innerHTML = `
-            <span>${item.name}</span>
-            <div class="qty-controls">
-                <button onclick="changeQty(${index}, -1)">−</button>
-                <span>${qty}</span>
-                <button onclick="changeQty(${index}, -1)">−</button>
-            </div>
-            <span>$${subtotal}</span>
-        `;
+        li.textContent = `${item.name} - $${price}`;
         cartList.appendChild(li);
     });
 
@@ -53,20 +43,6 @@ function renderCart() {
     updateCartCount();
     saveCart();
 }
-
-function changeQty(index, amount) {
-    if (!cart[index]) return;
-
-    cart[index].quantity = Number(cart[index].quantity) || 1;
-    cart[index].quantity += amount;
-
-    if (cart[index].quantity <= 0) {
-        cart.splice(index, 1);
-    }
-
-    renderCart();
-}
-
 
 
 document.addEventListener("DOMContentLoaded", () => {
