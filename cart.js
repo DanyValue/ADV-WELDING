@@ -52,6 +52,18 @@ function renderCart() {
     saveCart();
 }
 
+function changeQty(index, amount) {
+    if (!cart[index]) return;
+
+    cart[index].quantity += amount;
+
+    if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+    }
+
+    renderCart();
+}
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const clearBtn = document.getElementById("clear-cart-btn");
