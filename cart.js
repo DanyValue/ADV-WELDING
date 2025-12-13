@@ -62,6 +62,30 @@ if (savedCart) {
     renderCart();
 }
 
+function sendWhatsAppOrder() {
+    if (cart.length === 0) {
+        alert("Tu carrito está vacío");
+        return;
+    }
+
+    let message = "🧾 *Pedido ADV WELDING*%0A%0A";
+
+    cart.forEach(item => {
+        message += `• ${item.name} x${item.qty} - $${item.price * item.qty}%0A`;
+    });
+
+    const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+
+    message += `%0A💰 *Total:* $${total}%0A%0A`;
+    message += "Gracias por su preferencia 🙌";
+
+    const phoneNumber = "526481468147"; // 👈 TU NÚMERO CON CLAVE PAÍS
+    const url = `https://wa.me/${phoneNumber}?text=${message}`;
+
+    window.open(url, "_blank");
+}
+
+
 
 
 
