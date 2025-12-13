@@ -53,16 +53,26 @@ function updateCartCount() {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    const clearBtn = document.getElementById("clear-cart-btn");
-    if (!clearBtn) return;
 
-    clearBtn.addEventListener("click", () => {
-        if (!confirm("¿Vaciar todo el carrito?")) return;
-        cart = [];
-        localStorage.removeItem("cart");
-        renderCart();
-    });
+    // 1️⃣ Cargar carrito SIEMPRE
+    loadCart();
+    renderCart();
+    updateCartCount();
+
+    // 2️⃣ Botón vaciar carrito (solo si existe)
+    const clearBtn = document.getElementById("clear-cart-btn");
+    if (clearBtn) {
+        clearBtn.addEventListener("click", () => {
+            if (!confirm("¿Vaciar todo el carrito?")) return;
+            cart = [];
+            localStorage.removeItem("cart");
+            renderCart();
+            updateCartCount();
+        });
+    }
+
 });
+
 const savedCart = localStorage.getItem("cart");
 if (savedCart) {
     cart = JSON.parse(savedCart);
