@@ -63,30 +63,51 @@ if (savedCart) {
 }
 
 function sendWhatsAppOrder() {
-    if (cart.length === 0) {
+    if (!cart || cart.length === 0) {
         alert("Tu carrito está vacío");
         return;
     }
 
     let message = "🧾 *Pedido ADV WELDING*\n\n";
+    let total = 0;
 
     cart.forEach(item => {
-        message += `• ${item.name} x${item.quantity} - $${item.price * item.quantity}\n`;
-    });
 
-    const total = cart.reduce(
-        (sum, item) => sum + item.price * item.quantity,
-        0
-    );
+        const nombre =
+            item.name ||
+            item.nombre ||
+            item.product ||
+            "Producto";
+
+        const precio = Number(
+            item.price ||
+            item.precio ||
+            item.cost ||
+            0
+        );
+
+        const cantidad = Number(
+            item.quantity ||
+            item.cantidad ||
+            item.qty ||
+            1
+        );
+
+        const subtotal = precio * cantidad;
+        total += subtotal;
+
+        message += `• ${nombre} x${cantidad} - $${subtotal}\n`;
+    });
 
     message += `\n💰 *Total:* $${total}\n\n`;
     message += "Gracias por su preferencia 🙌";
 
-    const phoneNumber = "526481468147"; // TU NÚMERO
+    const phoneNumber = "521XXXXXXXXXX"; // TU NÚMERO REAL
     const url = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
 
     window.open(url, "_blank");
 }
+
 
 
 
