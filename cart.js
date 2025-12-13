@@ -22,28 +22,36 @@ function toggleCart() {
 }
 
 function renderCart() {
-    const list = document.getElementById("cart-list");
-    const totalEl = document.getElementById("cart-total");
-    const countEl = document.getElementById("cart-count");
+    const cartList = document.getElementById("cart-list");
+    const cartTotal = document.getElementById("cart-total");
 
-    if (!list) return;
+    if (!cartList || !cartTotal) return;
 
-    list.innerHTML = "";
+    cartList.innerHTML = "";
     let total = 0;
 
     cart.forEach((item, index) => {
-        total += item.price;
-        list.innerHTML += `
-            <li>
-                ${item.name} - $${item.price}
-                <button onclick="removeFromCart(${index})">✖</button>
-            </li>
+        const subtotal = item.price * item.quantity;
+        total += subtotal;
+
+        const li = document.createElement("li");
+        li.innerHTML = `
+            <span>${item.name}</span>
+            <div class="qty-controls">
+                <button onclick="changeQty(${index}, -1)">−</button>
+                <span>${item.quantity}</span>
+                <button onclick="changeQty(${index}, 1)">+</button>
+            </div>
+            <span>$${subtotal}</span>
         `;
+        cartList.appendChild(li);
     });
 
-    totalEl.textContent = total;
-    countEl.textContent = cart.length;
+    cartTotal.textContent = total;
+    updateCartCount();
+    saveCart();
 }
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const clearBtn = document.getElementById("clear-cart-btn");
