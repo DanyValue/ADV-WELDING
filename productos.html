@@ -2,58 +2,56 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos - ADV WELDING</title>
+    <title>Productos</title>
     <link rel="stylesheet" href="styles.css">
     <script src="cart.js" defer></script>
 </head>
 <body>
 
-    <!-- HEADER -->
-    <header class="main-header">
-    <h1 class="header-title">ADV WELDING</h1>
+<!-- HEADER -->
+<header class="main-header">
+    <div class="header-title">ADV WELDING</div>
+
     <nav class="main-menu">
-        <a href="index.html" class="active">Inicio</a>
+        <a href="index.html">Inicio</a>
         <a href="servicios.html">Servicios</a>
         <a href="productos.html">Productos</a>
         <a href="contacto.html">Contacto</a>
     </nav>
+
+    <div class="cart-icon" onclick="toggleCart()">
+        🛒 <span id="cart-count">0</span>
+    </div>
 </header>
 
-    <!-- CONTENEDOR DE PRODUCTOS -->
-    <main class="page-container productos-container">
+<div class="cart-modal" id="cartModal">
+    <div class="cart-modal-content">
+        <span class="close-cart" onclick="toggleCart()">✖</span>
+        <h3>Tu Carrito</h3>
+        <ul id="cart-list"></ul>
+        <p>Total: $<span id="cart-total">0</span></p>
+    </div>
+</div>
 
-        <h2>Nuestros Productos</h2>
+<main class="productos-container">
+    <h2>Productos</h2>
 
-        <div class="productos-grid">
-
-            <div class="producto-card">
-                <img src="https://via.placeholder.com/200" alt="Producto 1">
-                <h3>Producto 1</h3>
-                <p>Descripción breve del producto 1.</p>
-                <span class="precio">$950</span>
-                <button onclick="addToCart('Producto 1', 950)">Agregar</button>
-            </div>
-
-            <div class="producto-card">
-                <img src="https://via.placeholder.com/200" alt="Producto 2">
-                <h3>Producto 2</h3>
-                <p>Descripción breve del producto 2.</p>
-                <span class="precio">$1,850</span>
-                <button onclick="addToCart('Producto 2', 1850)">Agregar</button>
-            </div>
-
-            <div class="producto-card">
-                <img src="https://via.placeholder.com/200" alt="Producto 3">
-                <h3>Producto 3</h3>
-                <p>Descripción breve del producto 3.</p>
-                <span class="precio">$750</span>
-                <button onclick="addToCart('Producto 3', 590)">Agregar</button>
-            </div>
-
+    <div class="productos-grid">
+        <div class="producto-card">
+            <img src="https://via.placeholder.com/200">
+            <h3>Producto 1</h3>
+            <p>$950</p>
+            <button onclick="addToCart('Producto 1', 950)">Agregar</button>
         </div>
-       
-    </main>
+
+        <div class="producto-card">
+            <img src="https://via.placeholder.com/200">
+            <h3>Producto 2</h3>
+            <p>$1850</p>
+            <button onclick="addToCart('Producto 2', 1850)">Agregar</button>
+        </div>
+    </div>
+</main>
 
 </body>
 </html>
