@@ -45,7 +45,18 @@ function renderCart() {
     countEl.textContent = cart.length;
 }
 
-document.addEventListener("DOMContentLoaded", renderCart);
+document.addEventListener("DOMContentLoaded", () => {
+    const clearBtn = document.getElementById("clear-cart-btn");
+    if (!clearBtn) return;
+
+    clearBtn.addEventListener("click", () => {
+        if (!confirm("¿Vaciar todo el carrito?")) return;
+        cart = [];
+        localStorage.removeItem("cart");
+        renderCart();
+    });
+});
+
 
 
 
