@@ -120,27 +120,6 @@ body {
     cursor: pointer;
 }
 
-.qty-controls {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.qty-controls button {
-    width: 26px;
-    height: 26px;
-    border: none;
-    background: #1e90ff;
-    color: #fff;
-    font-weight: bold;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.qty-controls button:hover {
-    background: #0b70d1;
-}
-
 
 
 
