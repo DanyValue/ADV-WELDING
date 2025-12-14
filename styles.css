@@ -107,7 +107,7 @@ body {
 
 .product-card img {
     width: 100%;
-    height: 150px;          /* 👈 tamaño uniforme */
+    height: 110px;          /* 👈 tamaño uniforme */
     object-fit: contain;   /* imagen completa */
     margin-bottom: 10px;
 }
