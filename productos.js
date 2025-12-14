@@ -8,7 +8,13 @@ const productos = [
     descripcionLarga: "Careta Protector Facial Rígido Uso Rudo Industrial Y Medica Color Amarillo",
     imagenes: [
       "./img/productos/caretaprotectorfacial_1.PNG",
-      "./img/productos/caretaprotectorfacial_2.PNG"
+      "./img/productos/caretaprotectorfacial_2.PNG",
+      "./img/productos/caretaprotectorfacial_3.PNG",
+      "./img/productos/caretaprotectorfacial_4.PNG",
+      "./img/productos/caretaprotectorfacial_5.PNG",
+      "./img/productos/caretaprotectorfacial_6.PNG",
+      "./img/productos/caretaprotectorfacial_7.PNG",
+      "./img/productos/caretaprotectorfacial_8.PNG"
     ],
     video: ""
   },
