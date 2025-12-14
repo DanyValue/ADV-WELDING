@@ -166,3 +166,11 @@ img {
 .product-card button:hover {
     background: #156fd1;
 }
+
+.products-grid img {
+    max-width: 120px !important;
+    max-height: 120px !important;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
