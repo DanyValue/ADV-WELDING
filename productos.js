@@ -14,7 +14,20 @@ const productos = [
   },
   {
     id: 2,
-    nombre: "Careta Automática",
+    nombre: "Careta Automática en producto 2",
+    precio: 1200,
+    imagen: "img/careta.jpg",
+    descripcionCorta: "Protección automática",
+    descripcionLarga: "Careta automática con oscurecimiento rápido, ideal para soldadores profesionales.",
+    imagenes: [
+      "img/careta.jpg"
+    ],
+    video: ""
+  },
+
+  {
+    id: 3,
+    nombre: "Careta Automática en producto 3",
     precio: 1200,
     imagen: "img/careta.jpg",
     descripcionCorta: "Protección automática",
@@ -24,4 +37,5 @@ const productos = [
     ],
     video: ""
   }
+
 ];
