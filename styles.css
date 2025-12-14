@@ -149,6 +149,12 @@ body {
     transition: transform 0.2s ease;
 }
 
+img {
+    border: 5px solid red !important;
+    max-width: 120px !important;
+    max-height: 120px !important;
+}
+
 
 
 
