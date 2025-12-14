@@ -5,6 +5,7 @@
     <title>Productos</title>
     <link rel="stylesheet" href="styles.css">
     <script src="cart.js" defer></script>
+    <script src="productos.js" defer></script>
 </head>
 <body>
 
@@ -43,22 +44,32 @@
 
 <main class="productos-container">
     <h2>Productos</h2>
-
+    
     <div class="productos-grid">
         <div class="producto-card">
-            <img src="https://via.placeholder.com/200">
-            <h3>Careta Protector Facial Rígido Uso Rudo Industrial Y Medica Color Amarillo</h3>
-            <p>$126</p>
-            <button onclick="addToCart('Careta Protector Facial', 126)">Agregar</button>
+             <img src="img/soldadora1.jpg" alt="Soldadora">
+             <h3>Careta Protector Facial Rígido Uso Rudo Industrial Y Medica Color Amarillo</h3>
+             <p>$126 MXN</p>
+             <button onclick="addToCart(1)">Agregar</button>
+             <button onclick="verProducto(1)">+ Información</button>
         </div>
 
         <div class="producto-card">
-            <img src="https://via.placeholder.com/200">
-            <h3>Producto 2</h3>
-            <p>$1850</p>
-            <button onclick="addToCart('Producto 2', 1850)">Agregar</button>
+             <img src="img/soldadora1.jpg" alt="Soldadora">
+             <h3>Careta Protector Facial Rígido Uso Rudo Industrial Y Medica Color Amarillo</h3>
+             <p>$126 MXN</p>
+             <button onclick="addToCart(1)">Agregar</button>
+             <button onclick="verProducto(1)">+ Información</button>
         </div>
+        
     </div>
+    
+    <script>
+      function verProducto(id) {
+    window.location.href = `producto.html?id=${id}`;
+    }
+    </script>
+    
 </main>
 
 </body>
