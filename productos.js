@@ -1,11 +1,11 @@
 const productos = [
   {
     id: 1,
-    nombre: "Soldadora Inverter 200A",
-    precio: 3500,
+    nombre: "Careta Protector Facial Rígido Uso Rudo Industrial Y Medica Color Amarillo",
+    precio: 126,
     imagen: "img/soldadora1.jpg",
-    descripcionCorta: "Soldadora compacta y potente",
-    descripcionLarga: "Soldadora inverter de 200 amperes, ideal para trabajos profesionales y domésticos. Bajo consumo y excelente rendimiento.",
+    descripcionCorta: "Careta Protector Facial",
+    descripcionLarga: "Careta Protector Facial Rígido Uso Rudo Industrial Y Medica Color Amarillo",
     imagenes: [
       "img/soldadora1.jpg",
       "img/soldadora1_2.jpg"
@@ -14,11 +14,11 @@ const productos = [
   },
   {
     id: 2,
-    nombre: "Careta Automática en producto 2",
-    precio: 1200,
+    nombre: "Conector Borne 1/2 Para Soldadora",
+    precio: 345.80,
     imagen: "img/careta.jpg",
-    descripcionCorta: "Protección automática",
-    descripcionLarga: "Careta automática con oscurecimiento rápido, ideal para soldadores profesionales.",
+    descripcionCorta: "Conector Borne 1/2",
+    descripcionLarga: "Conector Borne 1/2 Para Soldadora",
     imagenes: [
       "img/careta.jpg"
     ],
@@ -27,11 +27,11 @@ const productos = [
 
   {
     id: 3,
-    nombre: "Careta Automática en producto 3",
-    precio: 1200,
+    nombre: "Interruptor Apagador Soldadora Switch Inversor Laston Infra",
+    precio: 67.58,
     imagen: "img/careta.jpg",
-    descripcionCorta: "Protección automática",
-    descripcionLarga: "Careta automática con oscurecimiento rápido, ideal para soldadores profesionales.",
+    descripcionCorta: "Interruptor Apagador",
+    descripcionLarga: "Interruptor Apagador Soldadora Switch Inversor Laston Infra",
     imagenes: [
       "img/careta.jpg"
     ],
