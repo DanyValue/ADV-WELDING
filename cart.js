@@ -58,3 +58,23 @@ document.getElementById("clear-cart-btn").onclick = () => {
 
 updateCartCount();
 
+document.addEventListener("DOMContentLoaded", () => {
+    const openCart = document.getElementById("open-cart");
+    const closeCart = document.getElementById("close-cart");
+    const cartModal = document.getElementById("cart-modal");
+
+    if (openCart) {
+        openCart.addEventListener("click", () => {
+            cartModal.style.display = "flex";
+            renderCart();
+        });
+    }
+
+    if (closeCart) {
+        closeCart.addEventListener("click", () => {
+            cartModal.style.display = "none";
+        });
+    }
+});
+
+
