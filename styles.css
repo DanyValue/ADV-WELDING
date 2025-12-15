@@ -98,31 +98,31 @@ body {
     justify-content: center;
 }
 
-/* TARJETA */
-.producto-card {
-    width: 240px;
+.product-card {
+    width: 280px;              /* 👈 antes 230 */
     background: #ffffff;
     border-radius: 14px;
-    padding: 15px;
+    padding: 20px;             /* más aire */
     text-align: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.14);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
+
 
 .producto-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
-/* CONTENEDOR IMAGEN */
-.producto-card .img-box {
+.product-card .img-box {
     width: 100%;
-    height: 140px;
+    height: 180px;    /* 👈 más presencia visual */
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
+
 
 /* IMAGEN */
 .producto-card .img-box img {
