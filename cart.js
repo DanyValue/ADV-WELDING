@@ -2,12 +2,46 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 function saveCart() {
     localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
 }
 
-function addToCart(name, price) {
-    cart.push({ name, price });
+function updateCartCount() {
+    document.getElementById("cart-count").textContent = cart.length;
+}
+
+function addToCart(id) {
+    const producto = productos.find(p => p.id === id);
+    if (!producto) return;
+
+    cart.push({
+        id: producto.id,
+        nombre: producto.nombre,
+        precio: producto.precio
+    });
+
     saveCart();
     renderCart();
+}
+
+function renderCart() {
+    const list = document.getElementById("cart-list");
+    const totalEl = document.getElementById("cart-total");
+
+    list.innerHTML = "";
+    let total = 0;
+
+    cart.forEach((item, index) => {
+        total += item.precio;
+
+        const li = document.createElement("li");
+        li.innerHTML = `
+            ${item.nombre} - $${item.precio}
+            <button onclick="removeFromCart(${index})">✖</button>
+        `;
+        list.appendChild(li);
+    });
+
+    totalEl.textContent = total.toFixed(2);
 }
 
 function removeFromCart(index) {
@@ -16,98 +50,11 @@ function removeFromCart(index) {
     renderCart();
 }
 
-function toggleCarrito(show = true) {
-    const modal = document.getElementById("cart-modal");
-    if (!modal) return;
-
-    modal.style.display = show ? "flex" : "none";
-}
-
-function renderCart() {
-    const cartList = document.getElementById("cart-list");
-    const cartTotal = document.getElementById("cart-total");
-
-    if (!cartList || !cartTotal) return;
-
-    cartList.innerHTML = "";
-    let total = 0;
-
-    cart.forEach(item => {
-        const price = Number(item.price) || 0;
-        total += price;
-
-        const li = document.createElement("li");
-        li.textContent = `${item.name} - $${price}`;
-        cartList.appendChild(li);
-    });
-
-    cartTotal.textContent = total;
-    updateCartCount();
+document.getElementById("clear-cart-btn").onclick = () => {
+    cart = [];
     saveCart();
-}
-
-function updateCartCount() {
-    const countEl = document.getElementById("cart-count");
-    if (!countEl) return;
-
-    countEl.textContent = cart.length;
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-
     renderCart();
-    updateCartCount();
+};
 
-    // 🛒 Abrir carrito
-    const openCart = document.getElementById("open-cart");
-    if (openCart) {
-        openCart.addEventListener("click", () => toggleCarrito(true));
-    }
+updateCartCount();
 
-    // ❌ Cerrar carrito
-    const closeCart = document.getElementById("close-cart");
-    if (closeCart) {
-        closeCart.addEventListener("click", () => toggleCarrito(false));
-    }
-
-    // 🧹 Vaciar carrito
-    const clearBtn = document.getElementById("clear-cart-btn");
-    if (clearBtn) {
-        clearBtn.addEventListener("click", () => {
-            if (!confirm("¿Vaciar todo el carrito?")) return;
-            cart = [];
-            localStorage.removeItem("cart");
-            renderCart();
-            updateCartCount();
-            toggleCarrito(false);
-        });
-    }
-});
-
-function sendWhatsAppOrder() {
-    if (!cart || cart.length === 0) {
-        alert("Tu carrito está vacío");
-        return;
-    }
-
-    let message = "🧾 *Pedido ADV WELDING*\n\n";
-    let total = 0;
-
-    cart.forEach(item => {
-        const nombre = item.name || "Producto";
-        const precio = Number(item.price) || 0;
-        const cantidad = 1;
-
-        const subtotal = precio * cantidad;
-        total += subtotal;
-
-        message += `• ${nombre} x${cantidad} - $${subtotal}\n`;
-    });
-
-    message += `\n💰 *Total:* $${total}\n\n`;
-    message += "Gracias por su preferencia 🙌";
-
-    const phoneNumber = "526481004199";
-    const url = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
-    window.open(url, "_blank");
-}
