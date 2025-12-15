@@ -94,47 +94,50 @@ body {
 .productos-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 25px;
+    gap: 30px;
     justify-content: center;
+    padding: 20px 0;
 }
 
-.product-card {
-    width: 280px;              /* 👈 antes 230 */
+.producto-card {
+    width: 280px;
     background: #ffffff;
     border-radius: 14px;
-    padding: 20px;             /* más aire */
+    padding: 18px;
     text-align: center;
-    box-shadow: 0 6px 14px rgba(0,0,0,0.14);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 
 .producto-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.2);
 }
 
+/* CONTENEDOR DE IMAGEN */
 .producto-card .img-box {
     width: 100%;
-    height: 200px;              /* más alto */
+    height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
 
 /* IMAGEN */
+/* IMAGEN DEL PRODUCTO */
 .producto-card .img-box img {
-    max-width: 170px;          /* 👈 más grande */
-    max-height: 170px;
+    max-width: 180px;
+    max-height: 180px;
     object-fit: contain;
 }
 
 /* TEXTOS */
 .producto-card h3 {
-    font-size: 14px;
-    margin: 8px 0;
+    font-size: 15px;
+    margin: 10px 0;
 }
 
 .producto-card p {
@@ -142,15 +145,15 @@ body {
     margin: 6px 0;
 }
 
-/* BOTONES */
+/* BOTÓN */
 .producto-card button {
     width: 100%;
-    padding: 9px;
-    margin-top: 6px;
+    padding: 10px;
+    margin-top: 8px;
     background: #1e90ff;
     border: none;
     color: white;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 14px;
 }
