@@ -147,7 +147,7 @@ function sendWhatsAppOrder() {
     mensaje += "📍 *Quedo atento(a) a su confirmación.*%0A";
     mensaje += "¡Gracias! 🙌";
 
-    const telefono = "526481468147"; // tu número con lada
+    const telefono = "526481004199"; // tu número con lada
     const url = `https://wa.me/${telefono}?text=${mensaje}`;
 
     window.open(url, "_blank");
