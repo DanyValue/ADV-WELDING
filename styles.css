@@ -246,6 +246,60 @@ body {
     margin: 10px 0;
 }
 
+/* ===== ITEMS DEL CARRITO ===== */
+
+#cart-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.cart-item-info {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4px 10px;
+    width: 100%;
+}
+
+.cart-item-name {
+    grid-column: 1 / -1;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.cart-item-qty {
+    font-size: 13px;
+    color: #555;
+}
+
+.cart-item-price {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Botón eliminar */
+.cart-remove-btn {
+    background: #f2f2f2;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 6px 8px;
+}
+
+.cart-remove-btn:hover {
+    background: #e74c3c;
+    color: #fff;
+}
+
+
 
 
 
