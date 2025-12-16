@@ -193,4 +193,32 @@ body {
     font-size: 18px;
 }
 
+/* ===== BOTÓN VACIAR CARRITO ===== */
+
+.btn-clear-cart {
+    width: 100%;
+    margin-top: 8px;
+    padding: 12px;
+    background: #e53935;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    transition: background 0.25s ease, transform 0.15s ease;
+}
+
+.btn-clear-cart:hover {
+    background: #c62828;
+    transform: scale(1.03);
+}
+
+
 
