@@ -151,6 +151,15 @@ function sendWhatsAppOrder() {
     const url = `https://wa.me/${telefono}?text=${mensaje}`;
 
     window.open(url, "_blank");
+
+     // 👇👇👇 AQUÍ VA LA LIMPIEZA DEL CARRITO 👇👇👇
+    cart = [];
+    saveCart();
+    renderCart();
+
+    // opcional: cerrar el modal
+    document.getElementById("cart-modal").style.display = "none";
+    
 }
 
 
