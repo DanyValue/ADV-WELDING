@@ -113,25 +113,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateCartCount();
 });
+
 function sendWhatsAppOrder() {
     if (cart.length === 0) {
         alert("El carrito está vacío");
         return;
     }
 
-    let mensaje = "🛒 *Pedido desde ADV WELDING*%0A%0A";
+    let mensaje = "👋 *Hola, buen día*%0A";
+    mensaje += "🛒 *Quiero realizar el siguiente pedido:*%0A%0A";
+
     let total = 0;
 
     cart.forEach(item => {
         const subtotal = item.precio * item.cantidad;
         total += subtotal;
 
-        mensaje += `• ${item.nombre}%0A`;
-        mensaje += `  Cantidad: ${item.cantidad}%0A`;
-        mensaje += `  Subtotal: $${subtotal.toFixed(2)} MXN%0A%0A`;
+        mensaje += `🔹 *${item.nombre}*%0A`;
+        mensaje += `   Cantidad: ${item.cantidad}%0A`;
+        mensaje += `   Precio unitario: $${item.precio.toFixed(2)} MXN%0A`;
+        mensaje += `   Subtotal: $${subtotal.toFixed(2)} MXN%0A%0A`;
     });
 
-    mensaje += `*TOTAL: $${total.toFixed(2)} MXN*`;
+    mensaje += "———————————————%0A";
+    mensaje += `💰 *TOTAL DEL PEDIDO:* $${total.toFixed(2)} MXN%0A`;
+    mensaje += "———————————————%0A%0A";
+    mensaje += "📍 *Quedo atento(a) a su confirmación.*%0A";
+    mensaje += "¡Gracias! 🙌";
 
     const telefono = "526481468147"; // tu número con lada
     const url = `https://wa.me/${telefono}?text=${mensaje}`;
