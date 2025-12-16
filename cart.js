@@ -49,25 +49,31 @@ function addToCart(id) {
 function renderCart() {
     const list = document.getElementById("cart-list");
     const totalEl = document.getElementById("cart-total");
-    if (!list || !totalEl) return;
 
     list.innerHTML = "";
     let total = 0;
 
     cart.forEach((item, index) => {
-        total += item.precio * item.cantidad;
+        total += item.precio;
 
         const li = document.createElement("li");
+        li.className = "cart-item";
+
         li.innerHTML = `
-            <strong>${item.nombre}</strong><br>
-            Cantidad: ${item.cantidad} — $${(item.precio * item.cantidad).toFixed(2)}
-            <button onclick="removeFromCart(${index})">✖</button>
+            <div class="cart-item-info">
+                <span class="cart-item-name">${item.nombre}</span>
+                <span class="cart-item-qty">Cantidad: 1</span>
+                <span class="cart-item-price">$${item.precio.toFixed(2)}</span>
+            </div>
+            <button class="cart-remove-btn" onclick="removeFromCart(${index})">✖</button>
         `;
+
         list.appendChild(li);
     });
 
     totalEl.textContent = total.toFixed(2);
 }
+
 
 // =====================
 // ELIMINAR PRODUCTO
