@@ -30,7 +30,6 @@ const productos = [
     ],
     video: ""
   },
-
   {
     id: 3,
     nombre: "Interruptor Apagador Soldadora Switch Inversor Laston Infra",
@@ -45,78 +44,56 @@ const productos = [
   },
 
   {
-  id: 4,
-  nombre: "Producto 4 en espera de información...",
-  precio: 00.00
-},
-{
-  id: 5,
-  nombre: "Producto 5 en espera de información...",
-  precio: 00.00
-},
-{
-  id: 6,
-  nombre: "Producto 6 en espera de información...",
-  precio: 00.00
-},
+    id: 4,
+    nombre: "Producto 4 en espera de información...",
+    precio: 0
+  },
   {
-  id: 7,
-  nombre: "Producto 7 en espera de información...",
-  precio: 00.00
-},
+    id: 5,
+    nombre: "Producto 5 en espera de información...",
+    precio: 0
+  },
   {
-  id: 8,
-  nombre: "Producto 8 en espera de información...",
-  precio: 00.00
-},
-  
+    id: 6,
+    nombre: "Producto 6 en espera de información...",
+    precio: 0
+  },
   {
-  id: 9,
-  nombre: "Producto 8 en espera de información...",
-  precio: 00.00
-},
+    id: 7,
+    nombre: "Producto 7 en espera de información...",
+    precio: 0
+  },
+  {
+    id: 8,
+    nombre: "Producto 8 en espera de información...",
+    precio: 0
+  },
+  {
+    id: 9,
+    nombre: "Producto 9 en espera de información...",
+    precio: 0
+  },
+  {
+    id: 10,
+    nombre: "Producto 10 en espera de información...",
+    precio: 0
+  },
+  {
+    id: 11,
+    nombre: "Producto 11 en espera de información...",
+    precio: 0
+  },
+  {
+    id: 12,
+    nombre: "Producto 12 en espera de información...",
+    precio: 0
+  },
+  {
+    id: 13,
+    nombre: "Producto 13 en espera de información...",
+    precio: 0
+  },
+  {
+    id: 14,
+    nombre
 
-  {
-  id: 10,
-  nombre: "Producto 8 en espera de información...",
-  precio: 00.00
-},
-
-  {
-  id: 11,
-  nombre: "Producto 8 en espera de información...",
-  precio: 00.00
-},
-
-  {
-  id: 12,
-  nombre: "Producto 8 en espera de información...",
-  precio: 00.00
-},
-
-  {
-  id: 13,
-  nombre: "Producto 8 en espera de información...",
-  precio: 00.00
-},
-
-  {
-  id: 14,
-  nombre: "Producto 8 en espera de información...",
-  precio: 00.00
-},
-
-  {
-  id: 15,
-  nombre: "Producto 8 en espera de información...",
-  precio: 00.00
-},
-
-  {
-  id: 16,
-  nombre: "Producto 8 en espera de información...",
-  precio: 00.00
-}
-
-
-];
