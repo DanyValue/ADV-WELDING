@@ -353,6 +353,26 @@ body {
 
 }
 
+@media (max-width: 768px) {
+
+  .main-menu {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+  }
+
+  .main-menu a {
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 20px;
+    background: #ffffff;
+    color: #000;
+    font-weight: 600;
+  }
+
+}
+
+
 
 
 
