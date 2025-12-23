@@ -95,5 +95,20 @@ const productos = [
   },
   {
     id: 14,
-    nombre
+    nombre: "Producto 14 en espera de información...",
+    precio: 0
+  },
+  {
+    id: 15,
+    nombre: "Producto 15 en espera de información...",
+    precio: 0
+  },
+  {
+    id: 16,
+    nombre: "Producto 16 en espera de información...",
+    precio: 0
+  }
+
+];
+ 
 
