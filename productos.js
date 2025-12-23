@@ -68,6 +68,54 @@ const productos = [
   id: 8,
   nombre: "Producto 8 en espera de información...",
   precio: 00.00
+},
+  
+  {
+  id: 9,
+  nombre: "Producto 8 en espera de información...",
+  precio: 00.00
+},
+
+  {
+  id: 10,
+  nombre: "Producto 8 en espera de información...",
+  precio: 00.00
+},
+
+  {
+  id: 11,
+  nombre: "Producto 8 en espera de información...",
+  precio: 00.00
+},
+
+  {
+  id: 12,
+  nombre: "Producto 8 en espera de información...",
+  precio: 00.00
+},
+
+  {
+  id: 13,
+  nombre: "Producto 8 en espera de información...",
+  precio: 00.00
+},
+
+  {
+  id: 14,
+  nombre: "Producto 8 en espera de información...",
+  precio: 00.00
+},
+
+  {
+  id: 15,
+  nombre: "Producto 8 en espera de información...",
+  precio: 00.00
+},
+
+  {
+  id: 16,
+  nombre: "Producto 8 en espera de información...",
+  precio: 00.00
 }
 
 
