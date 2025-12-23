@@ -299,6 +299,37 @@ body {
     color: #fff;
 }
 
+/* ========================= */
+/* 📱 RESPONSIVE PRODUCTOS */
+/* ========================= */
+
+@media (max-width: 768px) {
+
+    .producto-card {
+        width: 100%;
+        max-width: 360px;
+    }
+
+    .productos-grid {
+        justify-content: center;
+    }
+
+    .producto-card h3 {
+        font-size: 16px;
+    }
+
+    .producto-card p {
+        font-size: 15px;
+    }
+
+    .producto-card button {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+    }
+}
+
+
 
 
 
