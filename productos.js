@@ -42,6 +42,23 @@ const productos = [
       "./img/productos/interruptorapagador_1.PNG"
     ],
     video: ""
-  }
+  },
+
+  {
+  id: 4,
+  nombre: "Guantes de Soldador de Carnaza Uso Industrial",
+  precio: 189.00
+},
+{
+  id: 5,
+  nombre: "Cable para Soldar Calibre 1/0 Uso Rudo",
+  precio: 1250.00
+},
+{
+  id: 6,
+  nombre: "Portaelectrodo Industrial 300A",
+  precio: 320.00
+}
+
 
 ];
