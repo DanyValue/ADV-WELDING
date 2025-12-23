@@ -46,18 +46,28 @@ const productos = [
 
   {
   id: 4,
-  nombre: "Guantes de Soldador de Carnaza Uso Industrial",
-  precio: 189.00
+  nombre: "Producto 4 en espera de información...",
+  precio: 00.00
 },
 {
   id: 5,
-  nombre: "Cable para Soldar Calibre 1/0 Uso Rudo",
-  precio: 1250.00
+  nombre: "Producto 5 en espera de información...",
+  precio: 00.00
 },
 {
   id: 6,
-  nombre: "Portaelectrodo Industrial 300A",
-  precio: 320.00
+  nombre: "Producto 6 en espera de información...",
+  precio: 00.00
+},
+  {
+  id: 7,
+  nombre: "Producto 7 en espera de información...",
+  precio: 00.00
+},
+  {
+  id: 8,
+  nombre: "Producto 8 en espera de información...",
+  precio: 00.00
 }
 
 
