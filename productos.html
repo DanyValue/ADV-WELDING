@@ -3,10 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <title>Productos</title>   
-    <link rel="stylesheet" href="styles.css">  
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css?v=3">
+
+    <!-- JS -->
     <script src="productos.js" defer></script>
     <script src="cart.js" defer></script>
+
+    <!-- Viewport correcto -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 🔥 AJUSTES MOBILE DIRECTOS (PRUEBA REAL) -->
+    <style>
+        @media (max-width: 768px) {
+
+            .main-header {
+                padding: 20px 15px;
+                text-align: center;
+            }
+
+            .header-title {
+                font-size: 26px;
+                font-weight: 800;
+                margin-bottom: 12px;
+            }
+
+            .main-menu {
+                display: flex;
+                justify-content: space-around;
+                gap: 8px;
+            }
+
+            .main-menu a {
+                font-size: 14px;
+                padding: 8px 12px;
+                background: #ffffff;
+                border-radius: 20px;
+                font-weight: 600;
+            }
+
+            .cart-icon {
+                position: fixed;
+                bottom: 15px;
+                right: 15px;
+                background: #2196f3;
+                color: white;
+                padding: 12px 14px;
+                border-radius: 50px;
+                z-index: 999;
+                box-shadow: 0 4px 10px rgba(0,0,0,.3);
+            }
+
+            main h2 {
+                font-size: 22px;
+                text-align: center;
+                margin: 20px 0;
+                font-weight: 700;
+            }
+        }
+    </style>
 
 </head>
 <body>
@@ -23,17 +79,18 @@
         </nav>
     </div>
 
-   <div id="open-cart" class="cart-icon">
+    <div id="open-cart" class="cart-icon">
         🛒 <span id="cart-count">0</span>
-   </div>
+    </div>
 </header>
 
+<!-- MODAL CARRITO -->
 <div id="cart-modal" class="cart-modal">
     <div class="cart-modal-content">
 
         <span id="close-cart" class="close-cart">✖</span>
 
-       <h3 class="cart-title">Carrito</h3>
+        <h3 class="cart-title">Carrito</h3>
         <div class="cart-divider"></div>
 
         <ul id="cart-list"></ul>
@@ -43,13 +100,13 @@
         <p class="cart-total">
             Total: $<span id="cart-total">0</span>
         </p>
-        
+
         <button id="clear-cart-btn" class="btn-clear-cart">
             🗑 Vaciar carrito
         </button>
-        
+
         <button class="btn-whatsapp" onclick="sendWhatsAppOrder()">
-            <span class="wa-icon">💬</span> Enviar por WhatsApp
+            💬 Enviar por WhatsApp
         </button>
 
     </div>
@@ -232,6 +289,7 @@
 
 </body>
 </html>
+
 
 
 
