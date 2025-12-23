@@ -440,6 +440,38 @@ body {
   }
 }
 
+/* ========================= */
+/* 🚨 PRUEBA FORZADA MÓVIL */
+/* ========================= */
+@media (max-width: 768px) {
+
+  body {
+    background: #ffe6e6 !important;
+  }
+
+  .header-title {
+    font-size: 32px !important;
+    font-weight: 900 !important;
+    color: red !important;
+    text-align: center !important;
+  }
+
+  .main-menu {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+
+  .main-menu a {
+    font-size: 18px !important;
+    padding: 14px !important;
+    background: yellow !important;
+    color: black !important;
+    text-align: center !important;
+  }
+}
+
+
 
 
 
