@@ -329,6 +329,15 @@ body {
     }
 }
 
+.producto-card button {
+    position: relative;
+    z-index: 10;
+}
+
+.img-box {
+    pointer-events: none;
+}
+
 
 
 
