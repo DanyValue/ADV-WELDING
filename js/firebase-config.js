@@ -13,3 +13,5 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
+// Exportar al final ayuda a asegurar que las variables ya tengan valor
+export { app, db };
