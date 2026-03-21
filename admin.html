@@ -24,8 +24,8 @@
     <aside class="w-64 bg-white border-r border-gray-200 flex flex-col justify-between flex-shrink-0 z-20">
         <div>
             <div class="p-6 mb-2">
-                <h1 class="text-xl font-bold text-gray-900">Admin Panel</h1>
-                <p class="text-xs text-gray-500 mt-1">Management Suite</p>
+                <h1 class="text-xl font-bold text-gray-900">Panel de Administración</h1>
+                <p class="text-xs text-gray-500 mt-1">Suite de Gestión</p>
             </div>
             <nav class="px-4 space-y-1">
                 <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 rounded-lg hover:bg-gray-50 transition">
@@ -41,7 +41,7 @@
         </div>
         <div class="p-4 border-t border-gray-100">
             <button onclick="resetForm()" class="w-full bg-[#0058bb] text-white py-2.5 rounded-lg font-medium flex items-center justify-center gap-2 hover:bg-blue-800 transition shadow-sm">
-                <span class="material-symbols-outlined text-sm">add</span> Add Product
+                <span class="material-symbols-outlined text-sm">add</span> Agregar Producto
             </button>
         </div>
     </aside>
@@ -51,13 +51,13 @@
         <!-- Topbar -->
         <header class="bg-white border-b border-gray-200 px-8 py-4 flex justify-between items-center flex-shrink-0">
             <div>
-                <h2 class="text-2xl font-bold text-gray-900" id="formTitle">Add New Product</h2>
-                <p class="text-xs text-gray-500 mt-1">Editorial Marketplace / Inventory / New Item</p>
+                <h2 class="text-2xl font-bold text-gray-900" id="formTitle">Agregar Nuevo Producto</h2>
+                <p class="text-xs text-gray-500 mt-1">Tienda / Inventario / Nuevo Artículo</p>
             </div>
             <div class="flex items-center gap-6">
                 <div class="relative hidden md:block">
                     <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">search</span>
-                    <input type="text" placeholder="Search resources..." class="pl-9 pr-4 py-2 bg-gray-100 border-transparent rounded-lg text-sm focus:bg-white focus:border-gray-300 focus:ring-1 focus:ring-[#0058bb] w-64 transition outline-none">
+                    <input type="text" placeholder="Buscar recursos..." class="pl-9 pr-4 py-2 bg-gray-100 border-transparent rounded-lg text-sm focus:bg-white focus:border-gray-300 focus:ring-1 focus:ring-[#0058bb] w-64 transition outline-none">
                 </div>
                 <button class="text-gray-500 hover:text-gray-900 transition relative">
                     <span class="material-symbols-outlined">notifications</span>
@@ -77,15 +77,15 @@
                     <div class="w-full lg:w-1/3 space-y-6">
                         <!-- Media Assets -->
                         <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                            <h3 class="text-xs font-bold text-gray-400 tracking-wider uppercase mb-4">MEDIA ASSETS</h3>
+                            <h3 class="text-xs font-bold text-gray-400 tracking-wider uppercase mb-4">IMÁGENES DEL PRODUCTO</h3>
                             
                             <!-- Main Upload -->
                             <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 flex flex-col items-center justify-center text-center bg-gray-50 hover:bg-gray-100 transition cursor-pointer relative overflow-hidden aspect-square" onclick="document.getElementById('imageInput').click()">
                                 <img id="mainImagePreview" class="absolute inset-0 w-full h-full object-cover hidden">
                                 <div id="mainImagePlaceholder" class="flex flex-col items-center">
                                     <span class="material-symbols-outlined text-gray-400 text-4xl mb-3">upload_file</span>
-                                    <span class="text-sm font-bold text-gray-900">Upload Product Image</span>
-                                    <span class="text-xs text-gray-500 mt-1">JPEG, PNG up to 10MB</span>
+                                    <span class="text-sm font-bold text-gray-900">Subir Imagen del Producto</span>
+                                    <span class="text-xs text-gray-500 mt-1">JPEG, PNG hasta 10MB</span>
                                 </div>
                                 <input type="file" id="imageInput" accept="image/*" class="hidden" multiple>
                             </div>
@@ -98,7 +98,7 @@
                         
                         <!-- Storage Location -->
                         <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                            <h3 class="text-xs font-bold text-gray-400 tracking-wider uppercase mb-4">STORAGE LOCATION</h3>
+                            <h3 class="text-xs font-bold text-gray-400 tracking-wider uppercase mb-4">UBICACIÓN DE ALMACENAMIENTO</h3>
                             <div class="w-full h-48 bg-gray-100 rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
                                 <img src="https://picsum.photos/seed/map/400/300" class="w-full h-full object-cover opacity-30 grayscale">
                                 <div class="absolute inset-0 flex items-center justify-center">
@@ -107,10 +107,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="text-sm font-bold text-gray-900 mb-2">Distribution Hub</p>
+                            <p class="text-sm font-bold text-gray-900 mb-2">Centro de Distribución</p>
                             <select class="w-full bg-gray-50 border border-gray-200 rounded-lg p-2.5 text-sm focus:outline-none focus:border-[#0058bb] focus:bg-white transition text-gray-700">
-                                <option>Central Warehouse - Sector A</option>
-                                <option>North Branch</option>
+                                <option>Almacén Central - Sector A</option>
+                                <option>Sucursal Norte</option>
                             </select>
                         </div>
                     </div>
@@ -119,30 +119,30 @@
                     <div class="w-full lg:w-2/3 space-y-6">
                         <!-- General Info -->
                         <div class="bg-white p-6 md:p-8 rounded-xl border border-gray-200 shadow-sm relative">
-                            <div class="absolute top-6 right-6 bg-[#f1e34c] text-yellow-900 text-[10px] font-bold px-3 py-1 rounded-full tracking-wider uppercase">DRAFT MODE</div>
-                            <h3 class="text-lg font-bold text-gray-900 mb-6">General Information</h3>
+                            <div class="absolute top-6 right-6 bg-[#f1e34c] text-yellow-900 text-[10px] font-bold px-3 py-1 rounded-full tracking-wider uppercase">MODO BORRADOR</div>
+                            <h3 class="text-lg font-bold text-gray-900 mb-6">Información General</h3>
                             
                             <div class="space-y-6">
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Product Name</label>
-                                    <input type="text" id="prodName" required placeholder="e.g. Inversora 200A" class="w-full bg-gray-50 border border-gray-200 rounded-lg p-3 text-sm focus:outline-none focus:border-[#0058bb] focus:bg-white transition">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Nombre del Producto</label>
+                                    <input type="text" id="prodName" required placeholder="ej. Inversora 200A" class="w-full bg-gray-50 border border-gray-200 rounded-lg p-3 text-sm focus:outline-none focus:border-[#0058bb] focus:bg-white transition">
                                 </div>
                                 
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
-                                    <textarea id="prodDesc" rows="5" required placeholder="Crafted with care, this piece features..." class="w-full bg-gray-50 border border-gray-200 rounded-lg p-3 text-sm focus:outline-none focus:border-[#0058bb] focus:bg-white transition resize-none"></textarea>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Descripción</label>
+                                    <textarea id="prodDesc" rows="5" required placeholder="Describe las características y detalles del producto..." class="w-full bg-gray-50 border border-gray-200 rounded-lg p-3 text-sm focus:outline-none focus:border-[#0058bb] focus:bg-white transition resize-none"></textarea>
                                 </div>
 
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-2">Retail Price (MXN)</label>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Precio de Venta (MXN)</label>
                                         <div class="relative">
                                             <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 font-medium">$</span>
                                             <input type="number" id="prodPrice" step="0.01" required placeholder="0.00" class="w-full bg-gray-50 border border-gray-200 rounded-lg py-3 pl-8 pr-4 text-sm focus:outline-none focus:border-[#0058bb] focus:bg-white transition">
                                         </div>
                                     </div>
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-2">SKU / Identifier</label>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">SKU / Identificador</label>
                                         <input type="text" id="prodSku" placeholder="ADV-INV-001" class="w-full bg-gray-50 border border-gray-200 rounded-lg p-3 text-sm focus:outline-none focus:border-[#0058bb] focus:bg-white transition">
                                     </div>
                                 </div>
@@ -151,7 +151,7 @@
 
                         <!-- Categorization -->
                         <div class="bg-white p-6 md:p-8 rounded-xl border border-gray-200 shadow-sm">
-                            <h3 class="text-xs font-bold text-gray-400 tracking-wider uppercase mb-6">CATEGORIZATION</h3>
+                            <h3 class="text-xs font-bold text-gray-400 tracking-wider uppercase mb-6">CATEGORIZACIÓN</h3>
                             
                             <div class="flex flex-wrap gap-3" id="categoryPills">
                                 <label class="cursor-pointer">
@@ -175,15 +175,15 @@
                                     <div class="px-5 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 peer-checked:bg-[#0058bb] peer-checked:text-white transition">Controles</div>
                                 </label>
                                 <button type="button" class="px-5 py-2 rounded-full text-sm font-medium border border-dashed border-gray-300 text-gray-500 hover:bg-gray-50 transition flex items-center gap-1">
-                                    <span class="material-symbols-outlined text-sm">add</span> New Tag
+                                    <span class="material-symbols-outlined text-sm">add</span> Nueva Etiqueta
                                 </button>
                             </div>
                         </div>
 
                         <!-- Actions -->
                         <div class="flex justify-end items-center gap-6 pt-4">
-                            <button type="button" onclick="resetForm()" class="text-gray-500 font-medium hover:text-gray-900 transition">Discard</button>
-                            <button type="submit" class="bg-[#0058bb] text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-800 transition shadow-sm">Save Product</button>
+                            <button type="button" onclick="resetForm()" class="text-gray-500 font-medium hover:text-gray-900 transition">Descartar</button>
+                            <button type="submit" class="bg-[#0058bb] text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-800 transition shadow-sm">Guardar Producto</button>
                         </div>
                     </div>
                 </div>
@@ -211,10 +211,10 @@
             
             <!-- Footer -->
             <footer class="max-w-6xl mx-auto pt-8 pb-4 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium text-gray-400 uppercase tracking-wider">
-                <p>© 2024 ADV WELDING MANAGEMENT SUITE</p>
+                <p>© 2024 SUITE DE GESTIÓN ADV WELDING</p>
                 <div class="flex gap-6">
-                    <a href="#" class="hover:text-gray-600 transition">SUPPORT</a>
-                    <a href="#" class="hover:text-gray-600 transition">DOCUMENTATION</a>
+                    <a href="#" class="hover:text-gray-600 transition">SOPORTE</a>
+                    <a href="#" class="hover:text-gray-600 transition">DOCUMENTACIÓN</a>
                 </div>
             </footer>
         </div>
@@ -346,7 +346,7 @@
             document.getElementById('prodId').value = '';
             currentImages = [];
             updateImagePreviews();
-            document.getElementById('formTitle').innerText = 'Add New Product';
+            document.getElementById('formTitle').innerText = 'Agregar Nuevo Producto';
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -355,7 +355,7 @@
             const prod = products.find(p => p.id === id);
             if(!prod) return;
 
-            document.getElementById('formTitle').innerText = 'Edit Product';
+            document.getElementById('formTitle').innerText = 'Editar Producto';
             document.getElementById('prodId').value = prod.id;
             document.getElementById('prodName').value = prod.name;
             document.getElementById('prodDesc').value = prod.desc;
