@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>ADV WELDING | Inicio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 antialiased">
+    <nav class="fixed top-0 w-full z-50 bg-[#f1e34c] border-b border-transparent">
+        <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+            <span class="text-2xl font-bold text-[#0058bb] tracking-tighter">ADV WELDING</span>
+            <div class="hidden lg:flex gap-6 items-center">
+                <a class="text-[#0058bb] border-b-2 border-[#0058bb] pb-1 font-bold text-sm" href="index.html">Inicio</a>
+                <a class="text-gray-700 hover:text-[#0058bb] text-sm font-medium transition-colors" href="catalogo.html">Catálogo</a>
+                <a class="text-gray-700 hover:text-[#0058bb] text-sm font-medium transition-colors" href="admin.html">Admin</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <button class="p-2 text-[#0058bb] relative hover:scale-105 transition-transform" onclick="window.location.href='carrito.html'">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                    <span id="cartCount" class="cart-count absolute top-0 right-0 bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full hidden">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="pt-24 pb-16 px-8 max-w-7xl mx-auto">
+        <div class="bg-white rounded-2xl p-12 shadow-sm border border-gray-100 flex flex-col md:flex-row items-center gap-8">
+            <div class="flex-1">
+                <h1 class="text-5xl font-extrabold tracking-tighter text-gray-900 mb-6">Curaduría Literaria Contemporánea.</h1>
+                <p class="text-gray-600 text-lg mb-8">Descubre nuestra selección exclusiva de títulos que definen la cultura visual y el pensamiento editorial moderno.</p>
+                <a href="catalogo.html" class="bg-[#0058bb] text-white px-8 py-4 rounded-lg font-bold shadow-lg hover:bg-blue-800 transition inline-block">Explorar Catálogo</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-16 px-8 max-w-7xl mx-auto">
+        <div class="flex justify-between items-end mb-10">
+            <h2 class="text-3xl font-extrabold tracking-tighter text-gray-900">Productos Destacados</h2>
+            <a class="text-[#0058bb] font-bold text-sm hover:underline flex items-center gap-1" href="catalogo.html">Ver Todo <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" id="featuredProducts"></div>
+    </section>
+
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const products = getProducts().slice(0, 4);
+            const container = document.getElementById('featuredProducts');
+            
+            products.forEach(prod => {
+                container.innerHTML += `
+                    <div class="group cursor-pointer bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition" onclick="viewProduct('${prod.id}')">
+                        <div class="aspect-[3/4] bg-gray-100 overflow-hidden relative">
+                            <img alt="${prod.name}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="${prod.image}"/>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="text-base font-bold text-gray-900 mb-1">${prod.name}</h3>
+                            <p class="text-xs text-gray-500 mb-4">${prod.category}</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-lg font-extrabold text-[#0058bb]">$${parseFloat(prod.price).toFixed(2)}</span>
+                                <button onclick="event.stopPropagation(); addToCart('${prod.id}')" class="bg-[#f1e34c] text-yellow-900 px-3 py-2 rounded-lg flex items-center gap-1 text-xs font-bold hover:bg-yellow-400 transition">
+                                    <span class="material-symbols-outlined text-sm">add_shopping_cart</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            updateCartCount();
+        });
+    </script>
+</body>
+</html>

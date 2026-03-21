@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Admin | ADV WELDING</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 antialiased flex min-h-screen">
+    <aside class="w-64 bg-white border-r border-gray-200 p-6 flex flex-col">
+        <h1 class="text-xl font-bold text-[#0058bb] mb-8">Admin Panel</h1>
+        <nav class="flex flex-col gap-2">
+            <a href="index.html" class="flex items-center gap-3 text-gray-600 hover:bg-gray-50 p-3 rounded-lg transition">
+                <span class="material-symbols-outlined">storefront</span> Ver Tienda
+            </a>
+            <a href="#" class="flex items-center gap-3 bg-[#f1e34c] text-yellow-900 font-bold p-3 rounded-lg">
+                <span class="material-symbols-outlined">inventory_2</span> Inventario
+            </a>
+        </nav>
+    </aside>
+
+    <main class="flex-1 p-10">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-8" id="formTitle">Agregar Producto</h2>
+            
+            <form id="adminForm" class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 mb-12">
+                <input type="hidden" id="prodId">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Nombre del Producto</label>
+                        <input type="text" id="prodName" required class="w-full bg-gray-50 border border-gray-200 rounded-lg p-3 focus:outline-none focus:border-[#0058bb]">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Precio ($)</label>
+                        <input type="number" id="prodPrice" step="0.01" required class="w-full bg-gray-50 border border-gray-200 rounded-lg p-3 focus:outline-none focus:border-[#0058bb]">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Categoría</label>
+                        <select id="prodCategory" class="w-full bg-gray-50 border border-gray-200 rounded-lg p-3 focus:outline-none focus:border-[#0058bb]">
+                            <option value="Mobiliario">Mobiliario</option>
+                            <option value="Decoración">Decoración</option>
+                            <option value="Iluminación">Iluminación</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Imagen (Base64 o URL)</label>
+                        <input type="file" id="imageInput" accept="image/*" class="w-full bg-gray-50 border border-gray-200 rounded-lg p-2">
+                        <input type="hidden" id="imageBase64">
+                        <img id="imagePreview" class="mt-2 h-20 rounded object-cover hidden">
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-bold text-gray-700 mb-2">Descripción</label>
+                    <textarea id="prodDesc" rows="3" required class="w-full bg-gray-50 border border-gray-200 rounded-lg p-3 focus:outline-none focus:border-[#0058bb]"></textarea>
+                </div>
+                <div class="flex gap-4">
+                    <button type="submit" class="bg-[#0058bb] text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-800 transition">Guardar Producto</button>
+                    <button type="button" onclick="resetForm()" class="bg-gray-200 text-gray-700 px-6 py-3 rounded-lg font-bold hover:bg-gray-300 transition">Cancelar</button>
+                </div>
+            </form>
+
+            <h2 class="text-2xl font-extrabold text-gray-900 mb-6">Inventario Actual</h2>
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                <table class="w-full text-left">
+                    <thead class="bg-gray-50 border-b border-gray-100">
+                        <tr>
+                            <th class="p-4 font-bold text-gray-600">Producto</th>
+                            <th class="p-4 font-bold text-gray-600">Categoría</th>
+                            <th class="p-4 font-bold text-gray-600">Precio</th>
+                            <th class="p-4 font-bold text-gray-600 text-right">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminProductList" class="divide-y divide-gray-100">
+                        <!-- Inyectado por JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+    <script>
+        document.getElementById('imageInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const base64 = e.target.result;
+                    document.getElementById('imageBase64').value = base64;
+                    document.getElementById('imagePreview').src = base64;
+                    document.getElementById('imagePreview').classList.remove('hidden');
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('adminForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const id = document.getElementById('prodId').value || Date.now().toString();
+            const name = document.getElementById('prodName').value;
+            const desc = document.getElementById('prodDesc').value;
+            const price = parseFloat(document.getElementById('prodPrice').value);
+            const category = document.getElementById('prodCategory').value;
+            let image = document.getElementById('imageBase64').value;
+
+            const products = getProducts();
+            const existingIndex = products.findIndex(p => p.id === id);
+
+            if(!image && existingIndex === -1) {
+                // Si es nuevo y no hay imagen, usar placeholder
+                image = 'https://picsum.photos/seed/' + id + '/400/400';
+            }
+
+            const newProduct = {
+                id, name, desc, price, category,
+                image: image || (existingIndex >= 0 ? products[existingIndex].image : '')
+            };
+
+            if (existingIndex >= 0) {
+                products[existingIndex] = newProduct;
+            } else {
+                products.push(newProduct);
+            }
+
+            localStorage.setItem(STORE_KEY, JSON.stringify(products));
+            resetForm();
+            renderAdminList();
+            alert("Producto guardado");
+        });
+
+        function resetForm() {
+            document.getElementById('adminForm').reset();
+            document.getElementById('prodId').value = '';
+            document.getElementById('imageBase64').value = '';
+            document.getElementById('imagePreview').classList.add('hidden');
+            document.getElementById('formTitle').innerText = 'Agregar Producto';
+        }
+
+        function editProduct(id) {
+            const products = getProducts();
+            const prod = products.find(p => p.id === id);
+            if(!prod) return;
+
+            document.getElementById('formTitle').innerText = 'Editar Producto';
+            document.getElementById('prodId').value = prod.id;
+            document.getElementById('prodName').value = prod.name;
+            document.getElementById('prodDesc').value = prod.desc;
+            document.getElementById('prodPrice').value = prod.price;
+            document.getElementById('prodCategory').value = prod.category;
+            
+            document.getElementById('imageBase64').value = ''; 
+            document.getElementById('imagePreview').src = prod.image;
+            document.getElementById('imagePreview').classList.remove('hidden');
+            
+            window.scrollTo(0,0);
+        }
+
+        function deleteProduct(id) {
+            if(confirm("¿Eliminar este producto?")) {
+                let products = getProducts();
+                products = products.filter(p => p.id !== id);
+                localStorage.setItem(STORE_KEY, JSON.stringify(products));
+                renderAdminList();
+            }
+        }
+
+        function renderAdminList() {
+            const products = getProducts();
+            const tbody = document.getElementById('adminProductList');
+            tbody.innerHTML = '';
+
+            products.forEach(prod => {
+                tbody.innerHTML += `
+                    <tr class="hover:bg-gray-50">
+                        <td class="p-4 flex items-center gap-3">
+                            <img src="${prod.image}" class="w-10 h-10 rounded object-cover">
+                            <span class="font-bold text-gray-900">${prod.name}</span>
+                        </td>
+                        <td class="p-4 text-gray-600">${prod.category}</td>
+                        <td class="p-4 text-gray-900 font-bold">$${parseFloat(prod.price).toFixed(2)}</td>
+                        <td class="p-4 text-right">
+                            <button onclick="editProduct('${prod.id}')" class="text-[#0058bb] hover:underline font-bold mr-3">Editar</button>
+                            <button onclick="deleteProduct('${prod.id}')" class="text-red-500 hover:underline font-bold">Eliminar</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', renderAdminList);
+    </script>
+</body>
+</html>
