@@ -10,6 +10,11 @@ import {
     orderBy 
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
+// --- LÍNEAS DE DIAGNÓSTICO ---
+console.log("🔍 Verificando conexión en firebase-db.js...");
+console.log("Valor de db:", db);
+
+
 // Función para guardar
 export const agregarProducto = async (producto) => {
     try {
