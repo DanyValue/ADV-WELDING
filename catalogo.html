@@ -9,168 +9,110 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-        
-        /* Custom Checkbox */
-        .custom-checkbox {
-            appearance: none;
-            width: 16px;
-            height: 16px;
-            border: 1px solid #d1d5db;
-            border-radius: 3px;
-            outline: none;
-            cursor: pointer;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .custom-checkbox:checked {
-            background-color: #0058bb;
-            border-color: #0058bb;
-        }
-        .custom-checkbox:checked::after {
-            content: '';
-            position: absolute;
-            width: 4px;
-            height: 8px;
-            border: solid white;
-            border-width: 0 2px 2px 0;
-            transform: rotate(45deg);
-            margin-bottom: 2px;
-        }
-
-        /* Custom Range Slider */
-        input[type=range] {
-            -webkit-appearance: none;
-            width: 100%;
-            background: transparent;
-        }
-        input[type=range]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            height: 16px;
-            width: 16px;
-            border-radius: 50%;
-            background: #0058bb;
-            cursor: pointer;
-            margin-top: -6px;
-        }
-        input[type=range]::-webkit-slider-runnable-track {
-            width: 100%;
-            height: 4px;
-            cursor: pointer;
-            background: #e5e7eb;
-            border-radius: 2px;
-        }
     </style>
 </head>
-<body class="bg-[#f8f9fa] text-gray-900 antialiased min-h-screen flex flex-col">
-    <nav class="w-full z-50 bg-[#f8f9fa] border-b border-gray-200">
+<body class="bg-gray-50 text-gray-900 antialiased">
+    <nav class="fixed top-0 w-full z-50 bg-[#f1e34c] border-b border-transparent">
         <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
-            <span class="text-xl font-extrabold tracking-tighter text-black">ADV WELDING</span>
-            <div class="hidden lg:flex gap-8 items-center">
-                <a class="text-gray-500 hover:text-black text-sm transition-colors" href="index.html">Inicio</a>
-                <a class="text-[#0058bb] border-b-2 border-[#0058bb] pb-1 font-medium text-sm" href="catalogo.html">Catálogo</a>
-                <a class="text-gray-500 hover:text-black text-sm transition-colors" href="servicios.html">Servicios</a>
-                <a class="text-gray-500 hover:text-black text-sm transition-colors" href="contacto.html">Contacto</a>
+            <span class="text-2xl font-bold text-[#0058bb] tracking-tighter">ADV WELDING</span>
+            <div class="hidden lg:flex gap-6 items-center">
+                <a class="text-gray-700 hover:text-[#0058bb] text-sm font-medium" href="index.html">Inicio</a>
+                <a class="text-[#0058bb] border-b-2 border-[#0058bb] pb-1 font-bold text-sm" href="catalogo.html">Catálogo</a>
+                <a class="text-gray-700 hover:text-[#0058bb] text-sm font-medium" href="servicios.html">Servicios</a>
+                <a class="text-gray-700 hover:text-[#0058bb] text-sm font-medium" href="contacto.html">Contacto</a>
             </div>
-            <div class="flex items-center gap-6">
-                <button class="text-black relative hover:scale-105 transition-transform" onclick="window.location.href='carrito.html'">
-                    <span class="material-symbols-outlined text-[22px]">shopping_cart</span>
-                    <span id="cartCount" class="cart-count absolute -top-1 -right-2 bg-red-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full hidden">0</span>
-                </button>
-                <button class="text-black hover:scale-105 transition-transform">
-                    <span class="material-symbols-outlined text-[22px]">person</span>
+            <div class="flex items-center gap-4">
+                <button class="p-2 text-[#0058bb] relative" onclick="window.location.href='carrito.html'">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                    <span id="cartCount" class="absolute top-0 right-0 bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full hidden">0</span>
                 </button>
             </div>
         </div>
     </nav>
 
-    <header class="pt-16 pb-12 px-8 max-w-7xl mx-auto w-full">
-        <h1 class="text-5xl font-extrabold tracking-tighter text-black mb-4">Nuestro Catálogo</h1>
-        <p class="text-gray-500 text-sm w-full leading-relaxed">
-            Descubre nuestra selección de equipos y accesorios de alta calidad. Desde inversoras y caretas profesionales para soldadura, hasta estéreos, bocinas y controles para tus proyectos.
-        </p>
-    </header>
-
-    <main class="flex-1 px-8 pb-20 max-w-7xl mx-auto w-full flex flex-col md:flex-row gap-12">
-        
-        <aside class="w-full md:w-64 flex-shrink-0">
-            <div class="mb-10">
-                <h3 class="text-xs font-bold tracking-widest text-gray-900 uppercase mb-5">Categorías</h3>
-                <div class="space-y-3" id="categoryFilters">
-                    <label class="flex items-center gap-3 cursor-pointer group">
-                        <input type="radio" name="categoryFilter" value="Todas" class="custom-checkbox" checked onchange="window.applyFilters()">
-                        <span class="text-sm text-gray-600 group-hover:text-black transition">Todas</span>
-                    </label>
-                    <label class="flex items-center gap-3 cursor-pointer group">
-                        <input type="radio" name="categoryFilter" value="Inversoras" class="custom-checkbox" onchange="window.applyFilters()">
-                        <span class="text-sm text-gray-600 group-hover:text-black transition">Inversoras</span>
-                    </label>
-                    <label class="flex items-center gap-3 cursor-pointer group">
-                        <input type="radio" name="categoryFilter" value="Caretas" class="custom-checkbox" onchange="window.applyFilters()">
-                        <span class="text-sm text-gray-600 group-hover:text-black transition">Caretas</span>
-                    </label>
-                    <label class="flex items-center gap-3 cursor-pointer group">
-                        <input type="radio" name="categoryFilter" value="Estereos" class="custom-checkbox" onchange="window.applyFilters()">
-                        <span class="text-sm text-gray-600 group-hover:text-black transition">Estereos</span>
-                    </label>
-                    <label class="flex items-center gap-3 cursor-pointer group">
-                        <input type="radio" name="categoryFilter" value="Bocinas" class="custom-checkbox" onchange="window.applyFilters()">
-                        <span class="text-sm text-gray-600 group-hover:text-black transition">Bocinas</span>
-                    </label>
-                    <label class="flex items-center gap-3 cursor-pointer group">
-                        <input type="radio" name="categoryFilter" value="Controles" class="custom-checkbox" onchange="window.applyFilters()">
-                        <span class="text-sm text-gray-600 group-hover:text-black transition">Controles</span>
-                    </label>
-                </div>
+    <main class="pt-32 pb-20 px-8 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+            <div>
+                <h1 class="text-4xl font-extrabold tracking-tighter text-gray-900 mb-2">Equipos Profesionales</h1>
+                <p class="text-gray-500">Explora nuestra selección de alta gama para soldadura industrial.</p>
             </div>
-
-            <div class="mb-10">
-                <h3 class="text-xs font-bold tracking-widest text-gray-900 uppercase mb-5">Precio Máximo</h3>
-                <div class="relative pt-1">
-                    <input type="range" id="priceFilter" min="0" max="10000" value="10000" step="100" class="w-full" oninput="window.updatePriceLabel()" onchange="window.applyFilters()">
-                    <div class="flex justify-between text-xs text-gray-500 mt-3">
-                        <span>$0 MXN</span>
-                        <span id="priceLabel">$10,000 MXN</span>
-                    </div>
-                </div>
+            <div class="flex gap-4 w-full md:w-auto">
+                <select id="categoryFilter" class="bg-white border border-gray-200 text-sm rounded-lg p-2.5 outline-none focus:ring-2 focus:ring-[#0058bb]">
+                    <option value="todos">Todas las categorías</option>
+                    <option value="Soldadoras">Soldadoras</option>
+                    <option value="Consumibles">Consumibles</option>
+                    <option value="Seguridad">Seguridad</option>
+                </select>
             </div>
+        </div>
 
-            <button onclick="window.clearFilters()" class="w-full py-3 bg-gray-200 hover:bg-gray-300 text-black text-xs font-bold tracking-wider transition rounded-sm">
-                LIMPIAR FILTROS
-            </button>
-        </aside>
-
-        <div class="flex-1">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12" id="catalogProducts">
-                <p class="col-span-full text-center py-10 text-gray-400">Cargando catálogo...</p>
-            </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" id="catalogContainer">
+            <p class="col-span-full text-center text-gray-400 py-20">Cargando catálogo...</p>
         </div>
     </main>
 
-    <footer class="bg-[#f8f9fa] border-t border-gray-200 py-8 px-8 mt-auto">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex flex-col md:flex-row items-center gap-2 md:gap-4 text-center md:text-left">
-                <span class="text-sm font-extrabold tracking-tighter text-black">ADV WELDING</span>
-                <span class="hidden md:inline text-gray-300">|</span>
-                <span class="text-xs text-gray-500">© 2024 ADV WELDING. Todos los derechos reservados.</span>
-            </div>
-        </div>
-    </footer>
+    <script type="module">
+        import { obtenerProductos } from "./js/firebase-db.js";
 
-    <script type="module" src="js/app.js"></script>
-
-    <script>
-        // Funciones auxiliares globales para que los onclick del HTML funcionen con el módulo
-        window.viewProduct = function(id) {
+        // Función global para redirigir al detalle
+        window.viewProduct = (id) => {
             window.location.href = `producto.html?id=${id}`;
+        };
+
+        const container = document.getElementById('catalogContainer');
+        const filter = document.getElementById('categoryFilter');
+
+        async function renderCatalogo(categoriaSeleccionada = 'todos') {
+            try {
+                const products = await obtenerProductos();
+                
+                // Filtrar si es necesario
+                const filteredProducts = categoriaSeleccionada === 'todos' 
+                    ? products 
+                    : products.filter(p => p.category === categoriaSeleccionada);
+
+                if (filteredProducts.length === 0) {
+                    container.innerHTML = '<p class="col-span-full text-center py-10 text-gray-500">No se encontraron productos en esta sección.</p>';
+                    return;
+                }
+
+                container.innerHTML = ''; // Limpiar mensaje de carga
+
+                filteredProducts.forEach(prod => {
+                    container.innerHTML += `
+                        <div class="group cursor-pointer bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition" onclick="viewProduct('${prod.id}')">
+                            <div class="aspect-[3/4] bg-gray-50 overflow-hidden relative">
+                                <img alt="${prod.name}" class="w-full h-full object-contain p-4 transition-transform duration-700 group-hover:scale-105" 
+                                     src="${prod.image}" 
+                                     onerror="this.src='https://placehold.co/400x533?text=Sin+Imagen'">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-base font-bold text-gray-900 mb-1 truncate">${prod.name}</h3>
+                                <p class="text-[10px] font-bold text-[#0058bb] tracking-widest uppercase mb-4">${prod.category || 'General'}</p>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-lg font-extrabold text-gray-900">$${parseFloat(prod.price).toLocaleString('es-MX', {minimumFractionDigits: 2})}</span>
+                                    <button class="bg-[#f1e34c] text-yellow-900 p-2 rounded-lg hover:bg-yellow-400 transition">
+                                        <span class="material-symbols-outlined text-sm">add_shopping_cart</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            } catch (error) {
+                console.error("Error en catálogo:", error);
+                container.innerHTML = '<p class="col-span-full text-center text-red-500">Error al conectar con el inventario.</p>';
+            }
         }
-        
-        window.addToCart = function(id) {
-            console.log("Agregando al carrito:", id);
-            // Aquí irá tu lógica de carrito más adelante
-        }
+
+        // Evento de filtro
+        filter.addEventListener('change', (e) => {
+            container.innerHTML = '<p class="col-span-full text-center text-gray-400 py-20">Filtrando...</p>';
+            renderCatalogo(e.target.value);
+        });
+
+        // Carga inicial
+        document.addEventListener('DOMContentLoaded', () => renderCatalogo());
     </script>
 </body>
 </html>
