@@ -1,3 +1,4 @@
+import { agregarProducto, obtenerProductos } from "./firebase-db.js";
 const STORE_KEY = 'adv_products_v3';
 const CART_KEY = 'adv_cart';
 
