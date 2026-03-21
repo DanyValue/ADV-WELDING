@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html class="light" lang="es">
 <head>
     <meta charset="utf-8"/>
@@ -37,7 +36,7 @@
                         <input type="text" id="prodName" required class="w-full bg-gray-50 border border-gray-200 rounded-lg p-3 focus:outline-none focus:border-[#0058bb]">
                     </div>
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-2">Precio ($)</label>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Precio ($ MXN)</label>
                         <input type="number" id="prodPrice" step="0.01" required class="w-full bg-gray-50 border border-gray-200 rounded-lg p-3 focus:outline-none focus:border-[#0058bb]">
                     </div>
                     <div>
@@ -186,7 +185,7 @@
                             <span class="font-bold text-gray-900">${prod.name}</span>
                         </td>
                         <td class="p-4 text-gray-600">${prod.category}</td>
-                        <td class="p-4 text-gray-900 font-bold">$${parseFloat(prod.price).toFixed(2)}</td>
+                        <td class="p-4 text-gray-900 font-bold">$${parseFloat(prod.price).toFixed(2)} MXN</td>
                         <td class="p-4 text-right">
                             <button onclick="editProduct('${prod.id}')" class="text-[#0058bb] hover:underline font-bold mr-3">Editar</button>
                             <button onclick="deleteProduct('${prod.id}')" class="text-red-500 hover:underline font-bold">Eliminar</button>
@@ -200,3 +199,4 @@
     </script>
 </body>
 </html>
+
