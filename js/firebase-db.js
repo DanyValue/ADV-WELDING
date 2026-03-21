@@ -1,24 +1,31 @@
-import { app } from "./firebase-config.js";
-import {
-  collection,
-  addDoc,
-  getDocs,
-  getFirestore
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+// IMPORTANTE: Importar 'db' y las funciones de firestore
+import { db } from "./firebase-config.js"; 
+import { collection, addDoc, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-// 🔥 IMPORTANTE: usar ESTA instancia
-const db = getFirestore(app);
+// Función para guardar
+export const agregarProducto = async (producto) => {
+    try {
+        // El primer argumento DEBE ser 'db'
+        const docRef = await addDoc(collection(db, "productos"), producto);
+        return docRef.id;
+    } catch (e) {
+        console.error("Error al añadir: ", e);
+        throw e;
+    }
+};
 
-export async function agregarProducto(producto) {
-  console.log("🔥 Intentando guardar en Firebase...");
-  const docRef = await addDoc(collection(db, "productos"), producto);
-  console.log("📄 ID generado:", docRef.id);
-}
-
-export async function obtenerProductos() {
-  const snapshot = await getDocs(collection(db, "productos"));
-  return snapshot.docs.map(doc => ({
-    id: doc.id,
-    ...doc.data()
-  }));
-}
+// Función para obtener (la que te está dando el error en el render)
+export const obtenerProductos = async () => {
+    try {
+        const q = query(collection(db, "productos"), orderBy("createdAt", "desc"));
+        const querySnapshot = await getDocs(q);
+        const productos = [];
+        querySnapshot.forEach((doc) => {
+            productos.push({ id: doc.id, ...doc.data() });
+        });
+        return productos;
+    } catch (e) {
+        console.error("Error al obtener: ", e);
+        throw e;
+    }
+};
