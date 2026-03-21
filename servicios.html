@@ -1,1 +1,177 @@
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Servicios | ADV WELDING</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-[#f8f9fa] text-gray-900 antialiased min-h-screen flex flex-col">
+    <!-- Navigation -->
+    <nav class="w-full z-50 bg-[#f8f9fa] border-b border-gray-200">
+        <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+            <span class="text-xl font-extrabold tracking-tighter text-black">ADV WELDING</span>
+            <div class="hidden lg:flex gap-8 items-center">
+                <a class="text-gray-500 hover:text-black text-sm transition-colors" href="index.html">Inicio</a>
+                <a class="text-gray-500 hover:text-black text-sm transition-colors" href="catalogo.html">Catálogo</a>
+                <a class="text-[#0058bb] border-b-2 border-[#0058bb] pb-1 font-medium text-sm" href="servicios.html">Servicios</a>
+                <a class="text-gray-500 hover:text-black text-sm transition-colors" href="#">Contacto</a>
+            </div>
+            <div class="flex items-center gap-6">
+                <button class="text-black hover:scale-105 transition-transform" onclick="window.location.href='carrito.html'">
+                    <span class="material-symbols-outlined text-[22px]">shopping_cart</span>
+                    <span id="cartCount" class="cart-count absolute -top-1 -right-2 bg-red-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full hidden">0</span>
+                </button>
+                <button class="text-black hover:scale-105 transition-transform">
+                    <span class="material-symbols-outlined text-[22px]">person</span>
+                </button>
+            </div>
+        </div>
+    </nav>
 
+    <!-- Hero Section -->
+    <section class="pt-20 pb-24 px-8 max-w-7xl mx-auto w-full flex flex-col lg:flex-row items-center gap-16">
+        <div class="flex-1">
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter text-[#111111] leading-[1.1] mb-6">
+                Servicios Industriales<br>
+                <span class="text-[#0058bb] italic font-extrabold">a su Medida</span>
+            </h1>
+            <p class="text-gray-500 text-base max-w-md leading-relaxed mb-10">
+                Elevamos la experiencia industrial a través de procesos de manufactura, logística premium y soluciones corporativas diseñadas para los estándares más exigentes.
+            </p>
+            <button class="bg-[#0058bb] text-white px-8 py-4 rounded-sm font-bold text-xs tracking-wider hover:bg-blue-800 transition">
+                HABLEMOS DE SU PROYECTO
+            </button>
+        </div>
+        <div class="flex-1 w-full">
+            <div class="aspect-[4/5] w-full max-w-md mx-auto bg-gray-200 relative shadow-xl">
+                <img src="https://picsum.photos/seed/marco/800/1000" alt="Servicios a medida" class="w-full h-full object-cover">
+            </div>
+        </div>
+    </section>
+
+    <!-- Capacidades Section -->
+    <section class="py-24 px-8 bg-[#f1f3f5] w-full">
+        <div class="max-w-7xl mx-auto">
+            <h3 class="text-[10px] font-bold tracking-widest text-[#0058bb] uppercase mb-3">NUESTRAS CAPACIDADES</h3>
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tighter text-black mb-16">Soluciones Integrales</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-white p-8 rounded-sm shadow-sm hover:shadow-md transition">
+                    <div class="w-10 h-10 bg-[#f1e34c] rounded flex items-center justify-center mb-6 text-yellow-900">
+                        <span class="material-symbols-outlined text-xl">precision_manufacturing</span>
+                    </div>
+                    <h4 class="text-base font-bold text-black mb-3">Manufactura Especializada</h4>
+                    <p class="text-xs text-gray-500 leading-relaxed">Le ayudamos a seleccionar los mejores materiales. Expertos industriales a su disposición para construir estructuras con alma.</p>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="bg-white p-8 rounded-sm shadow-sm hover:shadow-md transition">
+                    <div class="w-10 h-10 bg-[#f1e34c] rounded flex items-center justify-center mb-6 text-yellow-900">
+                        <span class="material-symbols-outlined text-xl">inventory_2</span>
+                    </div>
+                    <h4 class="text-base font-bold text-black mb-3">Logística y Distribución</h4>
+                    <p class="text-xs text-gray-500 leading-relaxed">Envíos globales con empaquetado premium. Garantizamos que cada pieza llegue en estado de galería.</p>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="bg-white p-8 rounded-sm shadow-sm hover:shadow-md transition">
+                    <div class="w-10 h-10 bg-[#f1e34c] rounded flex items-center justify-center mb-6 text-yellow-900">
+                        <span class="material-symbols-outlined text-xl">support_agent</span>
+                    </div>
+                    <h4 class="text-base font-bold text-black mb-3">Soporte Premium 24/7</h4>
+                    <p class="text-xs text-gray-500 leading-relaxed">Asistencia dedicada para cada cliente. Resolución inmediata de dudas y seguimiento personalizado.</p>
+                </div>
+                
+                <!-- Card 4 -->
+                <div class="bg-white p-8 rounded-sm shadow-sm hover:shadow-md transition">
+                    <div class="w-10 h-10 bg-[#f1e34c] rounded flex items-center justify-center mb-6 text-yellow-900">
+                        <span class="material-symbols-outlined text-xl">architecture</span>
+                    </div>
+                    <h4 class="text-base font-bold text-black mb-3">Proyectos a Medida</h4>
+                    <p class="text-xs text-gray-500 leading-relaxed">Soluciones para corporativos y coleccionistas. Diseño de estructuras y ediciones limitadas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proyectos Recientes Section -->
+    <section class="py-24 px-8 max-w-7xl mx-auto w-full">
+        <div class="flex flex-col md:flex-row justify-between items-end gap-8 mb-16">
+            <div>
+                <h3 class="text-[10px] font-bold tracking-widest text-[#0058bb] uppercase mb-3">EXHIBICIÓN</h3>
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tighter text-black">Proyectos Recientes</h2>
+            </div>
+            <p class="text-xs text-gray-500 max-w-sm leading-relaxed">
+                Una mirada a nuestras últimas colaboraciones con instituciones corporativas y proyectos privados de alto perfil.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <!-- Large Image -->
+            <div class="lg:col-span-8 aspect-[4/3] lg:aspect-auto lg:h-[600px] bg-gray-200 rounded-sm overflow-hidden">
+                <img src="https://picsum.photos/seed/comedor2/1200/900" alt="Proyecto 1" class="w-full h-full object-cover hover:scale-105 transition duration-700">
+            </div>
+            <!-- Small Images -->
+            <div class="lg:col-span-4 flex flex-col gap-6 h-full">
+                <div class="flex-1 bg-gray-200 rounded-sm overflow-hidden min-h-[250px]">
+                    <img src="https://picsum.photos/seed/sala/600/400" alt="Proyecto 2" class="w-full h-full object-cover hover:scale-105 transition duration-700">
+                </div>
+                <div class="flex-1 bg-gray-200 rounded-sm overflow-hidden min-h-[250px]">
+                    <img src="https://picsum.photos/seed/libros/600/400" alt="Proyecto 3" class="w-full h-full object-cover hover:scale-105 transition duration-700">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="pb-24 px-8 max-w-7xl mx-auto w-full">
+        <div class="bg-[#1877f2] rounded-2xl p-16 text-center flex flex-col items-center justify-center shadow-lg relative overflow-hidden">
+            <!-- Decorative background elements could go here -->
+            <div class="relative z-10">
+                <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter text-white mb-6">¿Tiene una visión industrial?</h2>
+                <p class="text-blue-100 text-sm md:text-base max-w-xl mx-auto leading-relaxed mb-10">
+                    Desde la conceptualización hasta la entrega final, transformamos sus ideas en objetos de colección tangibles.
+                </p>
+                <button class="bg-white text-[#1877f2] px-8 py-4 rounded-full font-bold text-sm tracking-wide hover:bg-gray-50 transition flex items-center gap-2 mx-auto shadow-md">
+                    Iniciar Consulta
+                    <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#f8f9fa] border-t border-gray-200 py-8 px-8 mt-auto">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex flex-col gap-1 text-center md:text-left">
+                <span class="text-sm font-extrabold tracking-tighter text-black">ADV WELDING</span>
+                <span class="text-[10px] text-gray-400">© 2024 ADV WELDING Marketplace. All rights reserved.</span>
+            </div>
+            
+            <div class="flex items-center gap-6">
+                <span class="text-[10px] text-gray-400 hidden md:inline">© 2024 ADV WELDING. All rights reserved.</span>
+                <a href="#" class="text-[10px] text-gray-500 hover:text-black transition">Términos</a>
+                <a href="#" class="text-[10px] text-gray-500 hover:text-black transition">Ayuda</a>
+            </div>
+
+            <div class="flex gap-3">
+                <a href="#" class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-300 transition">
+                    <span class="material-symbols-outlined text-sm">share</span>
+                </a>
+                <a href="#" class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-300 transition">
+                    <span class="material-symbols-outlined text-sm">mail</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
