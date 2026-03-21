@@ -13,7 +13,6 @@
     </style>
 </head>
 <body class="bg-[#f8f9fa] text-gray-900 antialiased min-h-screen flex flex-col">
-    <!-- Navigation -->
     <nav class="w-full z-50 bg-[#f8f9fa] border-b border-gray-200">
         <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
             <span class="text-xl font-extrabold tracking-tighter text-black">ADV WELDING</span>
@@ -27,10 +26,7 @@
                 <button class="text-black hover:scale-105 transition-transform">
                     <span class="material-symbols-outlined text-[22px]">search</span>
                 </button>
-                <button class="text-black hover:scale-105 transition-transform">
-                    <span class="material-symbols-outlined text-[22px]">person</span>
-                </button>
-                <button class="text-black relative hover:scale-105 transition-transform" onclick="window.location.href='carrito.html'">
+                <button class="text-black hover:scale-105 transition-transform" onclick="window.location.href='carrito.html'">
                     <span class="material-symbols-outlined text-[22px]">shopping_cart</span>
                     <span id="cartCount" class="cart-count absolute -top-1 -right-2 bg-red-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full hidden">0</span>
                 </button>
@@ -39,161 +35,156 @@
     </nav>
 
     <main class="pt-12 pb-16 px-8 max-w-7xl mx-auto w-full">
-        <!-- Product Detail Container -->
         <div id="productDetail" class="flex flex-col lg:flex-row gap-12 lg:gap-16">
-            <!-- Inyectado por JS -->
+            <div class="w-full text-center py-20 text-gray-400">
+                <p>Cargando especificaciones del equipo...</p>
+            </div>
         </div>
         
-        <!-- Detalles del proceso -->
         <div class="mt-24 border-t border-gray-200 pt-16">
             <h3 class="text-xs font-bold tracking-widest text-gray-500 uppercase mb-8">Detalles del Proceso</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
                     <img src="https://picsum.photos/seed/soldadura/600/400" alt="Inspiración Industrial" class="w-full aspect-[3/2] object-cover mb-4 bg-gray-100">
                     <h4 class="text-base font-bold text-black mb-2">Inspiración Industrial</h4>
-                    <p class="text-sm text-gray-500 leading-relaxed">Cada toma es una oda a la ingeniería de precisión que define a ADV WELDING.</p>
+                    <p class="text-sm text-gray-500 leading-relaxed">Cada equipo es una oda a la ingeniería de precisión que define a ADV WELDING.</p>
                 </div>
                 <div>
                     <img src="https://picsum.photos/seed/planos/600/400" alt="Calidad Documental" class="w-full aspect-[3/2] object-cover mb-4 bg-gray-100">
-                    <h4 class="text-base font-bold text-black mb-2">Calidad Documental</h4>
-                    <p class="text-sm text-gray-500 leading-relaxed">Impresión Giclée con tintas de archivo para garantizar una longevidad centenaria.</p>
+                    <h4 class="text-base font-bold text-black mb-2">Calidad de Grado Industrial</h4>
+                    <p class="text-sm text-gray-500 leading-relaxed">Certificaciones internacionales para garantizar una longevidad operativa.</p>
                 </div>
                 <div>
                     <img src="https://picsum.photos/seed/galeria/600/400" alt="Curaduría Exclusiva" class="w-full aspect-[3/2] object-cover mb-4 bg-gray-100">
-                    <h4 class="text-base font-bold text-black mb-2">Curaduría Exclusiva</h4>
-                    <p class="text-sm text-gray-500 leading-relaxed">Solo 50 ejemplares numerados y firmados para el mercado global.</p>
+                    <h4 class="text-base font-bold text-black mb-2">Soporte Especializado</h4>
+                    <p class="text-sm text-gray-500 leading-relaxed">Contamos con refacciones y asesoría técnica directa para todo el mercado.</p>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="bg-[#f8f9fa] border-t border-gray-200 py-8 px-8 mt-auto">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="flex flex-col md:flex-row items-center gap-2 md:gap-4 text-center md:text-left">
                 <span class="text-sm font-extrabold tracking-tighter text-black">ADV WELDING</span>
                 <span class="hidden md:inline text-gray-300">|</span>
-                <span class="text-[10px] font-bold tracking-wider text-gray-500 uppercase">© 2024 ADV WELDING. Soluciones profesionales de soldadura.</span>
-            </div>
-            
-            <div class="flex gap-6">
-                <a href="#" class="text-[10px] font-bold tracking-wider text-gray-500 hover:text-black transition uppercase">Términos</a>
-                <a href="#" class="text-[10px] font-bold tracking-wider text-gray-500 hover:text-black transition uppercase">Privacidad</a>
-                <a href="#" class="text-[10px] font-bold tracking-wider text-gray-500 hover:text-black transition uppercase">Soporte</a>
-                <a href="#" class="text-[10px] font-bold tracking-wider text-gray-500 hover:text-black transition uppercase">Envíos</a>
+                <span class="text-[10px] font-bold tracking-wider text-gray-500 uppercase">© 2026 ADV WELDING.</span>
             </div>
         </div>
     </footer>
 
-    <script type="module" src="js/app.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const productId = localStorage.getItem('adv_selected_product') || '1'; // Default to 1 if none selected
-            const products = getProducts();
-            const product = products.find(p => p.id === productId);
-            
-            if (!product) {
-                document.getElementById('productDetail').innerHTML = '<p class="text-gray-500">Producto no encontrado.</p>';
+    <script type="module">
+        import { db } from "./js/firebase-config.js";
+        import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // Función para obtener el ID de la URL (?id=xxxx)
+        const getProductIdFromURL = () => {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('id');
+        };
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const productId = getProductIdFromURL();
+            const container = document.getElementById('productDetail');
+
+            if (!productId) {
+                container.innerHTML = '<p class="text-gray-500">No se ha seleccionado ningún producto.</p>';
                 return;
             }
 
-            document.getElementById('productDetail').innerHTML = `
-                <!-- Left: Images -->
-                <div class="w-full lg:w-1/2 flex flex-col gap-4">
-                    <div class="w-full aspect-[4/5] bg-[#e5e5e5] relative">
-                        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">
-                    </div>
-                    <div class="grid grid-cols-4 gap-4">
-                        <div class="aspect-square bg-[#e5e5e5] border-2 border-[#0058bb] cursor-pointer p-2">
-                            <img src="${product.image}" class="w-full h-full object-cover">
-                        </div>
-                        <div class="aspect-square bg-[#e5e5e5] opacity-60 hover:opacity-100 cursor-pointer transition p-2">
-                            <img src="${product.image}?var=1" class="w-full h-full object-cover">
-                        </div>
-                        <div class="aspect-square bg-[#e5e5e5] opacity-60 hover:opacity-100 cursor-pointer transition p-2">
-                            <img src="${product.image}?var=2" class="w-full h-full object-cover">
-                        </div>
-                        <div class="aspect-square bg-[#e5e5e5] opacity-60 hover:opacity-100 cursor-pointer transition p-2">
-                            <img src="${product.image}?var=3" class="w-full h-full object-cover">
-                        </div>
-                    </div>
-                </div>
+            try {
+                // Consulta a Firebase
+                const docRef = doc(db, "productos", productId);
+                const docSnap = await getDoc(docRef);
 
-                <!-- Right: Info -->
-                <div class="w-full lg:w-1/2 flex flex-col">
-                    <div class="flex items-center gap-2 text-[10px] font-bold text-gray-500 tracking-widest uppercase mb-6">
-                        <a href="catalogo.html" class="hover:text-black transition">CATÁLOGO</a>
-                        <span class="material-symbols-outlined text-[10px]">chevron_right</span>
-                        <span class="text-black">${product.category}</span>
-                    </div>
+                if (docSnap.exists()) {
+                    const product = docSnap.data();
                     
-                    <h1 class="text-4xl md:text-5xl font-extrabold text-black tracking-tighter mb-4 leading-tight">${product.name}</h1>
-                    
-                    <div class="flex items-baseline gap-3 mb-6">
-                        <span class="text-2xl font-bold text-[#0058bb]">$${parseFloat(product.price).toFixed(2)} MXN</span>
-                        <span class="text-xs text-gray-500">IVA incluido</span>
-                    </div>
-                    
-                    <div class="flex items-center gap-2 bg-gray-100 w-fit px-3 py-1.5 rounded-sm mb-8">
-                        <span class="material-symbols-outlined text-[#0058bb] text-sm">location_on</span>
-                        <span class="text-xs font-medium text-gray-700">Madrid, España</span>
-                    </div>
-                    
-                    <p class="text-sm text-gray-600 leading-relaxed mb-10">
-                        ${product.desc} Una exploración visual de las estructuras industriales y su diálogo con el vacío. Esta pieza captura la esencia de la precisión y el reposo en entornos de alta ingeniería. Perfecta para espacios que buscan una estética minimalista y profesional.
-                    </p>
-                    
-                    <div class="border-t border-gray-200 pt-8 mb-10">
-                        <h3 class="text-xs font-bold tracking-widest text-black uppercase mb-6">Especificaciones Técnicas</h3>
-                        <div class="grid grid-cols-2 gap-y-6 gap-x-4">
-                            <div>
-                                <span class="block text-[10px] text-gray-500 uppercase tracking-wider mb-1">Papel</span>
-                                <span class="text-sm text-black">180g Ivory Matte</span>
+                    // Inyectar el diseño con los datos reales
+                    container.innerHTML = `
+                        <div class="w-full lg:w-1/2 flex flex-col gap-4">
+                            <div class="w-full aspect-[4/5] bg-white relative rounded-xl overflow-hidden border border-gray-100 shadow-sm">
+                                <img src="${product.image}" alt="${product.name}" class="w-full h-full object-contain p-4">
                             </div>
-                            <div>
-                                <span class="block text-[10px] text-gray-500 uppercase tracking-wider mb-1">Dimensiones</span>
-                                <span class="text-sm text-black">240 x 320 mm</span>
-                            </div>
-                            <div>
-                                <span class="block text-[10px] text-gray-500 uppercase tracking-wider mb-1">Acabado</span>
-                                <span class="text-sm text-black">Protección UV</span>
-                            </div>
-                            <div>
-                                <span class="block text-[10px] text-gray-500 uppercase tracking-wider mb-1">Serie</span>
-                                <span class="text-sm text-black">Limitada (01/50)</span>
+                            <div class="grid grid-cols-4 gap-4">
+                                <div class="aspect-square bg-white border-2 border-[#0058bb] cursor-pointer p-2 rounded-lg">
+                                    <img src="${product.image}" class="w-full h-full object-contain">
+                                </div>
+                                <div class="aspect-square bg-white opacity-40 hover:opacity-100 cursor-pointer transition p-2 rounded-lg border border-gray-100">
+                                    <img src="${product.image}" class="w-full h-full object-contain grayscale">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="flex flex-col gap-3 mb-10">
-                        <button onclick="addToCart('${product.id}')" class="w-full bg-[#0058bb] text-white py-4 rounded-sm font-bold text-xs tracking-wider hover:bg-blue-800 transition flex items-center justify-center gap-2">
-                            <span class="material-symbols-outlined text-base">shopping_cart</span>
-                            AGREGAR AL CARRITO
-                        </button>
-                        <button class="w-full bg-white border border-gray-200 text-black py-4 rounded-sm font-bold text-xs tracking-wider hover:bg-gray-50 transition">
-                            SOLICITAR INFORMACIÓN TÉCNICA
-                        </button>
-                    </div>
-                    
-                    <div class="bg-white p-4 rounded-sm flex items-center gap-4 border border-gray-100 shadow-sm">
-                        <div class="w-24 h-16 bg-gray-200 rounded overflow-hidden flex-shrink-0 relative">
-                            <img src="https://picsum.photos/seed/map/200/100" class="w-full h-full object-cover opacity-50 mix-blend-multiply">
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <div class="w-3 h-3 bg-[#0058bb] rounded-full border-2 border-white shadow-sm"></div>
+
+                        <div class="w-full lg:w-1/2 flex flex-col">
+                            <div class="flex items-center gap-2 text-[10px] font-bold text-gray-500 tracking-widest uppercase mb-6">
+                                <a href="catalogo.html" class="hover:text-black transition">CATÁLOGO</a>
+                                <span class="material-symbols-outlined text-[10px]">chevron_right</span>
+                                <span class="text-black">${product.category || 'General'}</span>
+                            </div>
+                            
+                            <h1 class="text-4xl md:text-5xl font-extrabold text-black tracking-tighter mb-4 leading-tight">${product.name}</h1>
+                            
+                            <div class="flex items-baseline gap-3 mb-6">
+                                <span class="text-2xl font-bold text-[#0058bb]">$${parseFloat(product.price).toLocaleString('es-MX', {minimumFractionDigits: 2})} MXN</span>
+                                <span class="text-xs text-gray-500">IVA incluido</span>
+                            </div>
+                            
+                            <div class="flex items-center gap-2 bg-white border border-gray-100 w-fit px-3 py-1.5 rounded-sm mb-8 shadow-sm">
+                                <span class="material-symbols-outlined text-[#0058bb] text-sm">verified</span>
+                                <span class="text-xs font-medium text-gray-700">Producto Original Garantizado</span>
+                            </div>
+                            
+                            <p class="text-sm text-gray-600 leading-relaxed mb-10">
+                                ${product.desc || 'Equipo de alta gama seleccionado por ADV WELDING para profesionales que buscan durabilidad y precisión en cada trabajo. Diseñado para optimizar procesos industriales con la mejor tecnología del mercado.'}
+                            </p>
+                            
+                            <div class="border-t border-gray-200 pt-8 mb-10">
+                                <h3 class="text-xs font-bold tracking-widest text-black uppercase mb-6">Especificaciones Técnicas</h3>
+                                <div class="grid grid-cols-2 gap-y-6 gap-x-4">
+                                    <div>
+                                        <span class="block text-[10px] text-gray-500 uppercase tracking-wider mb-1">Categoría</span>
+                                        <span class="text-sm text-black">${product.category}</span>
+                                    </div>
+                                    <div>
+                                        <span class="block text-[10px] text-gray-500 uppercase tracking-wider mb-1">Disponibilidad</span>
+                                        <span class="text-sm text-green-600 font-bold">En Stock</span>
+                                    </div>
+                                    <div>
+                                        <span class="block text-[10px] text-gray-500 uppercase tracking-wider mb-1">Envío</span>
+                                        <span class="text-sm text-black">A todo México</span>
+                                    </div>
+                                    <div>
+                                        <span class="block text-[10px] text-gray-500 uppercase tracking-wider mb-1">Código</span>
+                                        <span class="text-sm text-black">ADV-${productId.substring(0,5).toUpperCase()}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-col gap-3 mb-10">
+                                <button onclick="addToCart('${productId}')" class="w-full bg-[#0058bb] text-white py-4 rounded-sm font-bold text-xs tracking-wider hover:bg-blue-800 transition flex items-center justify-center gap-2">
+                                    <span class="material-symbols-outlined text-base">shopping_cart</span>
+                                    AGREGAR AL CARRITO
+                                </button>
+                                <button class="w-full bg-white border border-gray-200 text-black py-4 rounded-sm font-bold text-xs tracking-wider hover:bg-gray-50 transition">
+                                    DESCARGAR FICHA TÉCNICA (PDF)
+                                </button>
                             </div>
                         </div>
-                        <div class="flex-1">
-                            <span class="block text-[10px] font-bold text-black tracking-wider uppercase mb-0.5">Punto de Entrega</span>
-                            <span class="text-xs text-gray-500">Sede Principal - Madrid Sur</span>
-                        </div>
-                        <button class="text-[#0058bb] hover:text-blue-800 transition">
-                            <span class="material-symbols-outlined">directions</span>
-                        </button>
-                    </div>
-                </div>
-            `;
-            updateCartCount();
+                    `;
+                } else {
+                    container.innerHTML = '<p class="text-gray-500">El producto solicitado no existe.</p>';
+                }
+            } catch (error) {
+                console.error("Error cargando producto:", error);
+                container.innerHTML = '<p class="text-red-500">Error al conectar con la base de datos.</p>';
+            }
         });
+
+        // Simulación de agregar al carrito (puedes vincularlo a tu lógica real)
+        window.addToCart = (id) => {
+            alert("Producto añadido al carrito correctamente");
+        };
     </script>
 </body>
 </html>
