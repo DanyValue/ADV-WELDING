@@ -7,87 +7,80 @@
 
 <script src="https://cdn.tailwindcss.com"></script>
 
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+
 <style>
-body { font-family: sans-serif; }
+body { font-family: 'Plus Jakarta Sans', sans-serif; }
 </style>
 </head>
 
-<body class="bg-gray-100 p-10">
+<body class="bg-gray-50">
 
-<h1 class="text-2xl font-bold mb-6">Panel Admin</h1>
+<div class="max-w-4xl mx-auto p-8">
 
-<form id="adminForm" class="bg-white p-6 rounded shadow max-w-md">
+<h1 class="text-2xl font-bold mb-6">Panel de Administración</h1>
 
-<input type="text" id="prodName" placeholder="Nombre" class="w-full mb-3 p-2 border" required>
-<textarea id="prodDesc" placeholder="Descripción" class="w-full mb-3 p-2 border" required></textarea>
-<input type="number" id="prodPrice" placeholder="Precio" class="w-full mb-3 p-2 border" required>
+<form id="adminForm" class="space-y-6 bg-white p-6 rounded-xl shadow">
 
-<input type="text" id="prodImage" placeholder="URL Imagen (opcional)" class="w-full mb-3 p-2 border">
+<input type="text" id="prodName" placeholder="Nombre del producto" class="w-full border p-3 rounded" required>
 
-<button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">
+<textarea id="prodDesc" placeholder="Descripción" class="w-full border p-3 rounded" required></textarea>
+
+<input type="number" id="prodPrice" placeholder="Precio" class="w-full border p-3 rounded" required>
+
+<select id="prodCategory" class="w-full border p-3 rounded">
+<option>Inversoras</option>
+<option>Caretas</option>
+<option>Estereos</option>
+<option>Bocinas</option>
+</select>
+
+<button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded">
 Guardar Producto
 </button>
 
 </form>
 
-<table class="mt-10 w-full bg-white">
-<thead>
-<tr>
-<th class="p-2">Nombre</th>
-<th class="p-2">Precio</th>
-</tr>
-</thead>
-<tbody id="adminProductList"></tbody>
-</table>
+</div>
 
 <script type="module">
+
 import { agregarProducto } from "./js/firebase-db.js";
-console.log("🔥 IMPORT OK");
+
 console.log("🔥 ADMIN CARGADO");
 
-document.addEventListener("DOMContentLoaded", () => {
+document.getElementById("adminForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-    const form = document.getElementById("adminForm");
+    console.log("🔥 CLICK DETECTADO");
 
-    form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        console.log("🔥 CLICK DETECTADO");
+    try {
 
-        try {
+        const producto = {
+            nombre: document.getElementById("prodName").value,
+            descripcion: document.getElementById("prodDesc").value,
+            precio: parseFloat(document.getElementById("prodPrice").value),
+            categoria: document.getElementById("prodCategory").value,
+            imagen: "https://placehold.co/300x400"
+        };
 
-            const nombre = document.getElementById("prodName").value;
-            const descripcion = document.getElementById("prodDesc").value;
-            const precio = parseFloat(document.getElementById("prodPrice").value);
+        console.log("📦 Enviando producto:", producto);
 
-            const categoriaRadio = document.querySelector('input[name="category"]:checked');
-            const categoria = categoriaRadio ? categoriaRadio.value : "General";
+        await agregarProducto(producto);
 
-            const imagen = "https://placehold.co/300x400";
+        console.log("✅ Guardado en Firebase");
 
-            const producto = {
-                nombre,
-                descripcion,
-                precio,
-                categoria,
-                imagen
-            };
+        alert("Producto guardado 🔥");
 
-            console.log("📦 Enviando producto:", producto);
+        e.target.reset();
 
-            await agregarProducto(producto);
-
-            console.log("✅ Guardado en Firebase");
-
-            form.reset();
-
-        } catch (error) {
-            console.error("❌ ERROR REAL:", error);
-            alert("Error real en consola");
-        }
-
-    });
-
+    } catch (error) {
+        console.error("❌ ERROR:", error);
+        alert("Error al guardar");
+    }
 });
+
 </script>
 
 </body>
