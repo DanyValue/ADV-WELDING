@@ -262,9 +262,9 @@
                             
                             currentImages.push(dataUrl);
                             updateImagePreviews();
-                        }
+                        };
                         img.src = e.target.result;
-                    }
+                    };
                     reader.readAsDataURL(file);
                 }
             });
@@ -329,7 +329,10 @@
             const name = document.getElementById('prodName').value;
             const desc = document.getElementById('prodDesc').value;
             const price = parseFloat(document.getElementById('prodPrice').value);
-            const category = document.querySelector('input[name="category"]:checked').value;
+            
+            // Get selected category
+            const categoryRadio = document.querySelector('input[name="category"]:checked');
+            const category = categoryRadio ? categoryRadio.value : 'Inversoras'; // Default fallback
 
             const products = getProducts();
             const existingIndex = products.findIndex(p => p.id === id);
