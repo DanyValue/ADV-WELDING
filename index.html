@@ -147,33 +147,37 @@
         </div>
     </footer>
 
-    <script type="module" src="js/app.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const products = getProducts().slice(0, 4);
-            const container = document.getElementById('featuredProducts');
-            
-            products.forEach(prod => {
-                container.innerHTML += `
-                    <div class="group cursor-pointer bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition" onclick="viewProduct('${prod.id}')">
-                        <div class="aspect-[3/4] bg-gray-100 overflow-hidden relative">
-                            <img alt="${prod.name}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="${prod.image}"/>
-                        </div>
-                        <div class="p-5">
-                            <h3 class="text-base font-bold text-gray-900 mb-1">${prod.name}</h3>
-                            <p class="text-xs text-gray-500 mb-4">${prod.category}</p>
-                            <div class="flex items-center justify-between">
-                                <span class="text-lg font-extrabold text-[#0058bb]">$${parseFloat(prod.price).toFixed(2)} MXN</span>
-                                <button onclick="event.stopPropagation(); addToCart('${prod.id}')" class="bg-[#f1e34c] text-yellow-900 px-3 py-2 rounded-lg flex items-center gap-1 text-xs font-bold hover:bg-yellow-400 transition">
-                                    <span class="material-symbols-outlined text-sm">add_shopping_cart</span>
-                                </button>
-                            </div>
+    <script type="module">
+    import { obtenerProductos } from "./js/firebase-db.js";
+
+    document.addEventListener('DOMContentLoaded', async () => {
+        const products = (await obtenerProductos()).slice(0, 4);
+        const container = document.getElementById('featuredProducts');
+        
+        products.forEach(prod => {
+            container.innerHTML += `
+                <div class="group cursor-pointer bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition" onclick="viewProduct('${prod.id}')">
+                    <div class="aspect-[3/4] bg-gray-100 overflow-hidden relative">
+                        <img alt="${prod.nombre}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="${prod.imagen}"/>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-base font-bold text-gray-900 mb-1">${prod.nombre}</h3>
+                        <p class="text-xs text-gray-500 mb-4">${prod.categoria || ''}</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-lg font-extrabold text-[#0058bb]">$${parseFloat(prod.precio).toFixed(2)} MXN</span>
+                            <button onclick="event.stopPropagation(); addToCart('${prod.id}')" class="bg-[#f1e34c] text-yellow-900 px-3 py-2 rounded-lg flex items-center gap-1 text-xs font-bold hover:bg-yellow-400 transition">
+                                <span class="material-symbols-outlined text-sm">add_shopping_cart</span>
+                            </button>
                         </div>
                     </div>
-                `;
-            });
-            updateCartCount();
+                </div>
+            `;
         });
-    </script>
+
+        if (typeof updateCartCount === "function") {
+            updateCartCount();
+        }
+    });
+</script>
 </body>
 </html>
