@@ -41,54 +41,51 @@ Guardar Producto
 </table>
 
 <script type="module">
-import { agregarProducto, obtenerProductos } from "./js/firebase-db.js";
+import { agregarProducto } from "./js/firebase-db.js";
 
 console.log("🔥 ADMIN CARGADO");
 
 document.addEventListener("DOMContentLoaded", () => {
 
-const form = document.getElementById("adminForm");
+    const form = document.getElementById("adminForm");
 
-form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    console.log("🔥 CLICK DETECTADO");
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        console.log("🔥 CLICK DETECTADO");
 
-    const producto = {
-        nombre: document.getElementById("prodName").value,
-        descripcion: document.getElementById("prodDesc").value,
-        precio: parseFloat(document.getElementById("prodPrice").value),
-        imagen: document.getElementById("prodImage").value || "https://placehold.co/300x400"
-    };
+        try {
 
-    try {
-        await agregarProducto(producto);
-        console.log("✅ Guardado en Firebase");
+            const nombre = document.getElementById("prodName").value;
+            const descripcion = document.getElementById("prodDesc").value;
+            const precio = parseFloat(document.getElementById("prodPrice").value);
 
-        form.reset();
-        cargarProductos();
+            const categoriaRadio = document.querySelector('input[name="category"]:checked');
+            const categoria = categoriaRadio ? categoriaRadio.value : "General";
 
-    } catch (error) {
-        console.error("❌ Error:", error);
-    }
-});
+            const imagen = "https://placehold.co/300x400";
 
-async function cargarProductos() {
-    const productos = await obtenerProductos();
-    const tabla = document.getElementById("adminProductList");
+            const producto = {
+                nombre,
+                descripcion,
+                precio,
+                categoria,
+                imagen
+            };
 
-    tabla.innerHTML = "";
+            console.log("📦 Enviando producto:", producto);
 
-    productos.forEach(p => {
-        tabla.innerHTML += `
-            <tr>
-                <td class="p-2">${p.nombre}</td>
-                <td class="p-2">$${p.precio}</td>
-            </tr>
-        `;
+            await agregarProducto(producto);
+
+            console.log("✅ Guardado en Firebase");
+
+            form.reset();
+
+        } catch (error) {
+            console.error("❌ ERROR REAL:", error);
+            alert("Error real en consola");
+        }
+
     });
-}
-
-cargarProductos();
 
 });
 </script>
