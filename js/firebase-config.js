@@ -1,5 +1,7 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
+// Tu firebaseConfig aquí...
 const firebaseConfig = {
   apiKey: "AIzaSyDzrtSDv8wXwj2hoWZ7SBTkm1gKt-1q0A4",
   authDomain: "gen-lang-client-0177915830.firebaseapp.com",
@@ -10,3 +12,4 @@ const firebaseConfig = {
 };
 
 export const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app);
