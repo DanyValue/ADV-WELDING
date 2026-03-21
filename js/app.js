@@ -1,4 +1,4 @@
-import { agregarProducto, obtenerProductos } from ".js/firebase-db.js";
+import { agregarProducto, obtenerProductos } from "./js/firebase-db.js";
 
 // --- INICIALIZACIÓN ---
 document.addEventListener('DOMContentLoaded', () => {
