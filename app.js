@@ -1,15 +1,15 @@
-const STORE_KEY = 'adv_products';
+const STORE_KEY = 'adv_products_v3';
 const CART_KEY = 'adv_cart';
 
 const seedData = [
-    { id: '1', name: 'Silla Velvet Arq', price: 850, category: 'Mobiliario', image: 'https://picsum.photos/seed/silla/400/400', desc: 'Silla de diseño minimalista con tapizado en terciopelo.', isNew: true },
-    { id: '2', name: 'Varrón Ceramic V', price: 125, category: 'Decoración', image: 'https://picsum.photos/seed/jarron/400/400', desc: 'Jarrón de cerámica artesanal con textura natural.' },
-    { id: '3', name: 'Lámpara Industrial Nox', price: 340, category: 'Iluminación', image: 'https://picsum.photos/seed/lampara/400/400', desc: 'Lámpara colgante estilo industrial con acabado metálico.' },
-    { id: '4', name: 'Mesa Lateral Oak', price: 490, category: 'Mobiliario', image: 'https://picsum.photos/seed/mesa/400/400', desc: 'Mesa auxiliar de madera de roble macizo.' },
-    { id: '5', name: 'Sofá Modular Cloud', price: 2200, category: 'Mobiliario', image: 'https://picsum.photos/seed/sofa/400/400', desc: 'Sofá modular de diseño contemporáneo.' },
-    { id: '6', name: 'Set de Arte Bauhaus', price: 310, category: 'Decoración', image: 'https://picsum.photos/seed/arte/400/400', desc: 'Set de cuadros con diseño inspirado en la escuela Bauhaus.' },
-    { id: '7', name: 'Lámpara Pie Oro', price: 1150, category: 'Iluminación', image: 'https://picsum.photos/seed/lamparapie/400/400', desc: 'Lámpara de pie con acabado en oro cepillado.' },
-    { id: '8', name: 'Comedor Carrara', price: 3500, category: 'Mobiliario', image: 'https://picsum.photos/seed/comedor/400/400', desc: 'Mesa de comedor con cubierta de mármol Carrara.' }
+    { id: '1', name: 'Inversora 130A', price: 850, category: 'Inversoras', image: 'https://picsum.photos/seed/inversora/400/400', desc: 'Máquina soldadora inversora portátil y eficiente.', isNew: true },
+    { id: '2', name: 'Careta Electrónica', price: 125, category: 'Caretas', image: 'https://picsum.photos/seed/careta/400/400', desc: 'Careta de soldar con oscurecimiento automático.' },
+    { id: '3', name: 'Estéreo Bluetooth', price: 340, category: 'Estereos', image: 'https://picsum.photos/seed/estereo/400/400', desc: 'Estéreo para auto con conectividad Bluetooth y USB.' },
+    { id: '4', name: 'Bocinas Coaxiales 6.5"', price: 490, category: 'Bocinas', image: 'https://picsum.photos/seed/bocinas/400/400', desc: 'Set de bocinas coaxiales de alta fidelidad.' },
+    { id: '5', name: 'Control Universal', price: 220, category: 'Controles', image: 'https://picsum.photos/seed/control/400/400', desc: 'Control remoto universal programable.' },
+    { id: '6', name: 'Inversora 200A', price: 1310, category: 'Inversoras', image: 'https://picsum.photos/seed/inversora2/400/400', desc: 'Soldadora inversora de grado industrial.' },
+    { id: '7', name: 'Careta Profesional', price: 250, category: 'Caretas', image: 'https://picsum.photos/seed/careta2/400/400', desc: 'Careta profesional con amplio campo de visión.' },
+    { id: '8', name: 'Estéreo Pantalla 7"', price: 1500, category: 'Estereos', image: 'https://picsum.photos/seed/estereo2/400/400', desc: 'Estéreo con pantalla táctil de 7 pulgadas.' }
 ];
 
 function getProducts() {
