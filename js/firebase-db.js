@@ -8,12 +8,10 @@ import {
 
 const db = getFirestore(app);
 
-// Guardar producto
 export async function agregarProducto(producto) {
   await addDoc(collection(db, "productos"), producto);
 }
 
-// Obtener productos
 export async function obtenerProductos() {
   const snapshot = await getDocs(collection(db, "productos"));
   return snapshot.docs.map(doc => ({
