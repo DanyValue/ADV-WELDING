@@ -18,7 +18,11 @@ const firebaseConfig = {
 
 // 🔥 Inicializar Firebase AQUÍ directamente
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+import { initializeFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const db = initializeFirestore(app, {
+  experimentalForceLongPolling: true
+});
 
 // ================= FUNCIONES =================
 
