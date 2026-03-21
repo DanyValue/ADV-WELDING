@@ -256,7 +256,11 @@ function updateImagePreviews() {
 }
 
 // ================= GUARDAR =================
-document.getElementById('adminForm').addEventListener('submit', async function(e) {
+const form = document.getElementById('adminForm');
+
+form.addEventListener('submit', async (e) => {
+    console.log("🔥 CLICK DETECTADO");
+    e.preventDefault();
     e.preventDefault();
 
     const nombre = document.getElementById('prodName').value;
