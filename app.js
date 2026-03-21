@@ -1,4 +1,11 @@
-import { agregarProducto, obtenerProductos } from "./firebase-db.js";
+import { obtenerProductos } from "./firebase-db.js";
+
+async function pruebaFirebase() {
+  const productos = await obtenerProductos();
+  console.log("🔥 Firebase:", productos);
+}
+
+pruebaFirebase();
 const STORE_KEY = 'adv_products_v3';
 const CART_KEY = 'adv_cart';
 
