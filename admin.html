@@ -1,147 +1,463 @@
-<!DOCTYPE html>
 <html class="light" lang="es">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Admin | ADV WELDING</title>
-
-<script src="https://cdn.tailwindcss.com"></script>
-
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
-
-<style>
-body { font-family: 'Plus Jakarta Sans', sans-serif; }
-</style>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Admin | ADV WELDING</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        
+        /* Hide scrollbar for clean look */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #d1d5db; }
+    </style>
 </head>
+<body class="bg-[#f9fafb] text-gray-900 antialiased flex h-screen overflow-hidden">
+    
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col justify-between flex-shrink-0 z-20">
+        <div>
+            <div class="p-6 mb-2">
+                <h1 class="text-xl font-bold text-gray-900">Panel de Administración</h1>
+                <p class="text-xs text-gray-500 mt-1">Suite de Gestión</p>
+            </div>
+            <nav class="px-4 space-y-1">
+                <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-600 rounded-lg hover:bg-gray-50 transition">
+                    <span class="material-symbols-outlined text-xl">storefront</span> 
+                    <span class="text-sm font-medium">Ver Tienda</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-3 py-2.5 text-[#0058bb] bg-blue-50 rounded-lg transition relative">
+                    <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-[#0058bb] rounded-r-full"></div>
+                    <span class="material-symbols-outlined text-xl">inventory_2</span> 
+                    <span class="text-sm font-medium">Inventario</span>
+                </a>
+            </nav>
+        </div>
+        <div class="p-4 border-t border-gray-100">
+            <button onclick="resetForm()" class="w-full bg-[#0058bb] text-white py-2.5 rounded-lg font-medium flex items-center justify-center gap-2 hover:bg-blue-800 transition shadow-sm">
+                <span class="material-symbols-outlined text-sm">add</span> Agregar Producto
+            </button>
+        </div>
+    </aside>
 
-<body class="bg-[#f9fafb] flex">
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col h-screen overflow-hidden relative z-10">
+        <!-- Topbar -->
+        <header class="bg-white border-b border-gray-200 px-8 py-4 flex justify-between items-center flex-shrink-0">
+            <div>
+                <h2 class="text-2xl font-bold text-gray-900" id="formTitle">Agregar Nuevo Producto</h2>
+                <p class="text-xs text-gray-500 mt-1">Tienda / Inventario / Nuevo Artículo</p>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="relative hidden md:block">
+                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">search</span>
+                    <input type="text" placeholder="Buscar recursos..." class="pl-9 pr-4 py-2 bg-gray-100 border-transparent rounded-lg text-sm focus:bg-white focus:border-gray-300 focus:ring-1 focus:ring-[#0058bb] w-64 transition outline-none">
+                </div>
+                <button class="text-gray-500 hover:text-gray-900 transition relative">
+                    <span class="material-symbols-outlined">notifications</span>
+                    <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full border border-white"></span>
+                </button>
+                <div class="w-8 h-8 rounded-full bg-orange-200 border border-orange-300 cursor-pointer"></div>
+            </div>
+        </header>
 
-<!-- SIDEBAR -->
-<aside class="w-64 bg-white border-r p-6">
-    <h1 class="font-bold text-xl mb-6">Panel Admin</h1>
-    <a href="index.html" class="block mb-3 text-blue-600">Ver tienda</a>
-</aside>
+        <!-- Scrollable Content -->
+        <div class="flex-1 overflow-y-auto p-6 md:p-8">
+            <form id="adminForm" class="max-w-6xl mx-auto">
+                <input type="hidden" id="prodId">
+                <div class="flex flex-col lg:flex-row gap-6 lg:gap-8">
+                    
+                    <!-- Left Column -->
+                    <div class="w-full lg:w-1/3 space-y-6">
+                        <!-- Media Assets -->
+                        <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                            <h3 class="text-xs font-bold text-gray-400 tracking-wider uppercase mb-4">IMÁGENES DEL PRODUCTO</h3>
+                            
+                            <!-- Main Upload -->
+                            <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 flex flex-col items-center justify-center text-center bg-gray-50 hover:bg-gray-100 transition cursor-pointer relative overflow-hidden aspect-square" onclick="document.getElementById('imageInput').click()">
+                                <img id="mainImagePreview" class="absolute inset-0 w-full h-full object-cover hidden">
+                                <div id="mainImagePlaceholder" class="flex flex-col items-center">
+                                    <span class="material-symbols-outlined text-gray-400 text-4xl mb-3">upload_file</span>
+                                    <span class="text-sm font-bold text-gray-900">Subir Imagen del Producto</span>
+                                    <span class="text-xs text-gray-500 mt-1">JPEG, PNG hasta 10MB</span>
+                                </div>
+                                <input type="file" id="imageInput" accept="image/*" class="hidden" multiple>
+                            </div>
 
-<!-- MAIN -->
-<main class="flex-1 p-8">
+                            <!-- Thumbnails -->
+                            <div class="flex gap-3 mt-4 overflow-x-auto pb-2" id="thumbnailContainer">
+                                <!-- Injected by JS -->
+                            </div>
+                        </div>
+                        
+                        <!-- Storage Location -->
+                        <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                            <h3 class="text-xs font-bold text-gray-400 tracking-wider uppercase mb-4">UBICACIÓN DE ALMACENAMIENTO</h3>
+                            <div class="w-full h-48 bg-gray-100 rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
+                                <img src="https://picsum.photos/seed/map/400/300" class="w-full h-full object-cover opacity-30 grayscale">
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="w-4 h-4 bg-[#0058bb] rounded-full border-2 border-white shadow-md relative">
+                                        <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[8px] border-l-transparent border-r-transparent border-t-[#0058bb]"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-sm font-bold text-gray-900 mb-2">Centro de Distribución</p>
+                            <select class="w-full bg-gray-50 border border-gray-200 rounded-lg p-2.5 text-sm focus:outline-none focus:border-[#0058bb] focus:bg-white transition text-gray-700">
+                                <option>Almacén Central - Sector A</option>
+                                <option>Sucursal Norte</option>
+                            </select>
+                        </div>
+                    </div>
 
-<h2 class="text-2xl font-bold mb-6">Inventario</h2>
+                    <!-- Right Column -->
+                    <div class="w-full lg:w-2/3 space-y-6">
+                        <!-- General Info -->
+                        <div class="bg-white p-6 md:p-8 rounded-xl border border-gray-200 shadow-sm relative">
+                            <div class="absolute top-6 right-6 bg-[#f1e34c] text-yellow-900 text-[10px] font-bold px-3 py-1 rounded-full tracking-wider uppercase">MODO BORRADOR</div>
+                            <h3 class="text-lg font-bold text-gray-900 mb-6">Información General</h3>
+                            
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Nombre del Producto</label>
+                                    <input type="text" id="prodName" required placeholder="ej. Inversora 200A" class="w-full bg-gray-50 border border-gray-200 rounded-lg p-3 text-sm focus:outline-none focus:border-[#0058bb] focus:bg-white transition">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Descripción</label>
+                                    <textarea id="prodDesc" rows="5" required placeholder="Describe las características y detalles del producto..." class="w-full bg-gray-50 border border-gray-200 rounded-lg p-3 text-sm focus:outline-none focus:border-[#0058bb] focus:bg-white transition resize-none"></textarea>
+                                </div>
 
-<!-- FORM -->
-<form id="adminForm" class="bg-white p-6 rounded-xl shadow space-y-4 mb-10">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Precio de Venta (MXN)</label>
+                                        <div class="relative">
+                                            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 font-medium">$</span>
+                                            <input type="number" id="prodPrice" step="0.01" required placeholder="0.00" class="w-full bg-gray-50 border border-gray-200 rounded-lg py-3 pl-8 pr-4 text-sm focus:outline-none focus:border-[#0058bb] focus:bg-white transition">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">SKU / Identificador</label>
+                                        <input type="text" id="prodSku" placeholder="ADV-INV-001" class="w-full bg-gray-50 border border-gray-200 rounded-lg p-3 text-sm focus:outline-none focus:border-[#0058bb] focus:bg-white transition">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-<input id="prodName" placeholder="Nombre" class="w-full border p-3 rounded" required>
+                        <!-- Categorization -->
+                        <div class="bg-white p-6 md:p-8 rounded-xl border border-gray-200 shadow-sm">
+                            <h3 class="text-xs font-bold text-gray-400 tracking-wider uppercase mb-6">CATEGORIZACIÓN</h3>
+                            
+                            <div class="flex flex-wrap gap-3" id="categoryPills">
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="category" value="Inversoras" class="peer hidden" checked>
+                                    <div class="px-5 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 peer-checked:bg-[#0058bb] peer-checked:text-white transition">Inversoras</div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="category" value="Caretas" class="peer hidden">
+                                    <div class="px-5 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 peer-checked:bg-[#0058bb] peer-checked:text-white transition">Caretas</div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="category" value="Estereos" class="peer hidden">
+                                    <div class="px-5 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 peer-checked:bg-[#0058bb] peer-checked:text-white transition">Estereos</div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="category" value="Bocinas" class="peer hidden">
+                                    <div class="px-5 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 peer-checked:bg-[#0058bb] peer-checked:text-white transition">Bocinas</div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="category" value="Controles" class="peer hidden">
+                                    <div class="px-5 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 peer-checked:bg-[#0058bb] peer-checked:text-white transition">Controles</div>
+                                </label>
+                                <button type="button" class="px-5 py-2 rounded-full text-sm font-medium border border-dashed border-gray-300 text-gray-500 hover:bg-gray-50 transition flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-sm">add</span> Nueva Etiqueta
+                                </button>
+                            </div>
+                        </div>
 
-<textarea id="prodDesc" placeholder="Descripción" class="w-full border p-3 rounded" required></textarea>
+                        <!-- Actions -->
+                        <div class="flex justify-end items-center gap-6 pt-4">
+                            <button type="button" onclick="resetForm()" class="text-gray-500 font-medium hover:text-gray-900 transition">Descartar</button>
+                            <button type="submit" class="bg-[#0058bb] text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-800 transition shadow-sm">Guardar Producto</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
 
-<input id="prodPrice" type="number" placeholder="Precio" class="w-full border p-3 rounded" required>
+            <!-- Inventory Table (Below the form) -->
+            <div class="max-w-6xl mx-auto mt-16 mb-8">
+                <h2 class="text-xl font-bold text-gray-900 mb-6">Inventario Actual</h2>
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-gray-50 border-b border-gray-200">
+                            <tr>
+                                <th class="p-4 font-medium text-gray-500">Producto</th>
+                                <th class="p-4 font-medium text-gray-500">Categoría</th>
+                                <th class="p-4 font-medium text-gray-500">Precio</th>
+                                <th class="p-4 font-medium text-gray-500 text-right">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminProductList" class="divide-y divide-gray-100">
+                            <!-- Inyectado por JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <footer class="max-w-6xl mx-auto pt-8 pb-4 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium text-gray-400 uppercase tracking-wider">
+                <p>© 2024 SUITE DE GESTIÓN ADV WELDING</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-gray-600 transition">SOPORTE</a>
+                    <a href="#" class="hover:text-gray-600 transition">DOCUMENTACIÓN</a>
+                </div>
+            </footer>
+        </div>
+    </main>
 
-<select id="prodCategory" class="w-full border p-3 rounded">
-<option>Inversoras</option>
-<option>Caretas</option>
-<option>Estereos</option>
-<option>Bocinas</option>
-<option>Controles</option>
-</select>
+    <script src="app.js"></script>
+    <script>
+        let currentImages = [];
 
-<input type="file" id="imageInput" accept="image/*" class="w-full">
+        document.getElementById('imageInput').addEventListener('change', function(e) {
+            const files = Array.from(e.target.files);
+            
+            files.forEach(file => {
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        // Comprimir imagen antes de guardarla en base64 para evitar llenar el localStorage
+                        const img = new Image();
+                        img.onload = function() {
+                            const canvas = document.createElement('canvas');
+                            const MAX_WIDTH = 800;
+                            const MAX_HEIGHT = 800;
+                            let width = img.width;
+                            let height = img.height;
 
-<img id="preview" class="w-32 mt-3 rounded hidden"/>
+                            if (width > height) {
+                                if (width > MAX_WIDTH) {
+                                    height *= MAX_WIDTH / width;
+                                    width = MAX_WIDTH;
+                                }
+                            } else {
+                                if (height > MAX_HEIGHT) {
+                                    width *= MAX_HEIGHT / height;
+                                    height = MAX_HEIGHT;
+                                }
+                            }
+                            canvas.width = width;
+                            canvas.height = height;
+                            
+                            const ctx = canvas.getContext('2d');
+                            ctx.drawImage(img, 0, 0, width, height);
+                            
+                            // Comprimir a JPEG con 70% de calidad
+                            const dataUrl = canvas.toDataURL('image/jpeg', 0.7);
+                            
+                            currentImages.push(dataUrl);
+                            updateImagePreviews();
+                        };
+                        img.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+            // Reset input so same file can be selected again if needed
+            e.target.value = '';
+        });
 
-<button class="bg-blue-600 text-white px-6 py-3 rounded w-full">
-Guardar Producto
-</button>
+        function updateImagePreviews() {
+            const mainPreview = document.getElementById('mainImagePreview');
+            const mainPlaceholder = document.getElementById('mainImagePlaceholder');
+            const thumbContainer = document.getElementById('thumbnailContainer');
+            
+            if (currentImages.length > 0) {
+                mainPreview.src = currentImages[0];
+                mainPreview.classList.remove('hidden');
+                mainPlaceholder.classList.add('hidden');
+            } else {
+                mainPreview.classList.add('hidden');
+                mainPlaceholder.classList.remove('hidden');
+            }
+            
+            // Update thumbnails
+            let thumbsHtml = '';
+            currentImages.forEach((img, index) => {
+                thumbsHtml += `
+                    <div class="w-20 h-20 border border-gray-200 rounded-lg bg-gray-50 flex items-center justify-center overflow-hidden relative group flex-shrink-0 cursor-pointer" onclick="setMainImage(${index})">
+                       <img src="${img}" class="w-full h-full object-cover ${index === 0 ? 'ring-2 ring-[#0058bb]' : ''}">
+                       <button type="button" onclick="removeImage(${index}); event.stopPropagation();" class="absolute top-1 right-1 bg-white rounded-full text-red-500 flex items-center justify-center opacity-0 group-hover:opacity-100 transition shadow-sm p-1">
+                         <span class="material-symbols-outlined text-[16px]">close</span>
+                       </button>
+                    </div>
+                `;
+            });
+            
+            thumbsHtml += `
+                <div class="w-20 h-20 border border-dashed border-gray-300 rounded-lg bg-gray-50 flex items-center justify-center cursor-pointer hover:bg-gray-100 text-gray-400 flex-shrink-0 transition" onclick="document.getElementById('imageInput').click()">
+                  <span class="material-symbols-outlined">add</span>
+                </div>
+            `;
+            
+            thumbContainer.innerHTML = thumbsHtml;
+        }
 
-</form>
+        function setMainImage(index) {
+            if (index === 0) return;
+            // Swap selected image to the first position
+            const temp = currentImages[0];
+            currentImages[0] = currentImages[index];
+            currentImages[index] = temp;
+            updateImagePreviews();
+        }
 
-<!-- LISTA -->
-<table class="w-full bg-white rounded-xl shadow overflow-hidden">
-<thead class="bg-gray-100">
-<tr>
-<th class="p-3 text-left">Producto</th>
-<th class="p-3">Categoría</th>
-<th class="p-3">Precio</th>
-<th class="p-3">Acciones</th>
-</tr>
-</thead>
+        function removeImage(index) {
+            currentImages.splice(index, 1);
+            updateImagePreviews();
+        }
 
-<tbody id="productList"></tbody>
-</table>
+        document.getElementById('adminForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const id = document.getElementById('prodId').value || Date.now().toString();
+            const name = document.getElementById('prodName').value;
+            const desc = document.getElementById('prodDesc').value;
+            const price = parseFloat(document.getElementById('prodPrice').value);
+            
+            // Get selected category
+            const categoryRadio = document.querySelector('input[name="category"]:checked');
+            const category = categoryRadio ? categoryRadio.value : 'Inversoras'; // Default fallback
 
-</main>
+            const products = getProducts();
+            const existingIndex = products.findIndex(p => p.id === id);
 
-<script type="module">
+            let finalImages = [...currentImages];
+            
+            if(finalImages.length === 0 && existingIndex === -1) {
+                // Si es nuevo y no hay imagen, usar placeholder
+                finalImages = ['https://picsum.photos/seed/' + id + '/400/400'];
+            } else if (finalImages.length === 0 && existingIndex >= 0) {
+                // Si edita y borró todas, mantener las que tenía (o dejar vacío si se prefiere)
+                finalImages = products[existingIndex].images || [products[existingIndex].image];
+            }
 
-import { agregarProducto, obtenerProductos } from "./js/firebase-db.js";
+            const newProduct = {
+                id, name, desc, price, category,
+                image: finalImages[0] || '',
+                images: finalImages
+            };
 
-let imageBase64 = "";
+            if (existingIndex >= 0) {
+                products[existingIndex] = newProduct;
+            } else {
+                products.push(newProduct);
+            }
 
-// PREVIEW IMAGEN
-document.getElementById("imageInput").addEventListener("change", e => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
+            try {
+                localStorage.setItem(STORE_KEY, JSON.stringify(products));
+                resetForm();
+                renderAdminList();
+                
+                // Show success toast instead of alert
+                const btn = document.querySelector('button[type="submit"]');
+                const originalText = btn.innerText;
+                btn.innerText = '¡Guardado!';
+                btn.classList.add('bg-green-600');
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.classList.remove('bg-green-600');
+                }, 2000);
+            } catch (error) {
+                console.error("Error al guardar:", error);
+                if (error.name === 'QuotaExceededError' || error.message.includes('quota')) {
+                    alert("Error: Las imágenes son demasiado grandes y han llenado la memoria del navegador. Por favor, elimina algunas imágenes o usa imágenes más pequeñas.");
+                } else {
+                    alert("Ocurrió un error al guardar el producto. Inténtalo de nuevo.");
+                }
+            }
+        });
 
-    reader.onload = () => {
-        imageBase64 = reader.result;
-        const img = document.getElementById("preview");
-        img.src = imageBase64;
-        img.classList.remove("hidden");
-    };
+        function resetForm() {
+            document.getElementById('adminForm').reset();
+            document.getElementById('prodId').value = '';
+            currentImages = [];
+            updateImagePreviews();
+            document.getElementById('formTitle').innerText = 'Agregar Nuevo Producto';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
-    if(file) reader.readAsDataURL(file);
-});
+        function editProduct(id) {
+            const products = getProducts();
+            const prod = products.find(p => p.id === id);
+            if(!prod) return;
 
-// GUARDAR PRODUCTO
-document.getElementById("adminForm").addEventListener("submit", async e => {
-    e.preventDefault();
+            document.getElementById('formTitle').innerText = 'Editar Producto';
+            document.getElementById('prodId').value = prod.id;
+            document.getElementById('prodName').value = prod.name;
+            document.getElementById('prodDesc').value = prod.desc;
+            document.getElementById('prodPrice').value = prod.price;
+            
+            // Set category radio
+            const radios = document.getElementsByName('category');
+            for(let i=0; i<radios.length; i++) {
+                if(radios[i].value === prod.category) {
+                    radios[i].checked = true;
+                    break;
+                }
+            }
+            
+            // Load images
+            currentImages = prod.images && prod.images.length > 0 ? [...prod.images] : (prod.image ? [prod.image] : []);
+            updateImagePreviews();
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
-    console.log("🔥 Guardando...");
+        function deleteProduct(id) {
+            if(confirm("¿Eliminar este producto?")) {
+                let products = getProducts();
+                products = products.filter(p => p.id !== id);
+                localStorage.setItem(STORE_KEY, JSON.stringify(products));
+                renderAdminList();
+            }
+        }
 
-    const producto = {
-        nombre: prodName.value,
-        descripcion: prodDesc.value,
-        precio: parseFloat(prodPrice.value),
-        categoria: prodCategory.value,
-        imagen: imageBase64 || "https://placehold.co/300x400"
-    };
+        function renderAdminList() {
+            const products = getProducts();
+            const tbody = document.getElementById('adminProductList');
+            tbody.innerHTML = '';
 
-    await agregarProducto(producto);
+            products.forEach(prod => {
+                tbody.innerHTML += `
+                    <tr class="hover:bg-gray-50 transition">
+                        <td class="p-4 flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-lg bg-gray-100 overflow-hidden border border-gray-200 flex-shrink-0">
+                                <img src="${prod.image}" class="w-full h-full object-cover">
+                            </div>
+                            <span class="font-bold text-gray-900">${prod.name}</span>
+                        </td>
+                        <td class="p-4 text-gray-600">
+                            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-medium">${prod.category}</span>
+                        </td>
+                        <td class="p-4 text-gray-900 font-bold">$${parseFloat(prod.price).toFixed(2)} MXN</td>
+                        <td class="p-4 text-right">
+                            <button onclick="editProduct('${prod.id}')" class="text-[#0058bb] hover:text-blue-800 font-medium mr-4 transition">Editar</button>
+                            <button onclick="deleteProduct('${prod.id}')" class="text-red-500 hover:text-red-700 font-medium transition">Eliminar</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
 
-    alert("Producto guardado 🔥");
-
-    e.target.reset();
-    preview.classList.add("hidden");
-
-    cargarProductos();
-});
-
-// CARGAR PRODUCTOS
-async function cargarProductos() {
-    const productos = await obtenerProductos();
-    const container = document.getElementById("productList");
-
-    container.innerHTML = "";
-
-    productos.forEach(p => {
-        container.innerHTML += `
-        <tr class="border-t">
-            <td class="p-3 flex items-center gap-3">
-                <img src="${p.imagen}" class="w-12 h-12 rounded object-cover">
-                ${p.nombre}
-            </td>
-            <td class="text-center">${p.categoria}</td>
-            <td class="text-center">$${p.precio}</td>
-            <td class="text-center text-red-500">---</td>
-        </tr>
-        `;
-    });
-}
-
-// INIT
-cargarProductos();
-
-</script>
-
+        document.addEventListener('DOMContentLoaded', () => {
+            renderAdminList();
+            updateImagePreviews(); // Initialize empty state
+        });
+    </script>
 </body>
 </html>
