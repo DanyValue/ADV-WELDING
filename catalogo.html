@@ -133,8 +133,8 @@
                 <div class="relative pt-1">
                     <input type="range" min="0" max="5000" value="2500" class="w-full">
                     <div class="flex justify-between text-xs text-gray-500 mt-3">
-                        <span>$0</span>
-                        <span>$5,000+</span>
+                        <span>$0 MXN</span>
+                        <span>$5,000+ MXN</span>
                     </div>
                 </div>
             </div>
@@ -222,7 +222,7 @@
                         <div class="flex flex-col flex-1">
                             <span class="text-[10px] font-bold text-gray-400 tracking-wider uppercase mb-1">${prod.category}</span>
                             <h3 class="text-sm font-bold text-black mb-1">${prod.name}</h3>
-                            <span class="text-sm text-gray-500 mb-4">$${parseFloat(prod.price).toFixed(2)} USD</span>
+                            <span class="text-sm text-gray-500 mb-4">$${parseFloat(prod.price).toFixed(2)} MXN</span>
                             
                             <button onclick="event.stopPropagation(); addToCart('${prod.id}')" class="mt-auto w-full py-2.5 border border-gray-200 text-black text-xs font-bold tracking-wider hover:bg-gray-50 transition rounded-sm">
                                 VER PRODUCTO
