@@ -1,12 +1,12 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 const firebaseConfig = {
-  apiKey: "TU_API_KEY",
-  authDomain: "TU_DOMAIN",
-  projectId: "TU_PROJECT_ID",
-  storageBucket: "TU_BUCKET",
-  messagingSenderId: "TU_ID",
-  appId: "TU_APP_ID"
+  apiKey: "AIzaSyDzrtSDv8wXwj2hoWZ7SBTkm1gKt-1q0A4",
+  authDomain: "gen-lang-client-0177915830.firebaseapp.com",
+  projectId: "gen-lang-client-0177915830",
+  storageBucket: "gen-lang-client-0177915830.firebasestorage.app",
+  messagingSenderId: "8073771450",
+  appId: "1:8073771450:web:ac974ac82aae6969b70583"
 };
 
 export const app = initializeApp(firebaseConfig);
