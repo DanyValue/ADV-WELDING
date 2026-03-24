@@ -53,7 +53,63 @@
     </section>
 
     <footer class="bg-white border-t border-gray-100 pt-16 pb-8 px-8">
-        </footer>
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- Brand Column -->
+                <div>
+                    <h2 class="text-2xl font-bold text-[#0058bb] tracking-tighter mb-6">ADV WELDING.</h2>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                        Elevando el estándar en equipos de soldadura. Descubre y adquiere la excelencia en herramientas industriales.
+                    </p>
+                    <div class="flex gap-4 text-gray-400">
+                        <a href="#" class="hover:text-[#0058bb] transition"><span class="material-symbols-outlined">share</span></a>
+                        <a href="#" class="hover:text-[#0058bb] transition"><span class="material-symbols-outlined">favorite</span></a>
+                    </div>
+                </div>
+
+                <!-- About Us Column -->
+                <div>
+                    <h3 class="text-sm font-bold text-gray-900 tracking-wider mb-6">SOBRE NOSOTROS</h3>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-gray-500 hover:text-[#0058bb] text-sm transition">About Us</a></li>
+                        <li><a href="#" class="text-gray-500 hover:text-[#0058bb] text-sm transition">Help Center</a></li>
+                        <li><a href="#" class="text-gray-500 hover:text-[#0058bb] text-sm transition">Investor Relations</a></li>
+                        <li><a href="#" class="text-gray-500 hover:text-[#0058bb] text-sm transition">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal Column -->
+                <div>
+                    <h3 class="text-sm font-bold text-gray-900 tracking-wider mb-6">LEGAL</h3>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-gray-500 hover:text-[#0058bb] text-sm transition">Terms & Conditions</a></li>
+                        <li><a href="#" class="text-gray-500 hover:text-[#0058bb] text-sm transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter Column -->
+                <div>
+                    <h3 class="text-sm font-bold text-gray-900 tracking-wider mb-6">NEWSLETTER</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-4">
+                        Recibe actualizaciones semanales sobre nuevos lanzamientos.
+                    </p>
+                    <form class="flex" onsubmit="event.preventDefault();">
+                        <input type="email" placeholder="Email" class="bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-l-lg focus:ring-[#0058bb] focus:border-[#0058bb] block w-full p-3 outline-none" required>
+                        <button type="submit" class="bg-[#0058bb] text-white px-4 py-3 rounded-r-lg hover:bg-blue-800 transition flex items-center justify-center">
+                            <span class="material-symbols-outlined text-sm">send</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Copyright Row -->
+            <div class="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-400 text-xs">© 2024 ADV WELDING Ltd. All rights reserved.</p>
+                <p class="text-gray-400 text-xs tracking-wider">POWERED BY LIBRE COMMERCE</p>
+            </div>
+        </div>
+    </footer>
+    
 
     <script type="module">
     import { obtenerProductos } from "./js/firebase-db.js";
