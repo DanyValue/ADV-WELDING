@@ -168,7 +168,7 @@
     </main>
 
     <script>
-        // LÓGICA DE SEGURIDAD (SIMULADA)
+        // LÓGICA DE SEGURIDAD (SOLICITUD EN CADA ACCESO)
         const USER_CORRECTO = "admin";
         const PASS_CORRECTA = "adv2026";
 
@@ -176,10 +176,9 @@
         const loginForm = document.getElementById('simulatedLoginForm');
         const errorMsg = document.getElementById('errorMsg');
 
-        // Verificar si ya tiene sesión abierta
-        if(sessionStorage.getItem('adminAuth') === 'true') {
-            blocker.style.display = 'none';
-        }
+        // IMPORTANTE: Eliminamos el chequeo de sessionStorage para que 
+        // siempre aparezca el bloqueo al cargar/recargar la página.
+        blocker.style.display = 'flex'; 
 
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -187,10 +186,13 @@
             const p = document.getElementById('passInput').value;
 
             if(u === USER_CORRECTO && p === PASS_CORRECTA) {
-                sessionStorage.setItem('adminAuth', 'true');
+                // Quitamos el blocker solo por esta sesión de vista
                 blocker.style.display = 'none';
+                // No guardamos nada en sessionStorage/localStorage para obligar
+                // al usuario a loguearse de nuevo si refresca (F5).
             } else {
                 errorMsg.classList.remove('hidden');
+                setTimeout(() => errorMsg.classList.add('hidden'), 3000);
             }
         });
 
