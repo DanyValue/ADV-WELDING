@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html class="light" lang="es">
 <head>
     <meta charset="utf-8"/>
@@ -13,10 +14,36 @@
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #d1d5db; }
+
+        /* Estilos del Login Blocker */
+        #loginBlocker {
+            position: fixed;
+            inset: 0;
+            background: #f9fafb;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
 </head>
 <body class="bg-[#f9fafb] text-gray-900 antialiased flex h-screen overflow-hidden">
     
+    <div id="loginBlocker">
+        <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100 w-full max-w-sm">
+            <div class="text-center mb-6">
+                <h2 class="text-2xl font-bold text-[#0058bb]">ADV WELDING</h2>
+                <p class="text-gray-500 text-sm">Panel de Control</p>
+            </div>
+            <form id="simulatedLoginForm" class="space-y-4">
+                <input type="text" id="userInput" placeholder="Usuario" required class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:border-[#0058bb]">
+                <input type="password" id="passInput" placeholder="Contraseña" required class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:border-[#0058bb]">
+                <button type="submit" class="w-full bg-[#0058bb] text-white py-3 rounded-lg font-bold hover:bg-blue-800 transition">Entrar</button>
+                <p id="errorMsg" class="text-red-500 text-xs text-center hidden">Credenciales incorrectas</p>
+            </form>
+        </div>
+    </div>
+
     <aside class="w-64 bg-white border-r border-gray-200 flex flex-col justify-between flex-shrink-0 z-20">
         <div>
             <div class="p-6 mb-2">
@@ -141,7 +168,33 @@
     </main>
 
     <script>
-        // Declaramos currentImages globalmente para que app.js pueda leerlo
+        // LÓGICA DE SEGURIDAD (SIMULADA)
+        const USER_CORRECTO = "admin";
+        const PASS_CORRECTA = "adv2026";
+
+        const blocker = document.getElementById('loginBlocker');
+        const loginForm = document.getElementById('simulatedLoginForm');
+        const errorMsg = document.getElementById('errorMsg');
+
+        // Verificar si ya tiene sesión abierta
+        if(sessionStorage.getItem('adminAuth') === 'true') {
+            blocker.style.display = 'none';
+        }
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const u = document.getElementById('userInput').value;
+            const p = document.getElementById('passInput').value;
+
+            if(u === USER_CORRECTO && p === PASS_CORRECTA) {
+                sessionStorage.setItem('adminAuth', 'true');
+                blocker.style.display = 'none';
+            } else {
+                errorMsg.classList.remove('hidden');
+            }
+        });
+
+        // TU LÓGICA ORIGINAL DE IMÁGENES
         window.currentImages = [];
 
         document.getElementById('imageInput').addEventListener('change', function(e) {
@@ -153,7 +206,7 @@
                         const img = new Image();
                         img.onload = function() {
                             const canvas = document.createElement('canvas');
-                            const MAX_SIZE = 600; // Tamaño reducido para no saturar Firestore con Base64
+                            const MAX_SIZE = 600; 
                             let width = img.width;
                             let height = img.height;
 
@@ -166,7 +219,7 @@
                             const ctx = canvas.getContext('2d');
                             ctx.drawImage(img, 0, 0, width, height);
                             
-                            const dataUrl = canvas.toDataURL('image/jpeg', 0.6); // 60% calidad
+                            const dataUrl = canvas.toDataURL('image/jpeg', 0.6); 
                             window.currentImages.push(dataUrl);
                             updateImagePreviews();
                         };
